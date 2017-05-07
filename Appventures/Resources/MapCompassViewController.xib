@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapCompassViewController" customModule="EA___Clues" customModuleProvider="target">
+            <connections>
+                <outlet property="mapView" destination="90P-ny-y8X" id="byz-PP-nU6"/>
+                <outlet property="showLocationButton" destination="mAP-lX-e7n" id="mdT-up-hXw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="90P-ny-y8X" customClass="GMSMapView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAP-lX-e7n">
+                    <rect key="frame" x="520" y="470" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="1sD-wQ-LCf"/>
+                        <constraint firstAttribute="width" constant="50" id="Evv-wH-i1g"/>
+                    </constraints>
+                    <state key="normal" image="locationPinCircled"/>
+                    <connections>
+                        <action selector="showLocation:" destination="-1" eventType="touchUpInside" id="1rn-R1-3SD"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptL-8y-UIc">
+                    <rect key="frame" x="520" y="528" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="xbj-D8-is8"/>
+                        <constraint firstAttribute="width" constant="50" id="yPK-SU-l2a"/>
+                    </constraints>
+                    <state key="normal" image="GMSCenterUser"/>
+                    <connections>
+                        <action selector="centerOnUser:" destination="-1" eventType="touchUpInside" id="Tf1-rn-SFq"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mAP-lX-e7n" firstAttribute="centerX" secondItem="ptL-8y-UIc" secondAttribute="centerX" id="1lq-da-7S7"/>
+                <constraint firstItem="ptL-8y-UIc" firstAttribute="top" secondItem="mAP-lX-e7n" secondAttribute="bottom" constant="8" symbolic="YES" id="63A-M2-dw0"/>
+                <constraint firstItem="90P-ny-y8X" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="7s9-j8-Obx"/>
+                <constraint firstItem="90P-ny-y8X" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8l9-6g-HGD"/>
+                <constraint firstItem="90P-ny-y8X" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="AZf-Gx-2vi"/>
+                <constraint firstItem="ptL-8y-UIc" firstAttribute="trailing" secondItem="90P-ny-y8X" secondAttribute="trailing" constant="-30" id="DmD-wx-CQ9"/>
+                <constraint firstItem="90P-ny-y8X" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Gd5-e5-RtD"/>
+                <constraint firstItem="ptL-8y-UIc" firstAttribute="bottomMargin" secondItem="90P-ny-y8X" secondAttribute="bottom" constant="-30" id="HTn-TU-qqC"/>
+                <constraint firstAttribute="bottom" secondItem="90P-ny-y8X" secondAttribute="bottom" id="Tny-kE-ffY"/>
+                <constraint firstItem="90P-ny-y8X" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lls-w1-5rC"/>
+                <constraint firstItem="90P-ny-y8X" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="omJ-Lm-lDk"/>
+                <constraint firstItem="90P-ny-y8X" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="x57-uN-CNJ"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="7s9-j8-Obx"/>
+                    <exclude reference="AZf-Gx-2vi"/>
+                    <exclude reference="lls-w1-5rC"/>
+                    <exclude reference="x57-uN-CNJ"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+    <resources>
+        <image name="GMSCenterUser" width="65" height="62"/>
+        <image name="locationPinCircled" width="600" height="600"/>
+    </resources>
+</document>

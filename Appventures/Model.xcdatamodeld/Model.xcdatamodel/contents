@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16E195" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Appventure" representedClassName=".Appventure" syncable="YES">
+        <attribute name="backendlessId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="String" customClassName="[String]" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Transformable" customClassName="[UIImage]" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="liveStatusNum" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" customClassName="CLLocation" syncable="YES"/>
+        <attribute name="startingLocationName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" customClassName="Set&lt;String&gt;" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalDistance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="buyer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreUser" inverseName="downloaded" inverseEntity="CoreUser" syncable="YES"/>
+        <relationship name="contributer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreUser" inverseName="grantedAppventures" inverseEntity="CoreUser" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreUser" inverseName="ownedAppventures" inverseEntity="CoreUser" syncable="YES"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="AppventureStep" inverseName="appventure" inverseEntity="AppventureStep" syncable="YES"/>
+    </entity>
+    <entity name="AppventureStep" representedClassName=".AppventureStep" syncable="YES">
+        <attribute name="answerHint" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="answerText" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="appventurePFObjectID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="backendlessId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="checkInProximity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="completionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="freeHints" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hintPenalty" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Transformable" allowsExternalBinaryDataStorage="YES" customClassName="UIImage" syncable="YES"/>
+        <attribute name="initialText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" customClassName="CLLocation" syncable="YES"/>
+        <attribute name="locationHidden" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="nameOrLocation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sound" optional="YES" attributeType="Transformable" customClassName="Data" syncable="YES"/>
+        <attribute name="stepNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="appventure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Appventure" inverseName="steps" inverseEntity="Appventure" syncable="YES"/>
+        <relationship name="setup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StepSetup" inverseName="step" inverseEntity="StepSetup" syncable="YES"/>
+    </entity>
+    <entity name="CoreUser" representedClassName=".CoreUser" syncable="YES">
+        <attribute name="facebookId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facebookPicture" optional="YES" attributeType="Transformable" customClassName="UIImage" syncable="YES"/>
+        <attribute name="loggedIn" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictureUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userTypeInt" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="downloaded" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Appventure" inverseName="buyer" inverseEntity="Appventure" syncable="YES"/>
+        <relationship name="grantedAppventures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Appventure" inverseName="contributer" inverseEntity="Appventure" syncable="YES"/>
+        <relationship name="ownedAppventures" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Appventure" inverseName="owner" inverseEntity="Appventure" syncable="YES"/>
+    </entity>
+    <entity name="StepSetup" representedClassName=".StepSetup" syncable="YES">
+        <attribute name="backendlessId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="checkIn" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="compassShown" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="distanceShown" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isLocation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="locationShown" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pictureClue" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="soundClue" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="textClue" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="step" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppventureStep" inverseName="setup" inverseEntity="AppventureStep" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Appventure" positionX="-63" positionY="-18" width="128" height="315"/>
+        <element name="AppventureStep" positionX="-54" positionY="90" width="128" height="300"/>
+        <element name="CoreUser" positionX="-63" positionY="135" width="128" height="180"/>
+        <element name="StepSetup" positionX="-54" positionY="135" width="128" height="195"/>
+    </elements>
+</model>
