@@ -1,8 +1,8 @@
 //
 //  StepAnswer+CoreDataProperties.swift
-//  EA - Clues
+//  Appventures
 //
-//  Created by James Birtwell on 06/05/2017.
+//  Created by James Birtwell on 08/05/2017.
 //  Copyright © 2017 James Birtwell. All rights reserved.
 //
 
@@ -16,8 +16,8 @@ extension StepAnswer {
         return NSFetchRequest<StepAnswer>(entityName: "StepAnswer");
     }
 
-    @NSManaged public var backendlessId: String?
     @NSManaged public var answer: String?
+    @NSManaged public var backendlessId: String?
     @NSManaged public var step: AppventureStep?
 
 }

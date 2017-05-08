@@ -16,8 +16,8 @@ extension AppventureStep {
         return NSFetchRequest<AppventureStep>(entityName: "AppventureStep");
     }
 
-    @NSManaged public var answerHint: [String]!
-    @NSManaged public var answerText: [String]!
+    @NSManaged public var hints: Set<StepHint>
+    @NSManaged public var answers: Set<StepAnswer>
     @NSManaged public var appventurePFObjectID: String?
     @NSManaged public var checkInProximity: Int16
     @NSManaged public var completionText: String?

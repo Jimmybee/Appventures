@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16E195" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1217" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Appventure" representedClassName=".Appventure" syncable="YES">
         <attribute name="backendlessId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -36,7 +36,9 @@
         <attribute name="nameOrLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sound" optional="YES" attributeType="Transformable" customClassName="Data" syncable="YES"/>
         <attribute name="stepNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StepAnswer" inverseName="step" inverseEntity="StepAnswer" syncable="YES"/>
         <relationship name="appventure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Appventure" inverseName="steps" inverseEntity="Appventure" syncable="YES"/>
+        <relationship name="hints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StepHint" inverseName="step" inverseEntity="StepHint" syncable="YES"/>
         <relationship name="setup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StepSetup" inverseName="step" inverseEntity="StepSetup" syncable="YES"/>
     </entity>
     <entity name="CoreUser" representedClassName=".CoreUser" syncable="YES">
@@ -49,6 +51,16 @@
         <relationship name="downloaded" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Appventure" inverseName="buyer" inverseEntity="Appventure" syncable="YES"/>
         <relationship name="grantedAppventures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Appventure" inverseName="contributer" inverseEntity="Appventure" syncable="YES"/>
         <relationship name="ownedAppventures" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Appventure" inverseName="owner" inverseEntity="Appventure" syncable="YES"/>
+    </entity>
+    <entity name="StepAnswer" representedClassName=".StepAnswer" syncable="YES">
+        <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="backendlessId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="step" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppventureStep" inverseName="answers" inverseEntity="AppventureStep" syncable="YES"/>
+    </entity>
+    <entity name="StepHint" representedClassName="StepHint" syncable="YES" codeGenerationType="class">
+        <attribute name="backendlessId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hint" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="step" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppventureStep" inverseName="hints" inverseEntity="AppventureStep" syncable="YES"/>
     </entity>
     <entity name="StepSetup" representedClassName=".StepSetup" syncable="YES">
         <attribute name="backendlessId" optional="YES" attributeType="String" syncable="YES"/>
@@ -64,8 +76,10 @@
     </entity>
     <elements>
         <element name="Appventure" positionX="-63" positionY="-18" width="128" height="315"/>
-        <element name="AppventureStep" positionX="-54" positionY="90" width="128" height="300"/>
+        <element name="AppventureStep" positionX="-54" positionY="90" width="128" height="330"/>
         <element name="CoreUser" positionX="-63" positionY="135" width="128" height="180"/>
         <element name="StepSetup" positionX="-54" positionY="135" width="128" height="195"/>
+        <element name="StepAnswer" positionX="-54" positionY="135" width="128" height="90"/>
+        <element name="StepHint" positionX="-45" positionY="144" width="128" height="90"/>
     </elements>
 </model>

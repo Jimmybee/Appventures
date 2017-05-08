@@ -57,38 +57,35 @@ class BackendlessAppventure: NSObject {
         }
     }
     
-    init(dict:  Dictionary<String, Any> ) {
-        super.init()
-        self.objectId = dict["objectId"] as? String
-        if let duration = dict["duration"] as? Int64 {
-            self.duration = duration
-        }
-        self.imageUrl = dict["imageUrl"] as? String
-        self.startingLocationName  = dict["startingLocationName"] as? String
-        self.tags = dict["tags"] as? String
-        self.startTime = dict["startTime"] as? String
-        self.endTime = dict["endTime"] as? String
-        self.liveStatusNum = dict["liveStatusNum"] as? Int16 ?? 2
-        self.title = dict["title"] as? String
-        self.subtitle = dict["subtitle"] as? String
-        self.totalDistance = dict["totalDistance"] as? Double
-        self.location = dict["location"] as? GeoPoint
-        
-        if let stepDicts = dict["steps"] as? [Dictionary<String, Any>] {
-            for stepDict in stepDicts {
-                let step =  BackendlessStep(dict: stepDict)
-                self.steps.append(step)
-            }
-        }
-    }
+//    init(dict:  Dictionary<String, Any> ) {
+//        super.init()
+//        self.objectId = dict["objectId"] as? String
+//        if let duration = dict["duration"] as? Int64 {
+//            self.duration = duration
+//        }
+//        self.imageUrl = dict["imageUrl"] as? String
+//        self.startingLocationName  = dict["startingLocationName"] as? String
+//        self.tags = dict["tags"] as? String
+//        self.startTime = dict["startTime"] as? String
+//        self.endTime = dict["endTime"] as? String
+//        self.liveStatusNum = dict["liveStatusNum"] as? Int16 ?? 2
+//        self.title = dict["title"] as? String
+//        self.subtitle = dict["subtitle"] as? String
+//        self.totalDistance = dict["totalDistance"] as? Double
+//        self.location = dict["location"] as? GeoPoint
+//        
+//        if let stepDicts = dict["steps"] as? [Dictionary<String, Any>] {
+//            for stepDict in stepDicts {
+//                let step =  BackendlessStep(dict: stepDict)
+//                self.steps.append(step)
+//            }
+//        }
+//    }
     
-    private func save(completion: @escaping (Dictionary<String, Any>) -> ()) {
+    private func save(completion: @escaping (BackendlessAppventure) -> ()) {
         BackendlessAppventure.dataStore?.save(self, response: { (returnObject) in
             let obj = returnObject as! BackendlessAppventure
-            print(obj)
-            guard let dict = returnObject as? Dictionary<String, Any> else { return }
-                        completion(dict)
-            print(dict)
+            completion(obj)
         }) { (error) in
             print(error ?? "no error?")
         }
@@ -101,17 +98,11 @@ class BackendlessAppventure: NSObject {
         let backendlessAppventure = BackendlessAppventure(appventure: appventure)
         
         apiUploadGroup.enter()
-        backendlessAppventure.save(completion: { (dict) in
-            guard let objectId = dict["objectId"] as? String else { return }
-            appventure.backendlessId = objectId
-            guard let stepDicts = dict["steps"] as? [Dictionary<String, Any>] else { return }
-            for (index, stepDict) in stepDicts.enumerated() {
-                guard let  stepId = stepDict["objectId"] as? String else { return }
-                appventure.appventureSteps[index].backendlessId = stepId
-                guard let setupDict = stepDict["setup"] as? Dictionary<String, Any> else { return }
-                guard let  setupId = setupDict["objectId"] as? String else { return }
-                appventure.appventureSteps[index].setup.backendlessId = setupId
-            }
+        backendlessAppventure.save(completion: { (backendlessAppventure) in
+            
+            let updatedAppventure = Appventure(backendlessAppventure: backendlessAppventure, persistent: true)
+            CoreUser.user?.removeFromOwnedAppventures(appventure)
+            CoreUser.user?.addToOwnedAppventures(updatedAppventure)
 
             if withImage == true {
                 uploadImageAsync(objectId: appventure.backendlessId, image: appventure.image, completion: { () in
@@ -123,6 +114,7 @@ class BackendlessAppventure: NSObject {
                     
                 })
             }
+            
             apiUploadGroup.leave()
         })
         
@@ -168,9 +160,6 @@ class BackendlessAppventure: NSObject {
             let page1 = collection!.getCurrentPage()
             for obj in page1! {
                 let backendlessAppventure = obj as! BackendlessAppventure
-//                print(obj)
-//                guard let dict = obj as? Dictionary<String, Any> else { return }
-//                let backendlessAppventure = BackendlessAppventure(dict: dict)
                 let appventure = Appventure(backendlessAppventure: backendlessAppventure, persistent: persistent)
                 appventures.append(appventure)
             }

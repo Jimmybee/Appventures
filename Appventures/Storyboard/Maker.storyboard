@@ -1967,7 +1967,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics">
                         <color key="tintColor" red="0.40894466638565063" green="0.95327186584472656" blue="0.07545144110918045" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </simulatedTabBarMetrics>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jjS-dH-uVC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jjS-dH-uVC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">

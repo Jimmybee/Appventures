@@ -185,11 +185,11 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         
         //section2 - Answer
         self.checkInLabel.text = self.locationNameLabel.text
-        appventureStep.answerText.count == 0 ? (self.answersLabel.text = "Set answers...") :
-            (self.answersLabel.text = "Answers availabe: \(appventureStep.answerText.count)")
+//        appventureStep.answerText.count == 0 ? (self.answersLabel.text = "Set answers...") :
+//            (self.answersLabel.text = "Answers availabe: \(appventureStep.answerText.count)")
         
         //section3 - Hints
-        self.appventureStep.answerHint.count == 0 ? (self.hintsLabel.text = "Set hints...") : (self.hintsLabel.text = "Hints availabe: \(appventureStep.answerHint.count)")
+//        self.appventureStep.answerHint.count == 0 ? (self.hintsLabel.text = "Set hints...") : (self.hintsLabel.text = "Hints availabe: \(appventureStep.answerHint.count)")
         self.penaltyLabel.text = String(appventureStep.hintPenalty)
 
     }
@@ -225,7 +225,7 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
 
         
         //section3 - Hints
-        self.appventureStep.answerHint.count == 0 ? (self.hintsLabel.text = "Set hints...") : (self.hintsLabel.text = "Hints availabe: \(appventureStep.answerHint.count)")
+//        self.appventureStep.answerHint.count == 0 ? (self.hintsLabel.text = "Set hints...") : (self.hintsLabel.text = "Hints availabe: \(appventureStep.answerHint.count)")
 //        self.freeHintsTextField.text = String(appventureStep.freeHints)
         
         //section4 - Completion Text
@@ -275,9 +275,9 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         }
         
         if self.checkInControl.selectedSegmentIndex == 1 {
-            if appventureStep.answerText.count == 0 {
-                enableSave = false
-            }
+//            if appventureStep.answerText.count == 0 {
+//                enableSave = false
+//            }
         }
         
         if enableSave == true {

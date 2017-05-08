@@ -98,7 +98,6 @@
 		66DDE68E1EBF291200A3911E /* FlaggedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE65A1EBF291200A3911E /* FlaggedContent.swift */; };
 		66DDE68F1EBF291200A3911E /* ImageNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE65B1EBF291200A3911E /* ImageNames.swift */; };
 		66DDE6901EBF291200A3911E /* LiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE65C1EBF291200A3911E /* LiveStatus.swift */; };
-		66DDE6921EBF291200A3911E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE65E1EBF291200A3911E /* Model.xcdatamodeld */; };
 		66DDE6941EBF291200A3911E /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6611EBF291200A3911E /* RatingControl.swift */; };
 		66DDE6951EBF291200A3911E /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6621EBF291200A3911E /* RoundedButton.swift */; };
 		66DDE6961EBF291200A3911E /* SharedAdventure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6631EBF291200A3911E /* SharedAdventure.swift */; };
@@ -219,7 +218,6 @@
 		66DDE65A1EBF291200A3911E /* FlaggedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlaggedContent.swift; sourceTree = "<group>"; };
 		66DDE65B1EBF291200A3911E /* ImageNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageNames.swift; sourceTree = "<group>"; };
 		66DDE65C1EBF291200A3911E /* LiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveStatus.swift; sourceTree = "<group>"; };
-		66DDE65F1EBF291200A3911E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		66DDE6611EBF291200A3911E /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		66DDE6621EBF291200A3911E /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		66DDE6631EBF291200A3911E /* SharedAdventure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedAdventure.swift; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				66DDE6D41EBF360200A3911E /* Managers */,
-				66DDE65E1EBF291200A3911E /* Model.xcdatamodeld */,
 				66DDE6B51EBF2B1100A3911E /* Appventure */,
 				66DDE6B61EBF2B2000A3911E /* Step */,
 				66DDE6C91EBF34EB00A3911E /* Rating */,
@@ -925,7 +922,6 @@
 				66DDE6971EBF291200A3911E /* StepAnswer+CoreDataClass.swift in Sources */,
 				66DDE6021EBF285200A3911E /* Constants.swift in Sources */,
 				66DDE6071EBF285200A3911E /* FriendsTableViewController.swift in Sources */,
-				66DDE6921EBF291200A3911E /* Model.xcdatamodeld in Sources */,
 				66DDE69A1EBF291200A3911E /* StepHint+CoreDataProperties.swift in Sources */,
 				66DDE68E1EBF291200A3911E /* FlaggedContent.swift in Sources */,
 				66DDE6941EBF291200A3911E /* RatingControl.swift in Sources */,
@@ -1165,16 +1161,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		66DDE65E1EBF291200A3911E /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				66DDE65F1EBF291200A3911E /* Model.xcdatamodel */,
-			);
-			currentVersion = 66DDE65F1EBF291200A3911E /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		66DDE6A81EBF294D00A3911E /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

@@ -13,6 +13,18 @@ import Alamofire
 public class AppventureStep: NSManagedObject {
     @nonobjc static var appventureStepsHc = "appventureStepsHc"
 
+    var answerHint: [String] {
+        get {
+            return Array(hints).map({ $0.hint ?? "" })
+        }
+    }
+    
+    var answerText: [String] {
+        get {
+            return     Array(answers).map({ $0.answer ?? "" })
+        }
+    }
+
     struct CoreKeys {
         @nonobjc static var entityName = "AppventureStep"
     }
@@ -24,8 +36,6 @@ public class AppventureStep: NSManagedObject {
         self.init(entity: entity!, insertInto: context)
         
         self.setup = StepSetup(step: self, context: context)
-        self.answerHint = [String]()
-        self.answerText = [String]()
         self.appventure = appventure
         let coordinate = kCLLocationCoordinate2DInvalid
         self.location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -46,8 +56,9 @@ public class AppventureStep: NSManagedObject {
         self.checkInProximity = backendlessStep.checkInProximity
         self.hintPenalty = backendlessStep.hintPenalty
         self.freeHints = backendlessStep.freeHints
-        self.answerHint = backendlessStep.answerHint?.splitStringToArray()
-        self.answerText = backendlessStep.answerText?.splitStringToArray()
+        self.answers = Set(backendlessStep.answers.map({ StepAnswer($0, context: context)}))
+        self.hints = Set(backendlessStep.hints.map({ StepHint($0, context: context) }))
+
         let geoPoint = backendlessStep.location
         self.location = CLLocation(latitude: geoPoint!.latitude as Double, longitude: geoPoint!.longitude as Double)
         

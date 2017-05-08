@@ -23,8 +23,8 @@ class BackendlessStep : NSObject {
     public var location: GeoPoint?
     public var freeHints: Int16 = 0
     public var hintPenalty: Int16 = 0
-    public var answerHint:String?
-    public var answerText: String?
+    public var hints = [BackendlessHint]()
+    public var answers = [BackendlessAnswer]()
 
     override init() {
         super.init()
@@ -40,9 +40,9 @@ class BackendlessStep : NSObject {
         self.checkInProximity = step.checkInProximity
         self.hintPenalty = step.hintPenalty
         self.freeHints = step.freeHints
-//        self.answerHint = step.answerHint.joined(separator: ",")
-//        self.answerText = step.answerText.joined(separator: ",")
-        
+        self.answers = step.answers.map({ BackendlessAnswer(stepAnswer: $0)})
+        self.hints = step.hints.map({ BackendlessHint(stepHint: $0)})
+
         if let location = step.location {
         self.location = GeoPoint.geoPoint(
             GEO_POINT(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude),
@@ -52,24 +52,6 @@ class BackendlessStep : NSObject {
         }
     }
     
-    init(dict: Dictionary<String, Any>) {
-        self.objectId = dict["objectId"] as? String
-        self.stepNumber = dict["stepNumber"] as? Int16 ?? 0
-        self.nameOrLocation = dict["nameOrLocation"] as? String
-        self.initialText = dict["initialText"] as? String
-        self.completionText = dict["completionText"] as? String
-        self.checkInProximity = dict["checkInProximity"] as? Int16 ?? 0
-        self.hintPenalty = dict["hintPenalty"] as? Int16 ?? 0
-        self.freeHints = dict["freeHints"] as? Int16 ?? 0
-        self.answerHint = dict["answerHint"] as? String
-        self.answerText = dict["answerText"] as? String
-        if let setupDict = dict["setup"] as? Dictionary<String, Any> {
-            let setup = BackendlessSetup(dict: setupDict)
-            self.setup = setup
-        }
-        self.location = dict["location"] as? GeoPoint
-        
-    }
     
     static func removeBy(id: String) {
         let dataStore = Backendless.sharedInstance().data.of(BackendlessStep.ofClass())

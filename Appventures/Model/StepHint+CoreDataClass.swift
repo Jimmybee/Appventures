@@ -16,10 +16,10 @@ public class StepHint: NSManagedObject {
         static let entityName = "StepHint"
     }
     
-    convenience init (step: AppventureStep, context: NSManagedObjectContext) {
+    convenience init (step: AppventureStep, hint: String, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entity(forEntityName: CoreKeys.entityName, in: context)
         self.init(entity: entity!, insertInto: context)
-        
+        self.hint = hint
         self.step = step
     }
     

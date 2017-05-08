@@ -7,39 +7,67 @@
 //
 
 import UIKit
+import CoreData
 
 class AddAnswerTableViewController: UITableViewController {
     
     var step: AppventureStep!
-
+    var fetchedAnswersController: NSFetchedResultsController<StepAnswer>!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        createController()
+    }
+    
+    func createController() {
+        let context = step.managedObjectContext
+        let primarySortDescriptor = NSSortDescriptor(key: "answer", ascending: true)
+        let fetch:NSFetchRequest<StepAnswer> = StepAnswer.fetchRequest()
+
+        fetch.sortDescriptors = [primarySortDescriptor]
+        fetch.predicate = NSPredicate(format: "step == %@", step)
+
+        fetchedAnswersController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: context!, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedAnswersController.delegate = self
+        do {
+            try fetchedAnswersController.performFetch()
+        } catch {
+            print("An error occurred")
+        }
 
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if self.step.answerText.count > 0 {
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        
+        if let sections = fetchedAnswersController.sections {
+            self.tableView.separatorStyle = .singleLine
             self.tableView.backgroundView = UIView()
-            return 1
+            return sections.count
         } else {
-                let message = "No answers added yet."
-                HelperFunctions.noTableDataMessage(tableView, message: message)
+            let message = "No answers added yet."
+            HelperFunctions.noTableDataMessage(tableView, message: message)
         }
+        
         return 0
 
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return step.answerText.count
+        if let sections = fetchedAnswersController.sections {
+            let currentSection = sections[section]
+            return currentSection.numberOfObjects
+        }
+        
+        return 0
     }
 
     @IBAction func addAnswer(_ sender: AnyObject) {
-        let alert = UIAlertController(title: "New Answer", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertActionStyle.default, handler: { action in
+        let alert = UIAlertController(title: "New Answer", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
             let newAnswer = alert.textFields![0].text
             self.addAnswerToTable(newAnswer)
         }))
@@ -53,27 +81,21 @@ class AddAnswerTableViewController: UITableViewController {
     
     func addAnswerToTable(_ textfieldString: String?) {
         if let answer = textfieldString {
-            self.step.answerText.append(answer)
-            tableView.reloadData()
+            _ = StepAnswer(step: step, answer: answer, context: step.managedObjectContext!)
         }
     }
     
     @IBAction func backButton(_ sender: AnyObject) {
         _ = self.navigationController?.popViewController(animated: true)
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        cell.textLabel?.text = step.answerText[indexPath.row]
+        let answer = fetchedAnswersController.object(at: indexPath)
+
+        cell.textLabel?.text = answer.answer
 
         return cell
-    }
-    
-    func updateAnswerInTable(_ textFieldString: String?, index: Int) {
-        if let answer = textFieldString {
-            self.step.answerText[index] = answer
-            tableView.reloadData()
-        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -82,11 +104,11 @@ class AddAnswerTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertActionStyle.default, handler: { action in
             let newAnswer = alert.textFields![0].text
-            self.updateAnswerInTable(newAnswer, index: indexPath.row)
+            self.fetchedAnswersController.object(at: indexPath).answer = newAnswer
         }))
         
         alert.addTextField { (textField : UITextField!) -> Void in
-            textField.text = self.step.answerText[indexPath.row]
+            textField.text = self.fetchedAnswersController.object(at: indexPath).answer
         }
         
         self.present(alert, animated: true, completion: nil)
@@ -97,12 +119,62 @@ class AddAnswerTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.step.answerText.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-        }
+        let answer = fetchedAnswersController.object(at: indexPath)
+        AppDelegate.coreDataStack.delete(object: answer, completion: nil)
     }
 
 
 }
+
+
+extension AddAnswerTableViewController: NSFetchedResultsControllerDelegate {
+    
+    // MARK: NSFetchedResultsControllerDelegate methods
+     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
+    }
+    
+     func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChange anObject: Any,
+        at indexPath: IndexPath?,
+        for type: NSFetchedResultsChangeType,
+        newIndexPath: IndexPath?) {
+        
+        switch type {
+        case NSFetchedResultsChangeType.insert:
+            if let insertIndexPath = newIndexPath {
+                self.tableView.insertRows(at: [insertIndexPath], with: UITableViewRowAnimation.fade)
+            }
+        case NSFetchedResultsChangeType.delete:
+            if let deleteIndexPath = indexPath {
+                self.tableView.deleteRows(at: [deleteIndexPath], with: UITableViewRowAnimation.fade)
+            }
+        case NSFetchedResultsChangeType.update:
+            if let updateIndexPath = indexPath {
+                let cell = self.tableView.cellForRow(at: updateIndexPath)
+                let answer = self.fetchedAnswersController.object(at: updateIndexPath)
+                
+                cell?.textLabel?.text = answer.answer
+            }
+        case NSFetchedResultsChangeType.move:
+            if let deleteIndexPath = indexPath {
+                self.tableView.deleteRows(at: [deleteIndexPath], with: UITableViewRowAnimation.fade)
+            }
+            
+            if let insertIndexPath = newIndexPath {
+                self.tableView.insertRows(at: [insertIndexPath], with: UITableViewRowAnimation.fade)
+            }
+        }
+    }
+    
+
+    
+     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
+    
+}
+
+
+
