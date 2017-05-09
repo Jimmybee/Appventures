@@ -68,7 +68,7 @@ public class Appventure: NSManagedObject {
         self.startingLocationName = backendlessAppventure.startingLocationName
         self.subtitle = backendlessAppventure.subtitle
         let geoPoint = backendlessAppventure.location
-        self.location = CLLocation(latitude: geoPoint!.latitude as Double, longitude: geoPoint!.longitude as Double)
+        self.location = CLLocation(latitude: geoPoint!.latitude as! Double, longitude: geoPoint!.longitude as! Double)
         self.liveStatusNum = backendlessAppventure.liveStatusNum
         self.duration = backendlessAppventure.duration
         for backendlessStep in backendlessAppventure.steps {
@@ -77,16 +77,10 @@ public class Appventure: NSManagedObject {
         }
     }
     
-    //Save methods
     
-    func downloadAndSaveToCoreData (_ handler: () -> ()) {
-        
-//        CoreUser.user.owned
-    }
-    
-    //Delete from context
+    /// Delete from context
     func deleteAppventure() {
-//        self.deleteAppventureFromBackend()
+        BackendlessAppventure.removeBy(id: self.backendlessId ?? "")
         AppDelegate.coreDataStack.delete(object: self, completion: nil)
     }
     

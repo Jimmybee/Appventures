@@ -120,7 +120,8 @@
 		66DDE6B21EBF29C100A3911E /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6B11EBF29C100A3911E /* UIAlertController.swift */; };
 		66DDE6B41EBF29F900A3911E /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 66DDE6B31EBF29F900A3911E /* video.mov */; };
 		66DDE6BA1EBF2DEB00A3911E /* LaunchAppventure.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66DDE6B91EBF2DEB00A3911E /* LaunchAppventure.storyboard */; };
-		66DDE6BC1EBF2F7F00A3911E /* ExploreAppventureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureTableViewCell.swift */; };
+		66DDE6BC1EBF2F7F00A3911E /* ExploreAppventureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureCell.swift */; };
+		66EE70DC1EC1E5E200EF7464 /* ExploreAppventureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EE70DB1EC1E5E200EF7464 /* ExploreAppventureCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -242,7 +243,8 @@
 		66DDE6B11EBF29C100A3911E /* UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		66DDE6B31EBF29F900A3911E /* video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = video.mov; path = ../video.mov; sourceTree = "<group>"; };
 		66DDE6B91EBF2DEB00A3911E /* LaunchAppventure.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchAppventure.storyboard; sourceTree = "<group>"; };
-		66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreAppventureTableViewCell.swift; sourceTree = "<group>"; };
+		66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreAppventureCell.swift; sourceTree = "<group>"; };
+		66EE70DB1EC1E5E200EF7464 /* ExploreAppventureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExploreAppventureCell.xib; sourceTree = "<group>"; };
 		A90ADA5E0AB3FEB562944F17 /* Pods-Appventures.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appventures.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Appventures/Pods-Appventures.debug.xcconfig"; sourceTree = "<group>"; };
 		D620DB83986F45BC3FF2B971 /* Pods-Appventures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appventures.release.xcconfig"; path = "Pods/Target Support Files/Pods-Appventures/Pods-Appventures.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -310,7 +312,7 @@
 				66DDE6D91EBF371C00A3911E /* CreateAppventures */,
 				66DDE6DF1EBF382E00A3911E /* AnnotatedScreenshot */,
 				66DDE6DA1EBF373D00A3911E /* CompleteAppventure */,
-				66DDE6DB1EBF376100A3911E /* SearchAppventure */,
+				66DDE6DB1EBF376100A3911E /* ExploreAppventure */,
 				66DDE6DD1EBF381A00A3911E /* Share */,
 				66DDE6DE1EBF382300A3911E /* ImageFullScreen */,
 				66DDE6D71EBF36F000A3911E /* Login */,
@@ -464,12 +466,13 @@
 		66DDE6C21EBF339D00A3911E /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				66EE70DB1EC1E5E200EF7464 /* ExploreAppventureCell.xib */,
 				66DDE66B1EBF291200A3911E /* TableHeaderSection.swift */,
 				66DDE6411EBF291200A3911E /* AppventureMakerCell.swift */,
 				66DDE6561EBF291200A3911E /* FacebookFriendTableCell.swift */,
 				66DDE6481EBF291200A3911E /* AppventureStepTableCell.swift */,
 				66DDE6491EBF291200A3911E /* AppventureStepTableViewCell.swift */,
-				66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureTableViewCell.swift */,
+				66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureCell.swift */,
 			);
 			name = UITableViewCell;
 			path = Model;
@@ -662,8 +665,8 @@
 		66DDE6D61EBF36C000A3911E /* DoAppventure */ = {
 			isa = PBXGroup;
 			children = (
-				66DDE5CF1EBF285200A3911E /* AnswerHintViewController.swift */,
 				66DDE5EE1EBF285200A3911E /* StepViewController.swift */,
+				66DDE5CF1EBF285200A3911E /* AnswerHintViewController.swift */,
 				66DDE5D41EBF285200A3911E /* CompassViewController.swift */,
 				66DDE5E31EBF285200A3911E /* MapCompassViewController.swift */,
 				66DDE5D31EBF285200A3911E /* CheckInHintViewController.swift */,
@@ -695,13 +698,10 @@
 		66DDE6D91EBF371C00A3911E /* CreateAppventures */ = {
 			isa = PBXGroup;
 			children = (
-				66DDE5DC1EBF285200A3911E /* ImageChooserViewController.swift */,
-				66DDE5CA1EBF285200A3911E /* AddHintTableViewController.swift */,
-				66DDE5CB1EBF285200A3911E /* AddStepTableViewController.swift */,
-				66DDE5CC1EBF285200A3911E /* AddTagsViewController.swift */,
-				66DDE5C91EBF285200A3911E /* AddAnswerTableViewController.swift */,
 				66DDE5D71EBF285200A3911E /* CreateAppventureViewController.swift */,
 				66DDE5D81EBF285200A3911E /* EditAppventureDetailsTableViewController.swift */,
+				66DDE5CC1EBF285200A3911E /* AddTagsViewController.swift */,
+				66EE70E91EC22B6D00EF7464 /* EditStep */,
 				66DDE5D91EBF285200A3911E /* EditTextClueViewController.swift */,
 				66DDE5E01EBF285200A3911E /* LocationSettingsTableViewController.swift */,
 			);
@@ -719,13 +719,13 @@
 			name = CompleteAppventure;
 			sourceTree = "<group>";
 		};
-		66DDE6DB1EBF376100A3911E /* SearchAppventure */ = {
+		66DDE6DB1EBF376100A3911E /* ExploreAppventure */ = {
 			isa = PBXGroup;
 			children = (
 				66DDE5DF1EBF285200A3911E /* LocalTableViewController.swift */,
 				66DDE5D21EBF285200A3911E /* AppventureStartViewController.swift */,
 			);
-			name = SearchAppventure;
+			name = ExploreAppventure;
 			sourceTree = "<group>";
 		};
 		66DDE6DC1EBF37F500A3911E /* Base */ = {
@@ -759,6 +759,17 @@
 				66DDE5CE1EBF285200A3911E /* AnnotatedScreenshotViewController.swift */,
 			);
 			name = AnnotatedScreenshot;
+			sourceTree = "<group>";
+		};
+		66EE70E91EC22B6D00EF7464 /* EditStep */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE5CB1EBF285200A3911E /* AddStepTableViewController.swift */,
+				66DDE5DC1EBF285200A3911E /* ImageChooserViewController.swift */,
+				66DDE5CA1EBF285200A3911E /* AddHintTableViewController.swift */,
+				66DDE5C91EBF285200A3911E /* AddAnswerTableViewController.swift */,
+			);
+			name = EditStep;
 			sourceTree = "<group>";
 		};
 		9AB6A6D57D3C38D1E81FC0CC /* Pods */ = {
@@ -850,6 +861,7 @@
 				66DDE62B1EBF28A300A3911E /* LaunchScreen.storyboard in Resources */,
 				66DDE6A61EBF293900A3911E /* TableSectionHeader.xib in Resources */,
 				66DDE6AE1EBF299600A3911E /* Assets.xcassets in Resources */,
+				66EE70DC1EC1E5E200EF7464 /* ExploreAppventureCell.xib in Resources */,
 				66DDE63B1EBF28AE00A3911E /* TextClueViewController.xib in Resources */,
 				66DDE6BA1EBF2DEB00A3911E /* LaunchAppventure.storyboard in Resources */,
 				66DDE6381EBF28AE00A3911E /* MapCompassViewController.xib in Resources */,
@@ -928,7 +940,7 @@
 				66DDE6181EBF285200A3911E /* SoundClueViewController.swift in Sources */,
 				66DDE6091EBF285200A3911E /* ImageChooserViewController.swift in Sources */,
 				66DDE67D1EBF291200A3911E /* AppventureStepTableViewCell.swift in Sources */,
-				66DDE6BC1EBF2F7F00A3911E /* ExploreAppventureTableViewCell.swift in Sources */,
+				66DDE6BC1EBF2F7F00A3911E /* ExploreAppventureCell.swift in Sources */,
 				66DDE61F1EBF285200A3911E /* UserManager.swift in Sources */,
 				66DDE5F91EBF285200A3911E /* AddTagsViewController.swift in Sources */,
 				66DDE5C81EBF282700A3911E /* AppDelegate.swift in Sources */,

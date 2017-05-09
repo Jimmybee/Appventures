@@ -61,7 +61,7 @@ class SharedAdventure: NSObject {
                 }
             })
         }, error: { (fault) in
-            print("Server reported an error: \(fault)")
+            print("Server reported an error: \(String(describing: fault))")
             completion(nil)
         })
         

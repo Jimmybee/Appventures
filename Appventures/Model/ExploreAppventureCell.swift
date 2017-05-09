@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Alamofire
 
-class ExploreAppventureTableViewCell: UITableViewCell, AppventureImageCell {
+class ExploreAppventureCell: UITableViewCell, AppventureImageCell {
+    
+    static let cellIdentifierNibName = "ExploreAppventureCell"
     
     var appventure: Appventure? {
         didSet {
@@ -18,9 +19,8 @@ class ExploreAppventureTableViewCell: UITableViewCell, AppventureImageCell {
     }
     @IBOutlet weak var appventureImage: UIImageView! //dont block main thread
     @IBOutlet weak var appventureTitle: UILabel!
-    @IBOutlet weak var ratingDisplay: RatingControlOrangeDisplay!
+    @IBOutlet weak var startingLocation: UILabel!
     
-    //    @IBOutlet weak var ratingDisplay: RatingControl!
     
     override func awakeFromNib() {
         appventureImage.image = nil
@@ -29,9 +29,7 @@ class ExploreAppventureTableViewCell: UITableViewCell, AppventureImageCell {
     }
     
     
-    @IBOutlet weak var startingLocation: UILabel!
-    @IBOutlet weak var duration: UILabel!
-    
+ 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -40,9 +38,7 @@ class ExploreAppventureTableViewCell: UITableViewCell, AppventureImageCell {
     
     func updateUI() {
         startingLocation.text = appventure?.startingLocationName
-        duration.text = appventure?.duration.secondsComponentToLongTimeString()
         appventureTitle.text = appventure?.title
-        ratingDisplay.rating = (appventure?.rating)!
         if let image = appventure?.image {
             appventureImage.image = image
         } else {

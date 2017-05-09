@@ -60,7 +60,7 @@ public class AppventureStep: NSManagedObject {
         self.hints = Set(backendlessStep.hints.map({ StepHint($0, context: context) }))
 
         let geoPoint = backendlessStep.location
-        self.location = CLLocation(latitude: geoPoint!.latitude as Double, longitude: geoPoint!.longitude as Double)
+        self.location = CLLocation(latitude: geoPoint!.latitude as! Double, longitude: geoPoint!.longitude as! Double)
         
         self.setup = StepSetup(backendlesSetup: backendlessStep.setup!, context: context)
 

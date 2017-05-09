@@ -24,6 +24,7 @@ extension AppventureStep {
     @NSManaged public var freeHints: Int16
     @NSManaged public var hintPenalty: Int16
     @NSManaged public var image: UIImage?
+    @NSManaged public var imageUrl: String?
     @NSManaged public var initialText: String?
     @NSManaged public var nameOrLocation: String?
     @NSManaged public var backendlessId: String?

@@ -91,7 +91,7 @@ extension CoreUser {
         let fbGraph = FBSDKGraphRequest.init(graphPath: "me/friends", parameters: ["fields": "first_name, last_name, picture.type(small)"])
         _ = fbGraph?.start(completionHandler: { (connection, resultAny, error) -> Void in
             if error != nil {
-                print("Error: \(error)")
+                print("Error: \(String(describing: error))")
             }
             else {
                 let result = resultAny as AnyObject

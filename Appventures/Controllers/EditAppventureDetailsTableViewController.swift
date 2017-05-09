@@ -154,7 +154,7 @@ extension EditAppventureDetailsTableViewController : ImagePicker {
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
-            let savedImage = HelperFunctions.resizeImage(pickedImage, newWidth: 300)
+            let savedImage = HelperFunctions.resizeImage(pickedImage, newWidth: 800)
             imageView.image = savedImage
         }
         

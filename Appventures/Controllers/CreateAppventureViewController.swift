@@ -416,12 +416,10 @@ extension CreateAppventureViewController : AddStepTableViewControllerDelegate {
 extension CreateAppventureViewController  {
     
     func handleQueryResults(_: [AnyObject]?, handlerCase: String?) {
-        self.newAppventure.downloadAndSaveToCoreData(downloadComplete)
+//        self.newAppventure.downloadAndSaveToCoreData(downloadComplete)
     }
     
-    func downloadComplete() {
-        
-    }
+
 }
 
 //MARK: Map Location & Map Drawing

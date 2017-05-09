@@ -59,7 +59,8 @@ class StepViewController: UIViewController {
     let pictureClueView : PictureClueViewController = PictureClueViewController(nibName: "PictureClueViewController", bundle: nil)
     let soundClueView : SoundClueViewController = SoundClueViewController(nibName: "SoundClueViewController", bundle: nil)
     let mapComapassView : MapCompassViewController = MapCompassViewController(nibName: "MapCompassViewController", bundle: nil)
-    
+    let compassView : CompassViewController = CompassViewController(nibName: CompassViewController.nibName, bundle: nil)
+
     private(set) var clueTypeStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -174,6 +175,7 @@ extension StepViewController {
         addController(textClueView)
         addController(pictureClueView)
         addController(mapComapassView)
+        addController(compassView)
         
     }
     
@@ -220,8 +222,12 @@ extension StepViewController {
         mapComapassView.showCompass = step.setup.compassShown
         mapComapassView.showDistance = step.setup.distanceShown
         mapComapassView.setup()
-        activeViews.append(mapComapassView.view)
+//        activeViews.append(mapComapassView.view)
         activeBttns.append(mapClueBttn)
+        
+        //Compass
+        compassView.setupCompassController()
+        activeViews.append(compassView.view)
         
         //Complete
         view.sendSubview(toBack: containerView)

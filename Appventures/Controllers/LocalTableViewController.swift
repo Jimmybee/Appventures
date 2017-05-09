@@ -123,6 +123,8 @@ class LocalTableViewController: BaseTableViewController{
 extension LocalTableViewController {
     
     func setupTableView() {
+        tableView.register(UINib(nibName: ExploreAppventureCell.cellIdentifierNibName, bundle: nil), forCellReuseIdentifier: ExploreAppventureCell.cellIdentifierNibName)
+        tableView.backgroundColor = .lightGray
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -170,7 +172,7 @@ extension LocalTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: StoryboardNames.TextCellID, for: indexPath) as! ExploreAppventureTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ExploreAppventureCell.cellIdentifierNibName, for: indexPath) as! ExploreAppventureCell
         let row = indexPath.row
         switch localPublicControl.selectedSegmentIndex {
         case 0:

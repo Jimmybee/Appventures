@@ -107,7 +107,7 @@ class HelperFunctions {
         UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
         image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        let imageData = UIImageJPEGRepresentation(newImage!, 0.8)
+        let imageData = UIImageJPEGRepresentation(newImage!, 0.5)
         print(imageData?.count ?? "")
         let finalImage = UIImage(data: imageData!)
         UIGraphicsEndImageContext()

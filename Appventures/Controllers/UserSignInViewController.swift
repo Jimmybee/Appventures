@@ -23,7 +23,7 @@ class UserSignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nsCenter = NotificationCenter.default
+        _ = NotificationCenter.default
 //        nsCenter.addObserver(self, selector:  #selector(UserSignInViewController.failedSingup), name: NSNotification.Name(rawValue: User.failedParseSignup), object: nil)
 //        nsCenter.addObserver(self, selector:  #selector(UserSignInViewController.completedSignup), name: NSNotification.Name(rawValue: User.userInitCompleteNotification), object: nil)
 
@@ -64,7 +64,7 @@ class UserSignInViewController: UIViewController {
     @IBAction func signUpLogIn(_ sender: AnyObject) {
         pause()
         view.endEditing(true)
-        if let email = emailTextField.text {
+        if emailTextField.text != nil {
             if let password = passwordTextField.text {
 //                User.singUpLogIn(email, password: password, restore: restore())
             } else {

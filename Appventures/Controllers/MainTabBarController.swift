@@ -40,11 +40,11 @@ class MainTabBarController: UITabBarController {
     func showUserSettings() {
         for (index, controller) in self.viewControllers!.enumerated() {
             if let nvc = controller as? UINavigationController  {
-                print("\(index) for \(nvc.viewControllers.first)")
+                print("\(index) for \(String(describing: nvc.viewControllers.first))")
             }
         }
         if let nvc = self.viewControllers?[1] as? UINavigationController,
-            let pwvc = nvc.viewControllers.first as? ProfileWrapperViewController {
+            let _ = nvc.viewControllers.first as? ProfileWrapperViewController {
 //            pwvc.showForUser()
         }
     }
