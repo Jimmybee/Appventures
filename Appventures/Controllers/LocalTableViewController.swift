@@ -124,7 +124,7 @@ extension LocalTableViewController {
     
     func setupTableView() {
         tableView.register(UINib(nibName: ExploreAppventureCell.cellIdentifierNibName, bundle: nil), forCellReuseIdentifier: ExploreAppventureCell.cellIdentifierNibName)
-        tableView.backgroundColor = .lightGray
+
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -136,20 +136,21 @@ extension LocalTableViewController {
         switch localPublicControl.selectedSegmentIndex {
         case 0:
             if CoreUser.user!.downloadedArray.count > 0 {
-                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+//                self.tableView.separatorStyle = .none
                 self.tableView.backgroundView = UIView()
+//                self.tableView.backgroundView?.backgroundColor = .lightGray
                 return 1
             } else {
-                HelperFunctions.noTableDataMessage(tableView, message: publicAppventuresMessage)
+//                HelperFunctions.noTableDataMessage(tableView, message: publicAppventuresMessage)
             }
             return 0
         case 1:
             if self.publicAppventures.count > 0 {
-                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-                self.tableView.backgroundView = UIView()
+//                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+//                self.tableView.backgroundView?.backgroundColor = .lightGray
                 return 1
             } else {
-                HelperFunctions.noTableDataMessage(tableView, message: publicAppventuresMessage)
+//                HelperFunctions.noTableDataMessage(tableView, message: publicAppventuresMessage)
             }
             return 0
         default:

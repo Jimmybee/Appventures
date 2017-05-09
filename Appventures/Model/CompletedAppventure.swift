@@ -14,6 +14,10 @@ class CompletedAppventure: NSObject {
     var appventureId: String?
     var time: Double = 0.0
     
+    override init() {
+        super.init()
+    }
+    
     init(teamName: String?, appventureId: String?, time: Double) {
         self.teamName = teamName
         self.appventureId = appventureId

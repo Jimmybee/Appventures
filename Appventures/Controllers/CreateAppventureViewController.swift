@@ -303,17 +303,19 @@ extension CreateAppventureViewController : UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellName) as! AppventureStepTableCell
+        
+        var cell = UITableViewCell()
         let row = indexPath.row
         
         if row < newAppventure.appventureSteps.count  {
+            let stepCell = tableView.dequeueReusableCell(withIdentifier: Constants.cellName) as! AppventureStepTableCell
             if let step = newAppventure.appventureSteps[row] as AppventureStep! {
-                cell.step = step
-                cell.setupView()
+                stepCell.step = step
+                stepCell.setupView()
             }
+            cell = stepCell
         } else {
-            cell.stepNameOrLocation.text = Constants.placeholderText
-            
+            cell = tableView.dequeueReusableCell(withIdentifier: "AddNewStep")!
         }
         
         return cell

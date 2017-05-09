@@ -55,7 +55,7 @@ extension CompassViewController: CLLocationManagerDelegate {
 extension CompassViewController {
     
     func rotateCompass(newHeading: CLLocationDirection){
-        self.compass.image = compassImage.imageRotatedByDegrees(CGFloat(newHeading.magnitude), flip: false)
+        self.compass.image = compassImage.imageRotatedByDegrees(-CGFloat(newHeading), flip: false)
     }
     
 //    func compassUpdate() {

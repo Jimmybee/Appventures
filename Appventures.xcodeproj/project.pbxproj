@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43FF65F0F408084B1DF9907D /* Pods_Appventures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F41ABF76F5E6685E9D1A45 /* Pods_Appventures.framework */; };
+		6602485B1EC2694D003E320A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6602485A1EC2694D003E320A /* CardView.swift */; };
 		66DDE5B81EBF276D00A3911E /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */; };
 		66DDE5B91EBF276D00A3911E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B71EBF276D00A3911E /* BaseViewController.swift */; };
 		66DDE5BE1EBF27A800A3911E /* Choosing Adventure.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 66DDE5BB1EBF27A800A3911E /* Choosing Adventure.rtf */; };
@@ -126,6 +127,7 @@
 
 /* Begin PBXFileReference section */
 		51F41ABF76F5E6685E9D1A45 /* Pods_Appventures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appventures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6602485A1EC2694D003E320A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		66DDE5991EBF26AC00A3911E /* Appventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appventures.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DDE5B51EBF276D00A3911E /* Appventures-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Appventures-Bridging-Header.h"; path = "../Controllers/Appventures-Bridging-Header.h"; sourceTree = "<group>"; };
 		66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +269,15 @@
 				51F41ABF76F5E6685E9D1A45 /* Pods_Appventures.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		660248591EC2687C003E320A /* ExploreAppventureCell */ = {
+			isa = PBXGroup;
+			children = (
+				66EE70DB1EC1E5E200EF7464 /* ExploreAppventureCell.xib */,
+				66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureCell.swift */,
+			);
+			name = ExploreAppventureCell;
 			sourceTree = "<group>";
 		};
 		66DDE5901EBF26AC00A3911E = {
@@ -466,13 +477,12 @@
 		66DDE6C21EBF339D00A3911E /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				66EE70DB1EC1E5E200EF7464 /* ExploreAppventureCell.xib */,
+				660248591EC2687C003E320A /* ExploreAppventureCell */,
 				66DDE66B1EBF291200A3911E /* TableHeaderSection.swift */,
 				66DDE6411EBF291200A3911E /* AppventureMakerCell.swift */,
 				66DDE6561EBF291200A3911E /* FacebookFriendTableCell.swift */,
 				66DDE6481EBF291200A3911E /* AppventureStepTableCell.swift */,
 				66DDE6491EBF291200A3911E /* AppventureStepTableViewCell.swift */,
-				66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureCell.swift */,
 			);
 			name = UITableViewCell;
 			path = Model;
@@ -496,6 +506,7 @@
 				66DDE6611EBF291200A3911E /* RatingControl.swift */,
 				66DDE6541EBF291200A3911E /* DistanceMarker.swift */,
 				66DDE6401EBF291200A3911E /* AppventureDetailsView.swift */,
+				6602485A1EC2694D003E320A /* CardView.swift */,
 			);
 			name = UIView;
 			path = Model;
@@ -816,7 +827,7 @@
 				TargetAttributes = {
 					66DDE5981EBF26AC00A3911E = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = G55S74JQUS;
+						DevelopmentTeam = WM7B35DDT2;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -944,6 +955,7 @@
 				66DDE61F1EBF285200A3911E /* UserManager.swift in Sources */,
 				66DDE5F91EBF285200A3911E /* AddTagsViewController.swift in Sources */,
 				66DDE5C81EBF282700A3911E /* AppDelegate.swift in Sources */,
+				6602485B1EC2694D003E320A /* CardView.swift in Sources */,
 				66DDE6761EBF291200A3911E /* AppventureRating.swift in Sources */,
 				66DDE60D1EBF285200A3911E /* LocationSettingsTableViewController.swift in Sources */,
 				66DDE5C61EBF27DF00A3911E /* ProfileHeaderViewController.swift in Sources */,
@@ -1120,7 +1132,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = G55S74JQUS;
+				DEVELOPMENT_TEAM = WM7B35DDT2;
 				INFOPLIST_FILE = Appventures/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1138,7 +1150,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = G55S74JQUS;
+				DEVELOPMENT_TEAM = WM7B35DDT2;
 				INFOPLIST_FILE = Appventures/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -295,13 +295,13 @@ Adventure Completed!</string>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="255" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="09f-cI-TzX">
                                         <rect key="frame" x="96" y="145.5" width="151" height="19"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Current time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycF-Ve-XF7">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycF-Ve-XF7">
                                                 <rect key="frame" x="0.0" y="0.0" width="101.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9w-EO-J3G">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9w-EO-J3G">
                                                 <rect key="frame" x="109.5" y="0.0" width="41.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -626,16 +626,16 @@ Adventure Completed!</string>
         <scene sceneID="zuC-hP-MsI">
             <objects>
                 <tableViewController id="4BS-rB-9SW" customClass="LocalTableViewController" customModule="Appventures" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="286" sectionHeaderHeight="28" sectionFooterHeight="28" id="vjH-Sg-jZY">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="286" sectionHeaderHeight="28" sectionFooterHeight="28" id="vjH-Sg-jZY">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.73873500631313127" green="0.73873500631313127" blue="0.73873500631313127" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="ya8-1g-oTZ">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="scA-WX-wR2">
-                                    <rect key="frame" x="19" y="8" width="337.5" height="29"/>
+                                    <rect key="frame" x="19" y="8" width="338" height="29"/>
                                     <segments>
                                         <segment title="Downloaded"/>
                                         <segment title="Catalogue"/>
@@ -659,11 +659,11 @@ Adventure Completed!</string>
                                 <rect key="frame" x="0.0" y="72" width="375" height="286"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CfU-Ai-AEK" id="e4F-sp-dOA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="285"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="286"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rrS-Md-xFC">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="Xb2-uT-LzI"/>
                                                 <constraint firstAttribute="width" secondItem="rrS-Md-xFC" secondAttribute="height" multiplier="138:95" id="ggt-hi-pXA"/>
@@ -675,10 +675,10 @@ Adventure Completed!</string>
                                             </variation>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyMask300" translatesAutoresizingMaskIntoConstraints="NO" id="B2C-0g-7SZ">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="300.5"/>
+                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="300"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1R-xf-tyA">
-                                            <rect key="frame" x="164.5" y="113.5" width="47" height="21"/>
+                                            <rect key="frame" x="164" y="113" width="47" height="21"/>
                                             <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="19"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -686,7 +686,7 @@ Adventure Completed!</string>
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dse-3l-gw8">
-                                            <rect key="frame" x="169.5" y="166.5" width="37" height="17"/>
+                                            <rect key="frame" x="169" y="166" width="37" height="17"/>
                                             <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -694,14 +694,14 @@ Adventure Completed!</string>
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationPinA1" translatesAutoresizingMaskIntoConstraints="NO" id="7Ef-m5-ser">
-                                            <rect key="frame" x="148.5" y="164.5" width="15" height="15"/>
+                                            <rect key="frame" x="148" y="164" width="15" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="15" id="K7o-dv-eAU"/>
                                                 <constraint firstAttribute="height" constant="15" id="p9a-cF-oQt"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFc-Wm-EVg">
-                                            <rect key="frame" x="169.5" y="191.5" width="37" height="17"/>
+                                            <rect key="frame" x="169" y="191" width="37" height="17"/>
                                             <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -709,14 +709,14 @@ Adventure Completed!</string>
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stopwatch" translatesAutoresizingMaskIntoConstraints="NO" id="heT-aU-G6f">
-                                            <rect key="frame" x="148.5" y="189.5" width="15" height="15"/>
+                                            <rect key="frame" x="148" y="189" width="15" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="CA9-13-sal"/>
                                                 <constraint firstAttribute="width" constant="15" id="aHp-OU-7XO"/>
                                             </constraints>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJL-ba-mp9" customClass="RatingControlOrangeDisplay" customModule="Appventures" customModuleProvider="target">
-                                            <rect key="frame" x="147.5" y="142.5" width="80" height="16"/>
+                                            <rect key="frame" x="147" y="142" width="80" height="16"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="QPr-WV-5DW"/>
@@ -724,7 +724,7 @@ Adventure Completed!</string>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0K1-OU-Maz">
-                                            <rect key="frame" x="0.0" y="292" width="375" height="8"/>
+                                            <rect key="frame" x="0.0" y="291.5" width="375" height="8"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="8" id="Edh-BI-aJe"/>
@@ -757,6 +757,7 @@ Adventure Completed!</string>
                                         <constraint firstItem="g1R-xf-tyA" firstAttribute="centerX" secondItem="rrS-Md-xFC" secondAttribute="centerX" id="zru-hA-gBb"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="appventureImage"/>
                                 </userDefinedRuntimeAttributes>
@@ -990,7 +991,7 @@ Adventure Completed!</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHv-kL-fUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="1339"/>
+            <point key="canvasLocation" x="-116" y="1394"/>
         </scene>
         <!--Appventures-->
         <scene sceneID="0VJ-Yc-AK1">
@@ -1008,11 +1009,11 @@ Adventure Completed!</string>
                                 <rect key="frame" x="0.0" y="44" width="375" height="466"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="W1W-Nl-QGU" detailTextLabel="Rqg-xI-FgA" style="IBUITableViewCellStyleSubtitle" id="gK3-Lo-bzM">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="W1W-Nl-QGU" detailTextLabel="Rqg-xI-FgA" style="IBUITableViewCellStyleSubtitle" id="gK3-Lo-bzM">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gK3-Lo-bzM" id="AXJ-MV-b2J">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W1W-Nl-QGU">

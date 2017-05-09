@@ -22,10 +22,11 @@ class ExploreAppventureCell: UITableViewCell, AppventureImageCell {
     @IBOutlet weak var startingLocation: UILabel!
     
     
+    @IBOutlet weak var cardView: UIView!
+    
     override func awakeFromNib() {
         appventureImage.image = nil
         super.awakeFromNib()
-        // Initialization code
     }
     
     
