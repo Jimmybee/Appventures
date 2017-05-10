@@ -32,7 +32,23 @@ class LocalTableViewController: BaseTableViewController{
     var searchController = UISearchController()
     var mainTabController: MainTabBarController!
     
-    @IBOutlet weak var localPublicControl: UISegmentedControl!
+    private(set) lazy var catalogueBttn: SegmentButton = {
+      let bttn = SegmentButton()
+        bttn.setTitleColor(Colors.pink, for: .selected)
+        bttn.setTitleColor(.darkGray, for: .normal)
+        bttn.setTitle("Catalogue", for: .normal)
+      return bttn
+    }()
+    
+    private(set) lazy var downloadedBttn: SegmentButton = {
+        let bttn = SegmentButton()
+        bttn.setTitleColor(Colors.pink, for: .selected)
+        bttn.setTitleColor(.darkGray, for: .normal)
+        bttn.setTitle("Downloaded", for: .normal)
+        return bttn
+    }()
+    
+    var animatedControl = AnimatedSegmentControl()
     
     //Don't neeed
     var lastLocation: CLLocationCoordinate2D?
@@ -53,12 +69,17 @@ class LocalTableViewController: BaseTableViewController{
         }
         
         UserManager.setupUser(completion: setupComplete)
+        
+        animatedControl = AnimatedSegmentControl(bttns: [downloadedBttn, catalogueBttn], delegate: self)
+        animatedControl.backgroundColor = .white
+        animatedControl.setupBttnConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         HelperFunctions.unhideTabBar(self)
     }
+    
     
     private func setupComplete() {
         if CoreUser.user?.userType == .noLogin {
@@ -67,6 +88,8 @@ class LocalTableViewController: BaseTableViewController{
            getBackendlessAppventure()
         }
     }
+    
+
     
     //MARK: Actions
     
@@ -87,7 +110,7 @@ class LocalTableViewController: BaseTableViewController{
         if segue.identifier == "Alt1" {
             if let indexPath = sender as? IndexPath {
                 if let aastvc = segue.destination as? AppventureStartViewController {
-                    switch localPublicControl.selectedSegmentIndex {
+                    switch animatedControl.selectedButton {
                     case 0:
                         aastvc.appventure = CoreUser.user!.downloadedArray[indexPath.row]
                     case 1:
@@ -133,35 +156,30 @@ extension LocalTableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        switch localPublicControl.selectedSegmentIndex {
+        switch animatedControl.selectedButton {
         case 0:
-            if CoreUser.user!.downloadedArray.count > 0 {
-//                self.tableView.separatorStyle = .none
-                self.tableView.backgroundView = UIView()
-//                self.tableView.backgroundView?.backgroundColor = .lightGray
-                return 1
-            } else {
+            if CoreUser.user!.downloadedArray.count == 0 {
 //                HelperFunctions.noTableDataMessage(tableView, message: publicAppventuresMessage)
+                return 0
             }
-            return 0
         case 1:
-            if self.publicAppventures.count > 0 {
-//                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-//                self.tableView.backgroundView?.backgroundColor = .lightGray
-                return 1
-            } else {
+            if self.publicAppventures.count == 0 {
 //                HelperFunctions.noTableDataMessage(tableView, message: publicAppventuresMessage)
+                return 0
             }
-            return 0
         default:
-            break
+            return 0
         }
-        return 0
+        
+        tableView.backgroundView = UIView()
+        tableView.separatorStyle = .none
+        tableView.backgroundView?.backgroundColor = .lightGray
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = 0
-        switch localPublicControl.selectedSegmentIndex {
+        switch animatedControl.selectedButton {
         case 0:
             rows = CoreUser.user!.downloadedArray.count
         case 1:
@@ -175,7 +193,7 @@ extension LocalTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExploreAppventureCell.cellIdentifierNibName, for: indexPath) as! ExploreAppventureCell
         let row = indexPath.row
-        switch localPublicControl.selectedSegmentIndex {
+        switch animatedControl.selectedButton {
         case 0:
             cell.appventure = CoreUser.user!.downloadedArray[row]
         case 1:
@@ -190,6 +208,14 @@ extension LocalTableViewController {
         performSegue(withIdentifier: "Alt1", sender: indexPath)
     }
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 52
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        animatedControl.autoPinEdgesToSuperviewEdges()
+        return animatedControl
+    }
 }
 
 
@@ -222,6 +248,15 @@ extension LocalTableViewController: CLLocationManagerDelegate {
         
     }
 
+}
+
+extension LocalTableViewController: AnimatedSegmentControlDelegate {
+    
+    func updatedButton(index: Int) {
+        tableView.reloadData()
+    }
+    
+    
 }
 
 // MARK: API Calls

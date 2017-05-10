@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="skn-cX-nSS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="skn-cX-nSS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -579,7 +579,7 @@ Adventure Completed!</string>
                                         <rect key="frame" x="0.0" y="72" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QRN-gu-c5W" id="nwz-cy-xwF">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -629,34 +629,10 @@ Adventure Completed!</string>
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="286" sectionHeaderHeight="28" sectionFooterHeight="28" id="vjH-Sg-jZY">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.73873500631313127" green="0.73873500631313127" blue="0.73873500631313127" alpha="1" colorSpace="calibratedRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="ya8-1g-oTZ">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="scA-WX-wR2">
-                                    <rect key="frame" x="19" y="8" width="338" height="29"/>
-                                    <segments>
-                                        <segment title="Downloaded"/>
-                                        <segment title="Catalogue"/>
-                                    </segments>
-                                    <color key="tintColor" red="0.89411764709999997" green="0.33725490200000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="localPublicChange:" destination="4BS-rB-9SW" eventType="valueChanged" id="Zqo-E4-9f9"/>
-                                    </connections>
-                                </segmentedControl>
-                            </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstItem="scA-WX-wR2" firstAttribute="centerX" secondItem="ya8-1g-oTZ" secondAttribute="centerX" id="DtE-1K-fIn"/>
-                                <constraint firstItem="scA-WX-wR2" firstAttribute="height" secondItem="ya8-1g-oTZ" secondAttribute="height" multiplier="0.6" constant="1" id="M45-io-gXv"/>
-                                <constraint firstItem="scA-WX-wR2" firstAttribute="width" secondItem="ya8-1g-oTZ" secondAttribute="width" multiplier="0.9" id="tLq-Bk-NUP"/>
-                                <constraint firstItem="scA-WX-wR2" firstAttribute="centerY" secondItem="ya8-1g-oTZ" secondAttribute="centerY" id="zs6-G2-e34"/>
-                            </constraints>
-                        </view>
+                        <color key="backgroundColor" red="0.77393321700507611" green="0.77393321700507611" blue="0.77393321700507611" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextCell" id="CfU-Ai-AEK" customClass="ExploreAppventureTableViewCell" customModule="Appventures">
-                                <rect key="frame" x="0.0" y="72" width="375" height="286"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="286"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CfU-Ai-AEK" id="e4F-sp-dOA">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="286"/>
@@ -775,7 +751,9 @@ Adventure Completed!</string>
                             <outlet property="delegate" destination="4BS-rB-9SW" id="uRl-hb-ERu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Appventures" id="hNl-SL-xdT"/>
+                    <navigationItem key="navigationItem" title="Appventures" id="hNl-SL-xdT">
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Ra2-wD-Vkj"/>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="HPa-e5-TB3">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -787,7 +765,6 @@ Adventure Completed!</string>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="localPublicControl" destination="scA-WX-wR2" id="muM-SK-zz0"/>
                         <outlet property="refreshSpinner" destination="HPa-e5-TB3" id="uyv-eD-deV"/>
                         <segue destination="3oh-Ib-z7Y" kind="show" identifier="Alt1" id="7Ro-TD-iwo"/>
                         <segue destination="lLq-ev-H2Y" kind="presentation" identifier="startupLogin" id="3ye-Tr-amJ"/>
@@ -795,7 +772,7 @@ Adventure Completed!</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="huI-7C-rdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="1394"/>
+            <point key="canvasLocation" x="804" y="1393.8530734632684"/>
         </scene>
         <!--How To View Controller-->
         <scene sceneID="L5C-KY-03E">
@@ -973,7 +950,7 @@ Adventure Completed!</string>
                     <tabBarItem key="tabBarItem" title="Adventure" image="trailIcon-X" id="Dt4-3B-Ro2"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="U8e-dP-2Ft">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U8e-dP-2Ft">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -983,7 +960,7 @@ Adventure Completed!</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="4BS-rB-9SW" kind="relationship" relationship="rootViewController" id="mD0-wY-2gX"/>
@@ -1013,18 +990,18 @@ Adventure Completed!</string>
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gK3-Lo-bzM" id="AXJ-MV-b2J">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W1W-Nl-QGU">
-                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rqg-xI-FgA">
-                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

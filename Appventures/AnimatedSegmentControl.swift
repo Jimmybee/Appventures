@@ -1,0 +1,105 @@
+//
+//  AnimatedSegmentControl.swift
+//  Appventures
+//
+//  Created by James Birtwell on 10/05/2017.
+//  Copyright © 2017 James Birtwell. All rights reserved.
+//
+
+
+import UIKit
+
+protocol AnimatedSegmentControlDelegate: class {
+    func updatedButton(index: Int)
+}
+
+class AnimatedSegmentControl: UIView {
+    
+    var selectedButton: Int = 0
+    var activeBttns = [UIButton]()
+    weak var delegate: AnimatedSegmentControlDelegate!
+    
+    var selectViewVertical : NSLayoutConstraint?
+    var selectViewWidth : NSLayoutConstraint?
+    
+    private(set) var clueTypeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    private(set)  var selectView: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = Colors.pink
+        return view
+    }()
+    
+    override init(frame:CGRect) {
+        super.init(frame:frame)
+    }
+    
+    convenience init(bttns: [UIButton], delegate: AnimatedSegmentControlDelegate) {
+        self.init(frame: CGRect.zero)
+        self.activeBttns = bttns
+        self.delegate = delegate
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("This class does not support NSCoding")
+    }
+    
+    
+    func setupBttnConstraints() {
+        self.addSubview(clueTypeStackView)
+        clueTypeStackView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        
+        self.addSubview(selectView)
+        selectView.autoSetDimension(.height, toSize: 5)
+        selectView.autoPinEdge(toSuperviewEdge: .bottom)
+        
+        selectViewVertical?.autoRemove()
+        selectViewWidth?.autoRemove()
+        
+        
+        for (index ,bttn) in activeBttns.enumerated() {
+            clueTypeStackView.addArrangedSubview(bttn)
+            bttn.tag = index
+            bttn.addTarget(self, action: #selector(clueBttnTapped(sender:)), for: .touchUpInside)
+            if index > 0 {
+                activeBttns[index].autoMatch(.width, to: .width, of: activeBttns[index - 1])
+            }
+            if index < activeBttns.count - 1 {
+                let separator = UIView()
+                separator.backgroundColor = UIColor.lightGray
+                clueTypeStackView.addArrangedSubview(separator)
+                separator.autoMatch(.height, to: .height, of: clueTypeStackView, withMultiplier: 0.9)
+                separator.autoSetDimension(.width, toSize: 1)
+            }
+        }
+        
+        activeBttns[0].isSelected = true
+        selectViewVertical = selectView.autoAlignAxis(.vertical, toSameAxisOf: activeBttns[0])
+        selectViewWidth = selectView.autoMatch(.width, to: .width, of: activeBttns[0], withMultiplier: 0.9)
+        
+    }
+    
+    func clueBttnTapped(sender: UIButton) {
+        selectViewVertical?.autoRemove()
+        
+        for bttn in activeBttns {
+            bttn.isSelected = false
+        }
+        activeBttns[sender.tag].isSelected = true
+        selectViewVertical!.autoRemove()
+        
+        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 1, options: .curveLinear, animations: {
+            self.selectViewVertical = self.selectView.autoAlignAxis(.vertical, toSameAxisOf: self.activeBttns[sender.tag])
+            self.layoutIfNeeded()
+        }, completion: nil)
+        
+        selectedButton = sender.tag
+        delegate.updatedButton(index: sender.tag)
+    }
+    
+    
+}

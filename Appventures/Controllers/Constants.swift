@@ -11,6 +11,8 @@ import Foundation
 struct Colors {
     
     static let purple = UIColor(red:0.54, green:0.25, blue:0.46, alpha:1.0)
+    static let pink = UIColor(red:0.89, green:0.34, blue:0.39, alpha:1.0)
+
 
     static let brightBlue = UIColor(hue: 233/360, saturation: 100/100, brightness: 100/100, alpha: 1.0) /* #001dff */
     static let midBlue = UIColor(hue: 233/360, saturation: 72/100, brightness: 100/100, alpha: 1.0) /* #475cff */

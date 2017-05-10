@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		43FF65F0F408084B1DF9907D /* Pods_Appventures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F41ABF76F5E6685E9D1A45 /* Pods_Appventures.framework */; };
 		6602485B1EC2694D003E320A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6602485A1EC2694D003E320A /* CardView.swift */; };
+		661F99051EC336BE00878F8F /* SegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99041EC336BE00878F8F /* SegmentButton.swift */; };
+		661F99071EC33DAA00878F8F /* AnimatedSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */; };
 		66DDE5B81EBF276D00A3911E /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */; };
 		66DDE5B91EBF276D00A3911E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B71EBF276D00A3911E /* BaseViewController.swift */; };
 		66DDE5BE1EBF27A800A3911E /* Choosing Adventure.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 66DDE5BB1EBF27A800A3911E /* Choosing Adventure.rtf */; };
@@ -128,6 +130,8 @@
 /* Begin PBXFileReference section */
 		51F41ABF76F5E6685E9D1A45 /* Pods_Appventures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appventures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6602485A1EC2694D003E320A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		661F99041EC336BE00878F8F /* SegmentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentButton.swift; sourceTree = "<group>"; };
+		661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSegmentControl.swift; path = ../AnimatedSegmentControl.swift; sourceTree = "<group>"; };
 		66DDE5991EBF26AC00A3911E /* Appventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appventures.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DDE5B51EBF276D00A3911E /* Appventures-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Appventures-Bridging-Header.h"; path = "../Controllers/Appventures-Bridging-Header.h"; sourceTree = "<group>"; };
 		66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -501,12 +505,13 @@
 		66DDE6C41EBF345900A3911E /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				66DDE66C1EBF291200A3911E /* TimePicker.swift */,
-				66DDE6621EBF291200A3911E /* RoundedButton.swift */,
-				66DDE6611EBF291200A3911E /* RatingControl.swift */,
-				66DDE6541EBF291200A3911E /* DistanceMarker.swift */,
 				66DDE6401EBF291200A3911E /* AppventureDetailsView.swift */,
+				661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */,
 				6602485A1EC2694D003E320A /* CardView.swift */,
+				66DDE6541EBF291200A3911E /* DistanceMarker.swift */,
+				66DDE6611EBF291200A3911E /* RatingControl.swift */,
+				66DDE6621EBF291200A3911E /* RoundedButton.swift */,
+				66DDE66C1EBF291200A3911E /* TimePicker.swift */,
 			);
 			name = UIView;
 			path = Model;
@@ -533,6 +538,7 @@
 		66DDE6C71EBF34B700A3911E /* UISubClasses */ = {
 			isa = PBXGroup;
 			children = (
+				661F99041EC336BE00878F8F /* SegmentButton.swift */,
 				66DDE6C21EBF339D00A3911E /* UITableViewCell */,
 				66DDE6D21EBF359600A3911E /* UISegmentedControl */,
 				66DDE6C41EBF345900A3911E /* UIView */,
@@ -953,6 +959,7 @@
 				66DDE67D1EBF291200A3911E /* AppventureStepTableViewCell.swift in Sources */,
 				66DDE6BC1EBF2F7F00A3911E /* ExploreAppventureCell.swift in Sources */,
 				66DDE61F1EBF285200A3911E /* UserManager.swift in Sources */,
+				661F99071EC33DAA00878F8F /* AnimatedSegmentControl.swift in Sources */,
 				66DDE5F91EBF285200A3911E /* AddTagsViewController.swift in Sources */,
 				66DDE5C81EBF282700A3911E /* AppDelegate.swift in Sources */,
 				6602485B1EC2694D003E320A /* CardView.swift in Sources */,
@@ -967,6 +974,7 @@
 				66DDE5C41EBF27DF00A3911E /* HowToViewController.swift in Sources */,
 				66DDE6991EBF291200A3911E /* StepHint+CoreDataClass.swift in Sources */,
 				66DDE6061EBF285200A3911E /* EditTextClueViewController.swift in Sources */,
+				661F99051EC336BE00878F8F /* SegmentButton.swift in Sources */,
 				66DDE6081EBF285200A3911E /* HelperFunctions.swift in Sources */,
 				66DDE6751EBF291200A3911E /* AppventureMakerCell.swift in Sources */,
 				66DDE60E1EBF285200A3911E /* LoginViewController.swift in Sources */,
