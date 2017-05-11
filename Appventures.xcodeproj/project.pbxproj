@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		43FF65F0F408084B1DF9907D /* Pods_Appventures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F41ABF76F5E6685E9D1A45 /* Pods_Appventures.framework */; };
 		6602485B1EC2694D003E320A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6602485A1EC2694D003E320A /* CardView.swift */; };
+		6602485D1EC50FAF003E320A /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6602485C1EC50FAF003E320A /* FilterView.xib */; };
+		6602485F1EC5106A003E320A /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6602485E1EC5106A003E320A /* FilterView.swift */; };
 		661F99051EC336BE00878F8F /* SegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99041EC336BE00878F8F /* SegmentButton.swift */; };
 		661F99071EC33DAA00878F8F /* AnimatedSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */; };
 		66DDE5B81EBF276D00A3911E /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */; };
@@ -130,6 +132,8 @@
 /* Begin PBXFileReference section */
 		51F41ABF76F5E6685E9D1A45 /* Pods_Appventures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appventures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6602485A1EC2694D003E320A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		6602485C1EC50FAF003E320A /* FilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
+		6602485E1EC5106A003E320A /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		661F99041EC336BE00878F8F /* SegmentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentButton.swift; sourceTree = "<group>"; };
 		661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSegmentControl.swift; path = ../AnimatedSegmentControl.swift; sourceTree = "<group>"; };
 		66DDE5991EBF26AC00A3911E /* Appventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appventures.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -648,6 +652,8 @@
 				66DDE6331EBF28AE00A3911E /* PictureClueViewController.xib */,
 				66DDE6341EBF28AE00A3911E /* SoundClueViewController.xib */,
 				66DDE6351EBF28AE00A3911E /* TextClueViewController.xib */,
+				6602485C1EC50FAF003E320A /* FilterView.xib */,
+				6602485E1EC5106A003E320A /* FilterView.swift */,
 			);
 			name = Xibs;
 			path = Resources;
@@ -870,6 +876,7 @@
 				66DDE6B01EBF29A900A3911E /* Assets.xcassets in Resources */,
 				66DDE5C01EBF27A800A3911E /* Making An Adventure.rtf in Resources */,
 				66DDE6361EBF28AE00A3911E /* CompassViewController.xib in Resources */,
+				6602485D1EC50FAF003E320A /* FilterView.xib in Resources */,
 				66DDE6A51EBF293900A3911E /* AppventureDetailsView.xib in Resources */,
 				66DDE63A1EBF28AE00A3911E /* SoundClueViewController.xib in Resources */,
 				66DDE62C1EBF28A300A3911E /* Login.storyboard in Resources */,
@@ -1016,6 +1023,7 @@
 				66DDE5FC1EBF285200A3911E /* AnswerHintViewController.swift in Sources */,
 				66DDE5FF1EBF285200A3911E /* AppventureStartViewController.swift in Sources */,
 				66DDE6111EBF285200A3911E /* NonFacebookHeaderViewController.swift in Sources */,
+				6602485F1EC5106A003E320A /* FilterView.swift in Sources */,
 				66DDE6951EBF291200A3911E /* RoundedButton.swift in Sources */,
 				66DDE5C51EBF27DF00A3911E /* MainNavViewController.swift in Sources */,
 				66DDE61D1EBF285200A3911E /* TextClueViewController.swift in Sources */,

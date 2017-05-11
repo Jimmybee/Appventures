@@ -31,6 +31,8 @@ class LocalTableViewController: BaseTableViewController{
     var publicAppventures = [Appventure]()
     var searchController = UISearchController()
     var mainTabController: MainTabBarController!
+    var themeFilter = ""
+    
     
     private(set) lazy var catalogueBttn: SegmentButton = {
       let bttn = SegmentButton()
@@ -50,6 +52,13 @@ class LocalTableViewController: BaseTableViewController{
         return bttn
     }()
     
+    private(set) lazy var filterView: FilterView = {
+        let bundle = Bundle(for: FilterView.self)
+        let nib = bundle.loadNibNamed(FilterView.nib, owner: self, options: nil)
+        let view = nib?.first as? FilterView
+        return view!
+    }()
+    
     var animatedControl = AnimatedSegmentControl()
     
     //Don't neeed
@@ -64,6 +73,7 @@ class LocalTableViewController: BaseTableViewController{
 
         setupLocationManager()
         setupTableView()
+        setupFilterView()
 
         if let mtvc = self.tabBarController as? MainTabBarController {
             mainTabController = mtvc
@@ -75,7 +85,6 @@ class LocalTableViewController: BaseTableViewController{
         animatedControl = AnimatedSegmentControl(bttns: [downloadedBttn, catalogueBttn], delegate: self)
         animatedControl.backgroundColor = .white
         animatedControl.selectedButton = 1
-//        animatedControl.setupBttnConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,7 +101,23 @@ class LocalTableViewController: BaseTableViewController{
         }
     }
     
+    private func setupFilterView() {
+        view.addSubview(filterView)
+        filterView.autoMatch(.width, to: .width, of: tableView)
+        filterView.autoMatch(.height, to: .height, of: tableView)
+        
+//        filterView.autoAlignAxis(toSuperviewAxis: .vertical)
+        filterView.autoAlignAxis(toSuperviewAxis: .horizontal)
 
+         attachedToTop = filterView.autoPinEdge(.bottom, to: .top, of: tableView, withOffset: 0)
+         attachedToBottom = filterView.autoPinEdge(.bottom, to: .bottom, of: tableView, withOffset: 0)
+         attachedToBottom.autoRemove()
+
+    }
+    
+    var filterOpen = false
+    var attachedToTop: NSLayoutConstraint!
+    var attachedToBottom: NSLayoutConstraint!
     
     //MARK: Actions
     
@@ -106,6 +131,31 @@ class LocalTableViewController: BaseTableViewController{
     @IBAction func localPublicChange(_ sender: UISegmentedControl) {
         tableView.reloadData()
     }
+    
+    @IBAction func filterBttnPressed(_ sender: Any) {
+        
+        switch filterOpen {
+        case false:
+            UIView.animate(withDuration: 0.3, animations: {
+                self.attachedToBottom.autoInstall()
+                self.attachedToTop.autoRemove()
+                self.view.layoutIfNeeded()
+                self.animatedControl.alpha = 0
+            }, completion: nil)
+        case true:
+            UIView.animate(withDuration: 0.3, animations: {
+                self.attachedToBottom.autoRemove()
+                self.attachedToTop.autoInstall()
+                self.animatedControl.alpha = 1
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+
+        
+        filterOpen = !filterOpen
+
+    }
+    
     
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -163,15 +213,15 @@ extension LocalTableViewController {
         case 0:
             if CoreUser.user!.downloadedArray.count == 0 {
 //                HelperFunctions.noTableDataMessage(tableView, message: publicAppventuresMessage)
-                return 0
+                return 1
             }
         case 1:
             if self.publicAppventures.count == 0 {
 //                HelperFunctions.noTableDataMessage(tableView, message: publicAppventuresMessage)
-                return 0
+                return 1
             }
         default:
-            return 0
+            return 1
         }
         
         tableView.backgroundView = UIView()
@@ -217,7 +267,6 @@ extension LocalTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        animatedControl.autoPinEdgesToSuperviewEdges()
         return animatedControl
     }
 }
@@ -270,14 +319,12 @@ extension LocalTableViewController {
     /// Move to backendless/model layer.
     func getBackendlessAppventure() {
         showProgressView()
-
-
         let dataQuery = BackendlessDataQuery()
-        
-        let liveWhere = "liveStatusNum = \(2)"
+//        let liveWhere = "liveStatusNum = \(LiveStatus.live.rawValue)"
+        let inDevelopment = "liveStatusNum  = \(2)"
+
         let distanceWhere = "distance( 30.26715, -97.74306, location.latitude, location.longitude ) < mi(2000000)"
-        
-        dataQuery.whereClause = distanceWhere + " AND " + liveWhere
+        dataQuery.whereClause = distanceWhere + " AND " + inDevelopment + filterClause()
         
         BackendlessAppventure.loadBackendlessAppventures(persistent: false, dataQuery: dataQuery) { (response, fault) in
             self.hideProgressView()
@@ -293,6 +340,10 @@ extension LocalTableViewController {
                 //display message
             }
         }
+    }
+    
+    fileprivate func filterClause() -> String {
+        return themeFilter == "" ? "" : "AND themeOne = \(themeFilter) OR themeTwo = \(themeFilter)"
     }
     
     private func setDownloadForAppventures() {
