@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileTableViewController: BaseTableViewController {
+class MakerHomeViewController: BaseTableViewController {
     
     let UserAppventures = "UserAppventure"
     
@@ -160,7 +160,7 @@ class ProfileTableViewController: BaseTableViewController {
 }
 
 
-extension ProfileTableViewController : CreateAppventureViewControllerDelegate {
+extension MakerHomeViewController : CreateAppventureViewControllerDelegate {
     
     func reloadTable() {
         tableView.reloadData()

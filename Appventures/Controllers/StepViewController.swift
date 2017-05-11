@@ -226,6 +226,9 @@ extension StepViewController {
         activeBttns.append(mapClueBttn)
         
         //Compass
+        compassView.stepCoordinate = step.location!.coordinate
+        compassView.showCompass = step.setup.compassShown
+        compassView.showDistance = step.setup.distanceShown
         compassView.setupCompassController()
         activeViews.append(compassView.view)
         

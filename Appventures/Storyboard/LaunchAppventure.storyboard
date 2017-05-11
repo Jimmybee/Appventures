@@ -751,9 +751,7 @@ Adventure Completed!</string>
                             <outlet property="delegate" destination="4BS-rB-9SW" id="uRl-hb-ERu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Appventures" id="hNl-SL-xdT">
-                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Ra2-wD-Vkj"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Appventures" id="hNl-SL-xdT"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="HPa-e5-TB3">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -953,14 +951,15 @@ Adventure Completed!</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U8e-dP-2Ft">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.89411764709999997" green="0.33725490200000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="4BS-rB-9SW" kind="relationship" relationship="rootViewController" id="mD0-wY-2gX"/>
@@ -982,8 +981,15 @@ Adventure Completed!</string>
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Ifa-Hs-r1L">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="neX-85-Ktl"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OEt-iJ-IPm">
-                                <rect key="frame" x="0.0" y="44" width="375" height="466"/>
+                                <rect key="frame" x="0.0" y="34" width="375" height="520"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="W1W-Nl-QGU" detailTextLabel="Rqg-xI-FgA" style="IBUITableViewCellStyleSubtitle" id="gK3-Lo-bzM">
@@ -1016,24 +1022,12 @@ Adventure Completed!</string>
                                     <outlet property="delegate" destination="3oh-Ib-z7Y" id="s6J-dw-2ta"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="C4Z-G6-ZcH">
-                                <rect key="frame" x="19" y="8" width="337.5" height="29"/>
-                                <segments>
-                                    <segment title="Details"/>
-                                    <segment title="Leaderboard"/>
-                                    <segment title="Reviews"/>
-                                </segments>
-                                <color key="tintColor" red="0.89411764709999997" green="0.33725490200000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="detialsSegmentUpdate:" destination="3oh-Ib-z7Y" eventType="valueChanged" id="wie-Tb-D8k"/>
-                                </connections>
-                            </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckk-oG-XNn">
-                                <rect key="frame" x="0.0" y="44" width="375" height="466"/>
+                                <rect key="frame" x="0.0" y="34" width="375" height="520"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGD-W9-ECg">
-                                <rect key="frame" x="0.0" y="510" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="554" width="375" height="49"/>
                                 <color key="backgroundColor" red="0.89411764709999997" green="0.33725490200000002" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="A8Z-xn-iTH"/>
@@ -1050,25 +1044,25 @@ Adventure Completed!</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ckk-oG-XNn" firstAttribute="bottom" secondItem="avW-lq-dnu" secondAttribute="top" id="1Gq-UH-fDB"/>
+                            <constraint firstItem="ckk-oG-XNn" firstAttribute="top" secondItem="Ifa-Hs-r1L" secondAttribute="bottom" id="4tR-zl-dbu"/>
                             <constraint firstItem="ckk-oG-XNn" firstAttribute="top" secondItem="OEt-iJ-IPm" secondAttribute="top" id="7zz-uY-ZAh"/>
                             <constraint firstItem="OEt-iJ-IPm" firstAttribute="trailing" secondItem="ckk-oG-XNn" secondAttribute="trailing" id="B1t-Mg-i0X"/>
                             <constraint firstItem="OEt-iJ-IPm" firstAttribute="bottom" secondItem="avW-lq-dnu" secondAttribute="top" id="FTa-Zu-aIJ"/>
+                            <constraint firstItem="Ifa-Hs-r1L" firstAttribute="centerX" secondItem="cJc-99-bnM" secondAttribute="centerX" id="Gln-T4-RiZ"/>
                             <constraint firstItem="OEt-iJ-IPm" firstAttribute="leading" secondItem="ckk-oG-XNn" secondAttribute="leading" id="Qvn-HX-6Cz"/>
-                            <constraint firstItem="ckk-oG-XNn" firstAttribute="top" secondItem="C4Z-G6-ZcH" secondAttribute="bottom" constant="8" symbolic="YES" id="UFG-9X-vTk"/>
+                            <constraint firstItem="Ifa-Hs-r1L" firstAttribute="top" secondItem="zKi-uB-ECU" secondAttribute="bottom" id="VyZ-ep-5jl"/>
                             <constraint firstItem="MGD-W9-ECg" firstAttribute="centerX" secondItem="cJc-99-bnM" secondAttribute="centerX" id="XPk-sB-B8S"/>
                             <constraint firstItem="avW-lq-dnu" firstAttribute="top" secondItem="MGD-W9-ECg" secondAttribute="bottom" id="XmZ-FW-rZ8"/>
-                            <constraint firstItem="C4Z-G6-ZcH" firstAttribute="top" secondItem="zKi-uB-ECU" secondAttribute="bottom" constant="8" symbolic="YES" id="bQC-ku-l4P"/>
                             <constraint firstAttribute="trailing" secondItem="ckk-oG-XNn" secondAttribute="trailing" id="c5a-IA-thU"/>
                             <constraint firstItem="OEt-iJ-IPm" firstAttribute="leading" secondItem="cJc-99-bnM" secondAttribute="leading" id="cg4-6K-G63"/>
-                            <constraint firstItem="C4Z-G6-ZcH" firstAttribute="width" secondItem="cJc-99-bnM" secondAttribute="width" multiplier="0.9" id="dNV-og-S6j"/>
+                            <constraint firstItem="OEt-iJ-IPm" firstAttribute="top" secondItem="Ifa-Hs-r1L" secondAttribute="bottom" id="dBL-Ry-Gb1"/>
                             <constraint firstItem="MGD-W9-ECg" firstAttribute="top" secondItem="OEt-iJ-IPm" secondAttribute="bottom" id="f6d-oy-QOB"/>
-                            <constraint firstItem="OEt-iJ-IPm" firstAttribute="top" secondItem="C4Z-G6-ZcH" secondAttribute="bottom" constant="8" symbolic="YES" id="fKx-Wv-Lxu"/>
                             <constraint firstItem="ckk-oG-XNn" firstAttribute="leading" secondItem="cJc-99-bnM" secondAttribute="leading" id="gPU-S8-JH8"/>
                             <constraint firstAttribute="trailing" secondItem="OEt-iJ-IPm" secondAttribute="trailing" id="j65-v2-ZuR"/>
                             <constraint firstItem="OEt-iJ-IPm" firstAttribute="leading" secondItem="cJc-99-bnM" secondAttribute="leading" id="m88-Jf-8nJ"/>
-                            <constraint firstItem="C4Z-G6-ZcH" firstAttribute="centerX" secondItem="cJc-99-bnM" secondAttribute="centerX" id="nVd-sz-sxD"/>
                             <constraint firstItem="MGD-W9-ECg" firstAttribute="top" secondItem="ckk-oG-XNn" secondAttribute="bottom" id="pHC-dZ-e62"/>
                             <constraint firstItem="MGD-W9-ECg" firstAttribute="width" secondItem="cJc-99-bnM" secondAttribute="width" id="uK9-0o-pWw"/>
+                            <constraint firstItem="Ifa-Hs-r1L" firstAttribute="width" secondItem="cJc-99-bnM" secondAttribute="width" id="x8n-Uf-QUm"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -1094,9 +1088,9 @@ Adventure Completed!</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="detailsSegmentControl" destination="C4Z-G6-ZcH" id="cOS-aT-Nxl"/>
+                        <outlet property="animatedSegmentContainer" destination="Ifa-Hs-r1L" id="tgo-bz-iCl"/>
                         <outlet property="detailsView" destination="ckk-oG-XNn" id="4ao-oH-tEW"/>
                         <outlet property="startButton" destination="MGD-W9-ECg" id="4IS-H6-rUh"/>
                         <outlet property="tableView" destination="OEt-iJ-IPm" id="5K5-4m-Qj5"/>
@@ -1110,7 +1104,7 @@ Adventure Completed!</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2148" y="1339"/>
+            <point key="canvasLocation" x="2148" y="1338.9805097451276"/>
         </scene>
         <!--Step View Controller-->
         <scene sceneID="ULo-sI-j6n">

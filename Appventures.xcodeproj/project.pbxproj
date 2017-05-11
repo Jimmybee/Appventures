@@ -47,7 +47,7 @@
 		66DDE6101EBF285200A3911E /* MapCompassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5E31EBF285200A3911E /* MapCompassViewController.swift */; };
 		66DDE6111EBF285200A3911E /* NonFacebookHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5E41EBF285200A3911E /* NonFacebookHeaderViewController.swift */; };
 		66DDE6121EBF285200A3911E /* PictureClueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5E51EBF285200A3911E /* PictureClueViewController.swift */; };
-		66DDE6131EBF285200A3911E /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5E61EBF285200A3911E /* ProfileTableViewController.swift */; };
+		66DDE6131EBF285200A3911E /* MakerHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5E61EBF285200A3911E /* MakerHomeViewController.swift */; };
 		66DDE6141EBF285200A3911E /* ProfileWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5E71EBF285200A3911E /* ProfileWrapperViewController.swift */; };
 		66DDE6151EBF285200A3911E /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5E81EBF285200A3911E /* RateViewController.swift */; };
 		66DDE6161EBF285200A3911E /* RTFDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5E91EBF285200A3911E /* RTFDisplayViewController.swift */; };
@@ -170,7 +170,7 @@
 		66DDE5E31EBF285200A3911E /* MapCompassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCompassViewController.swift; sourceTree = "<group>"; };
 		66DDE5E41EBF285200A3911E /* NonFacebookHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonFacebookHeaderViewController.swift; sourceTree = "<group>"; };
 		66DDE5E51EBF285200A3911E /* PictureClueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureClueViewController.swift; sourceTree = "<group>"; };
-		66DDE5E61EBF285200A3911E /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		66DDE5E61EBF285200A3911E /* MakerHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakerHomeViewController.swift; sourceTree = "<group>"; };
 		66DDE5E71EBF285200A3911E /* ProfileWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWrapperViewController.swift; sourceTree = "<group>"; };
 		66DDE5E81EBF285200A3911E /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		66DDE5E91EBF285200A3911E /* RTFDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTFDisplayViewController.swift; sourceTree = "<group>"; };
@@ -325,15 +325,15 @@
 			children = (
 				66DDE6C81EBF34CE00A3911E /* CollectionCells */,
 				66DDE6D91EBF371C00A3911E /* CreateAppventures */,
-				66DDE6DF1EBF382E00A3911E /* AnnotatedScreenshot */,
 				66DDE6DA1EBF373D00A3911E /* CompleteAppventure */,
 				66DDE6DB1EBF376100A3911E /* ExploreAppventure */,
+				66DDE6D61EBF36C000A3911E /* DoAppventure */,
 				66DDE6DD1EBF381A00A3911E /* Share */,
 				66DDE6DE1EBF382300A3911E /* ImageFullScreen */,
 				66DDE6D71EBF36F000A3911E /* Login */,
 				66DDE6D81EBF36F500A3911E /* TabBar */,
-				66DDE6D61EBF36C000A3911E /* DoAppventure */,
 				66DDE6D51EBF36B100A3911E /* Profile */,
+				66DDE6DF1EBF382E00A3911E /* AnnotatedScreenshot */,
 				66DDE6DC1EBF37F500A3911E /* Base */,
 			);
 			path = Controllers;
@@ -667,7 +667,6 @@
 			children = (
 				66DDE5E41EBF285200A3911E /* NonFacebookHeaderViewController.swift */,
 				66DDE5E71EBF285200A3911E /* ProfileWrapperViewController.swift */,
-				66DDE5E61EBF285200A3911E /* ProfileTableViewController.swift */,
 				66DDE5E91EBF285200A3911E /* RTFDisplayViewController.swift */,
 				66DDE5EA1EBF285200A3911E /* SettingsViewController.swift */,
 				66DDE5DE1EBF285200A3911E /* InstructionsViewController.swift */,
@@ -715,6 +714,7 @@
 		66DDE6D91EBF371C00A3911E /* CreateAppventures */ = {
 			isa = PBXGroup;
 			children = (
+				66DDE5E61EBF285200A3911E /* MakerHomeViewController.swift */,
 				66DDE5D71EBF285200A3911E /* CreateAppventureViewController.swift */,
 				66DDE5D81EBF285200A3911E /* EditAppventureDetailsTableViewController.swift */,
 				66DDE5CC1EBF285200A3911E /* AddTagsViewController.swift */,
@@ -983,7 +983,7 @@
 				66DDE60A1EBF285200A3911E /* ImageFullscreenViewController.swift in Sources */,
 				66DDE69C1EBF291200A3911E /* StepSetup+CoreDataClass.swift in Sources */,
 				66DDE69F1EBF291200A3911E /* TimePicker.swift in Sources */,
-				66DDE6131EBF285200A3911E /* ProfileTableViewController.swift in Sources */,
+				66DDE6131EBF285200A3911E /* MakerHomeViewController.swift in Sources */,
 				66DDE5B81EBF276D00A3911E /* BaseTableViewController.swift in Sources */,
 				66DDE6801EBF291200A3911E /* BackendlessAppventure.swift in Sources */,
 				66DDE6871EBF291200A3911E /* DevelopLocalPublicSegmented.swift in Sources */,

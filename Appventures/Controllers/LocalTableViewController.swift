@@ -34,17 +34,19 @@ class LocalTableViewController: BaseTableViewController{
     
     private(set) lazy var catalogueBttn: SegmentButton = {
       let bttn = SegmentButton()
+        bttn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         bttn.setTitleColor(Colors.pink, for: .selected)
         bttn.setTitleColor(.darkGray, for: .normal)
-        bttn.setTitle("Catalogue", for: .normal)
+        bttn.setTitle("CATALOGUE", for: .normal)
       return bttn
     }()
     
     private(set) lazy var downloadedBttn: SegmentButton = {
         let bttn = SegmentButton()
+        bttn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         bttn.setTitleColor(Colors.pink, for: .selected)
         bttn.setTitleColor(.darkGray, for: .normal)
-        bttn.setTitle("Downloaded", for: .normal)
+        bttn.setTitle("DOWNLOADED", for: .normal)
         return bttn
     }()
     
@@ -72,7 +74,8 @@ class LocalTableViewController: BaseTableViewController{
         
         animatedControl = AnimatedSegmentControl(bttns: [downloadedBttn, catalogueBttn], delegate: self)
         animatedControl.backgroundColor = .white
-        animatedControl.setupBttnConstraints()
+        animatedControl.selectedButton = 1
+//        animatedControl.setupBttnConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -173,7 +176,8 @@ extension LocalTableViewController {
         
         tableView.backgroundView = UIView()
         tableView.separatorStyle = .none
-        tableView.backgroundView?.backgroundColor = .lightGray
+        tableView.backgroundView?.backgroundColor = UIColor(red:0.93, green:0.92, blue:0.92, alpha:1.0)
+        
         return 1
     }
     
@@ -209,7 +213,7 @@ extension LocalTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 52
+        return 36
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -253,7 +257,7 @@ extension LocalTableViewController: CLLocationManagerDelegate {
 extension LocalTableViewController: AnimatedSegmentControlDelegate {
     
     func updatedButton(index: Int) {
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     

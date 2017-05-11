@@ -17,9 +17,18 @@ class CompassViewController: UIViewController {
 
     @IBOutlet weak var compass: UIImageView!
     @IBOutlet weak var locationPointer: UIImageView!
+    @IBOutlet weak var distanceLabel: UILabel!
     
-    let locationManager = CLLocationManager()
-    var compassImage: UIImage!
+    fileprivate let locationManager = CLLocationManager()
+    fileprivate var compassImage: UIImage!
+    fileprivate var locationPointerImage: UIImage!
+    
+    var pointerRotation = CGFloat(0)
+
+    
+    var stepCoordinate = kCLLocationCoordinate2DInvalid
+    var showCompass = false
+    var showDistance = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +41,10 @@ class CompassViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingHeading()
+        locationManager.startUpdatingLocation()
         
         compassImage = compass.image
+        locationPointerImage = locationPointer.image
     }
     
     
@@ -43,51 +54,54 @@ class CompassViewController: UIViewController {
 extension CompassViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        print(newHeading.magneticHeading)
         rotateCompass(newHeading: newHeading.magneticHeading)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations.last)
+        rotatePointer(latestLocation: locations.last!)
+        let placeCenter = CLLocation(latitude: stepCoordinate.latitude, longitude: stepCoordinate.longitude)
+        distanceLabel.text = HelperFunctions.formatDistance(locations.last!.distance(from: placeCenter))
     }
 }
 
 extension CompassViewController {
     
     func rotateCompass(newHeading: CLLocationDirection){
-        self.compass.image = compassImage.imageRotatedByDegrees(-CGFloat(newHeading), flip: false)
+        compass.image = compassImage.imageRotatedByDegrees(-CGFloat(newHeading), flip: false)
+        locationPointer.image = locationPointerImage!.imageRotatedByDegrees(pointerRotation-CGFloat(newHeading), flip: false)
     }
     
-//    func compassUpdate() {
-//        //        compassImage.alpha = 1
-//        func degreesToRadians(_ x: Double) -> Double {
-//            return (M_PI * x / 180.0)
-//        }
-//        func radiansToDegrees(_ x: Double) -> Double {
-//            return (x * 180.0 / M_PI)
-//        }
-//        
-//        let fLoc = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
-//        let tLoc = CLLocationCoordinate2D(latitude: stepCoordinate.latitude, longitude: stepCoordinate.longitude)
-//        
-//        let fLat = degreesToRadians(fLoc.latitude);
-//        let fLng = degreesToRadians(fLoc.longitude);
-//        let tLat = degreesToRadians(tLoc.latitude);
-//        let tLng = degreesToRadians(tLoc.longitude);
-//        
-//        var degree = radiansToDegrees(atan2(sin(tLng-fLng)*cos(tLat), cos(fLat)*sin(tLat)-sin(fLat)*cos(tLat)*cos(tLng-fLng)))
-//        
-//        if (degree >= 0) {
-//            
-//        } else {
-//            degree = 360+degree
-//        }
-//        
-//        _ = CGFloat(degree)
-//        
-//        //        self.compassImage.image? = compassRotateImage!.imageRotatedByDegrees(floaty, flip: false)
-//        
-//    }
+    func rotatePointer(latestLocation: CLLocation) {
+        //        compassImage.alpha = 1
+        func degreesToRadians(_ x: Double) -> Double {
+            return (.pi * x / 180.0)
+        }
+        func radiansToDegrees(_ x: Double) -> Double {
+            return (x * 180.0 / .pi)
+        }
+        
+        let fLoc = CLLocationCoordinate2D(latitude: latestLocation.coordinate.latitude, longitude: latestLocation.coordinate.longitude)
+        let tLoc = CLLocationCoordinate2D(latitude: stepCoordinate.latitude, longitude: stepCoordinate.longitude)
+        
+        let fLat = degreesToRadians(fLoc.latitude);
+        let fLng = degreesToRadians(fLoc.longitude);
+        let tLat = degreesToRadians(tLoc.latitude);
+        let tLng = degreesToRadians(tLoc.longitude);
+        
+        var degree = radiansToDegrees(atan2(sin(tLng-fLng)*cos(tLat), cos(fLat)*sin(tLat)-sin(fLat)*cos(tLat)*cos(tLng-fLng)))
+        
+        if (degree >= 0) {
+            
+        } else {
+            degree = 360+degree
+        }
+        
+        pointerRotation  = CGFloat(degree)
+        
+        
+    }
+    
+    
 }
 
 

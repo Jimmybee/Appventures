@@ -25,10 +25,14 @@ class AppventureStartViewController: BaseViewController {
 //    @IBOutlet weak var startAppventure: UIButton!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var detailsSegmentControl: UISegmentedControl!
     
+    @IBOutlet weak var animatedSegmentContainer: UIView!
+
     @IBOutlet weak var detailsView: UIView!
 
+    var animatedControl: AnimatedSegmentControl!
+    
+    
     private(set) lazy var detailsSubView: AppventureDetailsView = {
         let bundle = Bundle(for: AppventureDetailsView.self)
         let nib = bundle.loadNibNamed("AppventureDetailsView", owner: self, options: nil)
@@ -36,11 +40,38 @@ class AppventureStartViewController: BaseViewController {
         return view!
     }()
     
+    private(set) lazy var detailsBttn: SegmentButton = {
+        let bttn = SegmentButton()
+        bttn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        bttn.setTitleColor(Colors.pink, for: .selected)
+        bttn.setTitleColor(.darkGray, for: .normal)
+        bttn.setTitle("DETAILS", for: .normal)
+        return bttn
+    }()
+    
+    private(set) lazy var reviewBttn: SegmentButton = {
+        let bttn = SegmentButton()
+        bttn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        bttn.setTitleColor(Colors.pink, for: .selected)
+        bttn.setTitleColor(.darkGray, for: .normal)
+        bttn.setTitle("REVIEWS", for: .normal)
+        return bttn
+    }()
+    
+    private(set) lazy var leaderboardBttn: SegmentButton = {
+        let bttn = SegmentButton()
+        bttn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        bttn.setTitleColor(Colors.pink, for: .selected)
+        bttn.setTitleColor(.darkGray, for: .normal)
+        bttn.setTitle("LEADERBOARD", for: .normal)
+        return bttn
+    }()
+    
+    
     //MARK: Controller Lifecyele
     override func viewDidLoad() {
         updateUI()
-        detailsSegmentControl.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Palatino", size: 15)!], for: UIControlState())
-        detailsSegmentControl.selectedSegmentIndex = 0
+
         //TODO: If a public appventure, then look for ratings and reviews.
 //        CompletedAppventure.loadAppventuresCompleted(appventure.pFObjectID!, handler: self)
 //        AppventureReviews.loadAppventuresReviews(appventure.pFObjectID!, handler: self)
@@ -53,8 +84,22 @@ class AppventureStartViewController: BaseViewController {
         detailsSubView.autoPinEdgesToSuperviewEdges()
         detailsSubView.setup()
         
-        getLeaderboard()    
+        getLeaderboard()
         
+        animatedControl = AnimatedSegmentControl(bttns: [detailsBttn, reviewBttn, leaderboardBttn], delegate: self)
+        animatedSegmentContainer.addSubview(animatedControl)
+        animatedControl.autoPinEdgesToSuperviewEdges()
+        animatedControl.setNeedsDisplay()
+//        animatedControl.setupBttnConstraints()
+        animatedControl.backgroundColor = .white
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//                animatedControl.setNeedsDisplay()
+//        animatedControl.layoutIfNeeded()
+
     }
     
     func updateUI () {
@@ -97,21 +142,6 @@ class AppventureStartViewController: BaseViewController {
     
     //MARK: IBActions
    
-    
-    @IBAction func detialsSegmentUpdate(_ sender: UISegmentedControl) {
-        switch detailsSegmentControl.selectedSegmentIndex {
-        case 0:
-            view.bringSubview(toFront: detailsView)
-        case 1:
-            view.bringSubview(toFront: tableView)
-            tableView.reloadData()
-        case 2:
-            view.bringSubview(toFront: tableView)
-            tableView.reloadData()
-        default: break
-        }
-    }
-    
     @IBAction func downloadAdventure(_ sender: AnyObject) {
         if appventure.downloaded == true {
             performSegue(withIdentifier: Constants.StartAdventureSegue, sender: nil)
@@ -214,7 +244,7 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
     
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        switch detailsSegmentControl.selectedSegmentIndex {
+        switch animatedControl.selectedButton {
         case 1:
             if self.completedAppventures.count > 0 {
                 self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
@@ -242,7 +272,7 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if detailsSegmentControl.selectedSegmentIndex == 1 {
+        if animatedControl.selectedButton == 1 {
             return self.completedAppventures.count
         } else  {
             return self.reviews.count
@@ -253,7 +283,7 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
  
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID) as UITableViewCell!
         
-        switch detailsSegmentControl.selectedSegmentIndex {
+        switch animatedControl.selectedButton {
         case 1 :
             cell?.textLabel?.text = completedAppventures[indexPath.row].teamName
             let tString = HelperFunctions.formatTime(completedAppventures[indexPath.row].time, nano: false)
@@ -287,4 +317,23 @@ extension AppventureStartViewController : AppventureDetailsViewDelegate {
         }
         // link to ios share.
     }
+}
+
+extension AppventureStartViewController: AnimatedSegmentControlDelegate {
+    
+    func updatedButton(index: Int) {
+        switch animatedControl.selectedButton {
+        case 0:
+            view.bringSubview(toFront: detailsView)
+        case 1:
+            view.bringSubview(toFront: tableView)
+            tableView.reloadData()
+        case 2:
+            view.bringSubview(toFront: tableView)
+            tableView.reloadData()
+        default: break
+        }
+    }
+    
+    
 }
