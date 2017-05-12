@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Appventures/Controllers/LocalTableViewController.swift"
-            timestampString = "516231475.817887"
+            timestampString = "516300081.045006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "getBackendlessAppventure()"
             landmarkType = "7">
          </BreakpointContent>

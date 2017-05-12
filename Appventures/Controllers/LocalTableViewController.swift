@@ -63,7 +63,6 @@ class LocalTableViewController: BaseTableViewController{
     
     //Don't neeed
     var lastLocation: CLLocationCoordinate2D?
-    var filter = Filter()
     var refreshing = false
     
     @IBOutlet weak var refreshSpinner: UIRefreshControl!
@@ -112,6 +111,8 @@ class LocalTableViewController: BaseTableViewController{
          attachedToTop = filterView.autoPinEdge(.bottom, to: .top, of: tableView, withOffset: 0)
          attachedToBottom = filterView.autoPinEdge(.bottom, to: .bottom, of: tableView, withOffset: 0)
          attachedToBottom.autoRemove()
+        
+        filterView.setupCollectionView()
 
     }
     

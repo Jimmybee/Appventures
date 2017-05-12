@@ -126,6 +126,8 @@
 		66DDE6B41EBF29F900A3911E /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 66DDE6B31EBF29F900A3911E /* video.mov */; };
 		66DDE6BA1EBF2DEB00A3911E /* LaunchAppventure.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66DDE6B91EBF2DEB00A3911E /* LaunchAppventure.storyboard */; };
 		66DDE6BC1EBF2F7F00A3911E /* ExploreAppventureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureCell.swift */; };
+		66ED83CD1EC5F16D001ED1FE /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66ED83CC1EC5F16D001ED1FE /* FilterCollectionCell.xib */; };
+		66ED83CF1EC5F3C0001ED1FE /* FilterCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED83CE1EC5F3C0001ED1FE /* FilterCollectionCell.swift */; };
 		66EE70DC1EC1E5E200EF7464 /* ExploreAppventureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EE70DB1EC1E5E200EF7464 /* ExploreAppventureCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -254,6 +256,8 @@
 		66DDE6B31EBF29F900A3911E /* video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = video.mov; path = ../video.mov; sourceTree = "<group>"; };
 		66DDE6B91EBF2DEB00A3911E /* LaunchAppventure.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchAppventure.storyboard; sourceTree = "<group>"; };
 		66DDE6BB1EBF2F7F00A3911E /* ExploreAppventureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreAppventureCell.swift; sourceTree = "<group>"; };
+		66ED83CC1EC5F16D001ED1FE /* FilterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionCell.xib; sourceTree = "<group>"; };
+		66ED83CE1EC5F3C0001ED1FE /* FilterCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionCell.swift; sourceTree = "<group>"; };
 		66EE70DB1EC1E5E200EF7464 /* ExploreAppventureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExploreAppventureCell.xib; sourceTree = "<group>"; };
 		A90ADA5E0AB3FEB562944F17 /* Pods-Appventures.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appventures.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Appventures/Pods-Appventures.debug.xcconfig"; sourceTree = "<group>"; };
 		D620DB83986F45BC3FF2B971 /* Pods-Appventures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appventures.release.xcconfig"; path = "Pods/Target Support Files/Pods-Appventures/Pods-Appventures.release.xcconfig"; sourceTree = "<group>"; };
@@ -546,6 +550,8 @@
 				66DDE6C21EBF339D00A3911E /* UITableViewCell */,
 				66DDE6D21EBF359600A3911E /* UISegmentedControl */,
 				66DDE6C41EBF345900A3911E /* UIView */,
+				66ED83CC1EC5F16D001ED1FE /* FilterCollectionCell.xib */,
+				66ED83CE1EC5F3C0001ED1FE /* FilterCollectionCell.swift */,
 			);
 			name = UISubClasses;
 			sourceTree = "<group>";
@@ -890,6 +896,7 @@
 				66DDE6BA1EBF2DEB00A3911E /* LaunchAppventure.storyboard in Resources */,
 				66DDE6381EBF28AE00A3911E /* MapCompassViewController.xib in Resources */,
 				66DDE62F1EBF28A300A3911E /* Profile.storyboard in Resources */,
+				66ED83CD1EC5F16D001ED1FE /* FilterCollectionCell.xib in Resources */,
 				66DDE5BE1EBF27A800A3911E /* Choosing Adventure.rtf in Resources */,
 				66DDE62E1EBF28A300A3911E /* Maker.storyboard in Resources */,
 			);
@@ -1021,6 +1028,7 @@
 				66DDE5FB1EBF285200A3911E /* AnnotatedScreenshotViewController.swift in Sources */,
 				66DDE6161EBF285200A3911E /* RTFDisplayViewController.swift in Sources */,
 				66DDE5FC1EBF285200A3911E /* AnswerHintViewController.swift in Sources */,
+				66ED83CF1EC5F3C0001ED1FE /* FilterCollectionCell.swift in Sources */,
 				66DDE5FF1EBF285200A3911E /* AppventureStartViewController.swift in Sources */,
 				66DDE6111EBF285200A3911E /* NonFacebookHeaderViewController.swift in Sources */,
 				6602485F1EC5106A003E320A /* FilterView.swift in Sources */,
