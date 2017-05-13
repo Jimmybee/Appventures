@@ -23,6 +23,7 @@ class RatingControl: UIView {
     
     var filledStarImage = UIImage()
     var emptyStarImage = UIImage()
+    var callback: ((Int) -> ())?
 
     // MARK: Initialization
 
@@ -76,8 +77,8 @@ class RatingControl: UIView {
     
     func ratingButtonTapped(_ button: UIButton) {
         rating = ratingButtons.index(of: button)! + 1
-        
         updateButtonSelectionStates()
+        callback!(rating)
     }
     
     func updateButtonSelectionStates() {

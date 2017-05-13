@@ -78,7 +78,7 @@ class ImageChooserViewController: UIViewController,UIImagePickerControllerDelega
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
-            let savedImage = HelperFunctions.resizeImage(pickedImage, newWidth: 300)
+            let savedImage = HelperFunctions.resizeImage(pickedImage, desiredWidth: 800)
             imageView.image = savedImage
             step.image = savedImage
             

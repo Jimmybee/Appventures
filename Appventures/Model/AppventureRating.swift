@@ -12,26 +12,31 @@ protocol AppventureRatingDelegate : NSObjectProtocol {
     func ratingLoaded()
 }
 
-class AppventureRating: NSObject {
+class Rating: NSObject {
     
-    static let appventureRatingHC = "ratingsHC"
+    static let backendless = Backendless.sharedInstance()
+    static let dataStore = backendless?.persistenceService.of(Rating.ofClass())
     
-
-    var pfObjectID = ""
-    var appventureFKID = ""
+    var appventureId = ""
     var rating = 0
+    var review = ""
     
-    init(appventureFKID: String, rating: Int) {
-        self.appventureFKID = appventureFKID
-        self.rating = rating
+    override init() {
+        super.init()
     }
     
-    init(object: AnyObject) {
-
+    init(appventureId: String) {
+        self.appventureId = appventureId
     }
+    
     
     func save(){
-
+        guard rating != 0 else { return }
+        Rating.dataStore?.save(self, response: { (response) in
+            print("success")
+        }, error: { (error) in
+            print("error")
+        })
     }
     
 

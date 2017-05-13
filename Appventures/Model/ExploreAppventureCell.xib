@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="286" height="289"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yhf-eB-8BN" id="cjP-ja-vgy">
-                <rect key="frame" x="0.0" y="0.0" width="286" height="288.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="286" height="288"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xU3-TI-M7M" customClass="CardView" customModule="Appventures" customModuleProvider="target">
@@ -32,16 +32,27 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="AppventureImage"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Tagline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Iz-RJ-6ee">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Tagline" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Iz-RJ-6ee">
                                 <rect key="frame" x="5" y="195" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMV-va-Zzg">
-                                <rect key="frame" x="5" y="224" width="131" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="5" y="224" width="117.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OUTDOOR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlD-S2-zmT">
+                                <rect key="frame" x="10" y="0.0" width="70" height="28"/>
+                                <color key="backgroundColor" red="0.92549019610000005" green="0.56862745100000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="Mf8-g5-oef"/>
+                                    <constraint firstAttribute="height" constant="28" id="cvl-i8-Lfk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -51,6 +62,8 @@
                             <constraint firstAttribute="trailing" secondItem="EbI-Fe-35X" secondAttribute="trailing" id="AaZ-JN-wxl"/>
                             <constraint firstItem="2Iz-RJ-6ee" firstAttribute="leading" secondItem="xU3-TI-M7M" secondAttribute="leading" constant="5" id="Kes-mp-zAh"/>
                             <constraint firstItem="xMV-va-Zzg" firstAttribute="top" secondItem="2Iz-RJ-6ee" secondAttribute="bottom" constant="8" id="NHI-ZV-aJ3"/>
+                            <constraint firstItem="KlD-S2-zmT" firstAttribute="top" secondItem="EbI-Fe-35X" secondAttribute="top" id="RLQ-Pd-ESB"/>
+                            <constraint firstItem="EbI-Fe-35X" firstAttribute="leading" secondItem="KlD-S2-zmT" secondAttribute="trailing" constant="-80" id="Wpx-Aa-ZmP"/>
                             <constraint firstItem="2Iz-RJ-6ee" firstAttribute="top" secondItem="EbI-Fe-35X" secondAttribute="bottom" constant="7.5" id="h7j-JM-YpC"/>
                             <constraint firstItem="EbI-Fe-35X" firstAttribute="leading" secondItem="xU3-TI-M7M" secondAttribute="leading" id="obQ-Ru-a0X"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xMV-va-Zzg" secondAttribute="bottom" constant="20" id="rTh-GA-int"/>
@@ -72,6 +85,7 @@
                 <outlet property="appventureTitle" destination="2Iz-RJ-6ee" id="bss-o1-xEw"/>
                 <outlet property="cardView" destination="xU3-TI-M7M" id="4ot-We-B42"/>
                 <outlet property="startingLocation" destination="xMV-va-Zzg" id="Y7z-Fg-U6X"/>
+                <outlet property="themeOne" destination="KlD-S2-zmT" id="iIH-4I-zgs"/>
             </connections>
             <point key="canvasLocation" x="-14" y="34.5"/>
         </tableViewCell>

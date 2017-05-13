@@ -13,17 +13,11 @@ import FBSDKCoreKit
 
 class AppventureCompleteViewController: UIViewController {
     
-    struct Constants {
-        static let segueToReview = ""
-        static let segueToRate = ""
-    }
-    
     var appventure = Appventure()
     var completedAppventures = [CompletedAppventure]()
     var completeTime = 0.0
+    var ratingReview: Rating!
     
-    var userFKID = ""
-
     //MARK: Outlets
     @IBOutlet weak var congratulationsText: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -39,11 +33,6 @@ class AppventureCompleteViewController: UIViewController {
         
         updateUI()
         
-
-        if CoreUser.checkLogin(false, vc: self)     {
-//            userFKID = (CoreUser.user?.pfObject)!
-        }
-        
         fbShareButton()
         
     }
@@ -56,6 +45,7 @@ class AppventureCompleteViewController: UIViewController {
     
     @IBAction func appventureDone(_ sender: UIButton) {
         saveCompletedAppventure()
+        ratingReview.save()
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -91,6 +81,13 @@ class AppventureCompleteViewController: UIViewController {
 ////            }
 //            shareButton.shareContent = content
 //        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let id = appventure.backendlessId else { return }
+        self.ratingReview = Rating(appventureId: id)
+        guard let rvc = segue.destination as? RateViewController else { return }
+        rvc.ratingReview = self.ratingReview
     }
 
 }

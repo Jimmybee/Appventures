@@ -97,13 +97,20 @@ class HelperFunctions {
     }
     
 //    MARK: ImageFunctions
-    class func resizeImage(_ image: UIImage, newWidth: CGFloat) -> UIImage {
+    
+    /// Rezises image to a max 800x600 format, maintaining the aspect ratio and compression to a jpg with 0.5 compression.
+    class func resizeImage(_ image: UIImage, desiredWidth: CGFloat) -> UIImage {
         
+        let desiredHeight: CGFloat = 600
         let oldData = UIImageJPEGRepresentation(image, 1)
         print(oldData?.count as Any)
         
-        let scale = newWidth / image.size.width
+        let widthScale =  image.size.width > desiredWidth ? desiredWidth / image.size.width : 1
+        let heightScale =  image.size.height > desiredHeight ? desiredHeight / image.size.height : 1
+        let scale = min(widthScale, heightScale)
         let newHeight = image.size.height * scale
+        let newWidth = image.size.width * scale
+
         UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
         image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()

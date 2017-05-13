@@ -12,9 +12,7 @@ import CoreLocation
 import Alamofire
 
 public class Appventure: NSManagedObject {
-   
-    var pfFile: AnyObject?
-    
+       
     static var currentAppventure: Appventure?
     var downloaded = true
     var liveStatus:LiveStatus {
@@ -23,7 +21,9 @@ public class Appventure: NSManagedObject {
     }
     var appventureSteps: [AppventureStep] {
         get { return Array(steps).sorted(by: { $0.stepNumber < $1.stepNumber }) }
-        set { print("*setting steps**")}
+        set {
+            print("*setting steps**")
+        }
     }
     
     struct CoreKeys {
@@ -47,7 +47,6 @@ public class Appventure: NSManagedObject {
         self.duration = 0
         self.startTime = "12:00"
         self.endTime = "12:00"
-        self.tags = Set<String>()
         self.owner = CoreUser.user!
     }
     
@@ -58,9 +57,8 @@ public class Appventure: NSManagedObject {
         self.init(entity: entity!, insertInto: context)
         self.startTime = backendlessAppventure.startTime
         self.endTime = backendlessAppventure.endTime
-        if let tagArray = backendlessAppventure.tags?.splitStringToArray() {
-            self.tags = Set(tagArray)
-        }
+        self.themeOne = backendlessAppventure.themeOne
+        self.themeTwo = backendlessAppventure.themeTwo
         self.imageUrl = backendlessAppventure.imageUrl
         self.backendlessId = backendlessAppventure.objectId
         self.title = backendlessAppventure.title
@@ -68,7 +66,7 @@ public class Appventure: NSManagedObject {
         self.startingLocationName = backendlessAppventure.startingLocationName
         self.subtitle = backendlessAppventure.subtitle
         let geoPoint = backendlessAppventure.location
-        self.location = CLLocation(latitude: geoPoint!.latitude as! Double, longitude: geoPoint!.longitude as! Double)
+        self.location = CLLocation(latitude: geoPoint!.latitude as CLLocationDegrees, longitude: geoPoint!.longitude as CLLocationDegrees)
         self.liveStatusNum = backendlessAppventure.liveStatusNum
         self.duration = backendlessAppventure.duration
         for backendlessStep in backendlessAppventure.steps {

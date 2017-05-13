@@ -11,6 +11,8 @@ import UIKit
 
 class FilterView: UIView {
     static var nib = "FilterView"
+    var activeFilters = Set<Filter>()
+    
     
     @IBOutlet weak var filtersCollection: UICollectionView!
     
@@ -28,7 +30,7 @@ class FilterView: UIView {
         
         filtersCollection.delegate = self
         filtersCollection.dataSource = self
-        filtersCollection.allowsMultipleSelection = true
+        filtersCollection.allowsSelection = true
     }
 
 }
@@ -45,19 +47,42 @@ extension FilterView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCollectionCell.nibName, for: indexPath) as! FilterCollectionCell
-        cell.filterLabel.text = Filter.all[indexPath.row].rawValue
-        cell.filterImage.image = Filter.all[indexPath.row].image
+        let filter = Filter.all[indexPath.row]
 
+        cell.filterLabel.text = filter.rawValue
+        cell.filterImage.image = filter.image
+        if activeFilters.count == 0 {
+            cell.filterImage.alpha = 1
+            cell.filterLabel.alpha = 1
+        } else {
+            if !activeFilters.contains(filter) {
+                cell.filterImage.alpha = 0.6
+                cell.filterLabel.alpha = 0.6
+            } else {
+                cell.filterImage.alpha = 1
+                cell.filterLabel.alpha = 1
+            }
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.isSelected = true
+        let filter = Filter.all[indexPath.row]
+        if activeFilters.contains(filter) {
+            activeFilters.remove(filter)
+        } else {
+            activeFilters.insert(filter)
+        }
+        filtersCollection.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let filter = Filter.all[indexPath.row]
+        activeFilters.remove(filter)
+        filtersCollection.reloadData()
     }
     
 }
-
 
 enum Filter: String {
     case Outdoor, Family, Puzzle, Night, Museum, Adventurous

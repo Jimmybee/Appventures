@@ -18,7 +18,8 @@ class BackendlessAppventure: NSObject {
     public var objectId: String?
     public var imageUrl: String?
     public var duration: Int64 = 3600
-    public var tags: String?
+    public var themeOne: String?
+    public var themeTwo: String?
     public var liveStatusNum: Int16 = 0
     public var startingLocationName: String?
     public var subtitle: String?
@@ -40,7 +41,8 @@ class BackendlessAppventure: NSObject {
         self.endTime = appventure.endTime
         self.imageUrl = appventure.imageUrl
         self.startingLocationName  = appventure.startingLocationName
-        self.tags = appventure.tags?.joined(separator: ",")
+        self.themeOne = appventure.themeOne
+        self.themeTwo = appventure.themeTwo
         self.liveStatusNum = appventure.liveStatusNum
         self.objectId = appventure.backendlessId
         self.title = appventure.title!
@@ -70,30 +72,33 @@ class BackendlessAppventure: NSObject {
     
     /// save an appventure to backend. Checks if objectId is nil as this is needed to pictureUrl
     class func save(appventure: Appventure, withImage: Bool, completion: @escaping () -> ()) {
-
+        
+        apiUploadGroup.enter()
+        let backendlessAppventure = BackendlessAppventure(appventure: appventure)
+        backendlessAppventure.save(completion: { (backendlessAppventure) in
+            let updatedAppventure = Appventure(backendlessAppventure: backendlessAppventure, persistent: true)
+            updatedAppventure.image = appventure.image
+            CoreUser.user?.removeFromOwnedAppventures(appventure)
+            CoreUser.user?.addToOwnedAppventures(updatedAppventure)
+            
             if withImage == true {
-                uploadImageAsync(objectId: appventure.backendlessId, image: appventure.image, completion: { (imageUrl) in
+                uploadImageAsync(objectId: updatedAppventure.backendlessId, image: appventure.image, completion: { (imageUrl) in
                     appventure.imageUrl = imageUrl
                 })
             }
             
-            for step in appventure.appventureSteps {
+            for step in updatedAppventure.appventureSteps {
                 uploadImageAsync(objectId: step.backendlessId, image: step.image, completion: { (imageUrl) in
                     step.imageUrl = imageUrl
                     
                 })
             }
+            apiUploadGroup.leave()
+        })
         
         apiUploadGroup.notify(queue: .main) {
-            print("notified")
-            let backendlessAppventure = BackendlessAppventure(appventure: appventure)
             
-            backendlessAppventure.save(completion: { (backendlessAppventure) in
-//                let updatedAppventure = Appventure(backendlessAppventure: backendlessAppventure, persistent: true)
-//                updatedAppventure.image = appventure.image
-//                CoreUser.user?.removeFromOwnedAppventures(appventure)
-//                CoreUser.user?.addToOwnedAppventures(updatedAppventure)
-            })
+            
             completion()
         }
         

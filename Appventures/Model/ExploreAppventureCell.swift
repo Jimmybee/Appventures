@@ -20,7 +20,7 @@ class ExploreAppventureCell: UITableViewCell, AppventureImageCell {
     @IBOutlet weak var appventureImage: UIImageView! //dont block main thread
     @IBOutlet weak var appventureTitle: UILabel!
     @IBOutlet weak var startingLocation: UILabel!
-    
+    @IBOutlet weak var themeOne: UILabel!
     
     @IBOutlet weak var cardView: UIView!
     
@@ -46,6 +46,7 @@ class ExploreAppventureCell: UITableViewCell, AppventureImageCell {
             appventureImage.alpha = 0
             appventure?.loadImageFor(cell: self)
         }
+        themeOne.text = appventure?.themeOne ?? "Theme"
     }
     
     

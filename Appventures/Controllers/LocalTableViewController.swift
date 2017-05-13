@@ -31,7 +31,6 @@ class LocalTableViewController: BaseTableViewController{
     var publicAppventures = [Appventure]()
     var searchController = UISearchController()
     var mainTabController: MainTabBarController!
-    var themeFilter = ""
     
     
     private(set) lazy var catalogueBttn: SegmentButton = {
@@ -149,12 +148,13 @@ class LocalTableViewController: BaseTableViewController{
                 self.attachedToTop.autoInstall()
                 self.animatedControl.alpha = 1
                 self.view.layoutIfNeeded()
-            }, completion: nil)
+            }, completion: { (complete) in
+                self.getBackendlessAppventure()
+            })
         }
 
-        
+    
         filterOpen = !filterOpen
-
     }
     
     
@@ -326,7 +326,8 @@ extension LocalTableViewController {
 
         let distanceWhere = "distance( 30.26715, -97.74306, location.latitude, location.longitude ) < mi(2000000)"
         dataQuery.whereClause = distanceWhere + " AND " + inDevelopment + filterClause()
-        
+        print(distanceWhere + " AND " + inDevelopment + filterClause())
+
         BackendlessAppventure.loadBackendlessAppventures(persistent: false, dataQuery: dataQuery) { (response, fault) in
             self.hideProgressView()
             if fault == nil {
@@ -344,7 +345,11 @@ extension LocalTableViewController {
     }
     
     fileprivate func filterClause() -> String {
-        return themeFilter == "" ? "" : "AND themeOne = \(themeFilter) OR themeTwo = \(themeFilter)"
+        if filterView.activeFilters.count == 0 { return "" }
+        let themOnes = filterView.activeFilters.map({ "themeOne = '\($0.rawValue)'"}).joined(separator: " OR ")
+        let themeTwos = filterView.activeFilters.map({ "themeTwo = '\($0.rawValue)'"}).joined(separator: " OR ")
+        let themeFilter = " AND (" + themOnes + " OR " + themeTwos + ")"
+        return themeFilter
     }
     
     private func setDownloadForAppventures() {

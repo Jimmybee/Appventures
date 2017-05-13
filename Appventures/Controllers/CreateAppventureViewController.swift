@@ -180,6 +180,8 @@ class CreateAppventureViewController: BaseViewController, UITextFieldDelegate, U
     }
     
     @IBAction func publishBttnPressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "", message: "Publishing new appventures is currently restricted. If are interested in becoming a contributor. Please contact.....", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func goodForLive() -> String {

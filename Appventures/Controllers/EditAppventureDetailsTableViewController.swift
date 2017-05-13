@@ -53,12 +53,15 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         if appventure == nil {
             self.setupForNewAppventure()
         } else {
             self.updateUI()
         }
-
     }
     
     func setupViews() {
@@ -89,7 +92,9 @@ class EditAppventureDetailsTableViewController: UITableViewController {
         startingLocation.text = appventure!.startingLocationName
         startTimeLabel.text = appventure?.startTime
         endTimeLabel.text = appventure?.endTime
-        tags.text = appventure!.tags?.joined(separator: ",")
+        let themeTwo = appventure?.themeTwo == nil ? "" : ", \(appventure!.themeTwo!)"
+        let themeOne = appventure!.themeOne ?? ""
+        tags.text = themeOne + themeTwo
     }
     
     func checkSave() {
@@ -139,10 +144,8 @@ class EditAppventureDetailsTableViewController: UITableViewController {
 extension EditAppventureDetailsTableViewController  {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.appventure?.tags.insert("easy")
-        if let atvc = segue.destination as? AddTagsViewController {
-            atvc.appventure = self.appventure
-        }
+        guard let tsvc = segue.destination as? ThemeSelectorViewController else { return }
+        tsvc.appventure = self.appventure
     }
 }
 
@@ -154,7 +157,7 @@ extension EditAppventureDetailsTableViewController : ImagePicker {
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
-            let savedImage = HelperFunctions.resizeImage(pickedImage, newWidth: 800)
+            let savedImage = HelperFunctions.resizeImage(pickedImage, desiredWidth: 800)
             imageView.image = savedImage
         }
         

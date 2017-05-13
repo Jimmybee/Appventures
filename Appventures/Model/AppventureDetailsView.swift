@@ -32,6 +32,8 @@ class AppventureDetailsView: UIView, UIScrollViewDelegate{
     @IBOutlet weak var startingLocation: UILabel!
     @IBOutlet weak var numberOfStepsLabel: UILabel!
     
+    @IBOutlet weak var themeOneImage: UIImageView!
+    @IBOutlet weak var themeTwoImage: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,5 +69,18 @@ class AppventureDetailsView: UIView, UIScrollViewDelegate{
         durationLabel.text = appventure.duration.secondsComponentToLongTimeString()
         startingLocation.text = appventure.startingLocationName
         numberOfStepsLabel.text = "\(appventure.appventureSteps.count) clues"
+        if let themeOne = appventure.themeOne,
+            let filterOne = Filter(rawValue: themeOne) {
+            themeOneImage.image = filterOne.image
+        } else {
+            themeOneImage.alpha = 0
+        }
+        if let themeTwo = appventure.themeTwo,
+            let filterTwo = Filter(rawValue: themeTwo) {
+            themeTwoImage.image = filterTwo.image
+        } else {
+            themeTwoImage.alpha = 0
+        }
+        
     }
 }
