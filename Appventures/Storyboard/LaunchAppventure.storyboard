@@ -510,9 +510,10 @@ Adventure Completed!</string>
         <!--Appventures-->
         <scene sceneID="zuC-hP-MsI">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="huI-7C-rdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="4BS-rB-9SW" customClass="LocalTableViewController" customModule="Appventures" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="286" sectionHeaderHeight="28" sectionFooterHeight="28" id="vjH-Sg-jZY">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.77393321700507611" green="0.77393321700507611" blue="0.77393321700507611" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
@@ -656,13 +657,11 @@ Adventure Completed!</string>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="refreshSpinner" destination="HPa-e5-TB3" id="uyv-eD-deV"/>
-                        <segue destination="3oh-Ib-z7Y" kind="show" identifier="Alt1" id="7Ro-TD-iwo"/>
-                        <segue destination="lLq-ev-H2Y" kind="presentation" identifier="startupLogin" id="3ye-Tr-amJ"/>
+                        <outlet property="tableView" destination="vjH-Sg-jZY" id="Izn-ju-Fle"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="huI-7C-rdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="1393.8530734632684"/>
+            <point key="canvasLocation" x="-954" y="1952"/>
         </scene>
         <!--How To View Controller-->
         <scene sceneID="L5C-KY-03E">
@@ -854,12 +853,69 @@ Adventure Completed!</string>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="4BS-rB-9SW" kind="relationship" relationship="rootViewController" id="mD0-wY-2gX"/>
+                        <segue destination="Fzt-9t-zUU" kind="relationship" relationship="rootViewController" id="exR-LJ-xN3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHv-kL-fUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-116" y="1394"/>
+            <point key="canvasLocation" x="-233" y="1352"/>
+        </scene>
+        <!--Appventures-->
+        <scene sceneID="eKn-We-i37">
+            <objects>
+                <viewController id="Fzt-9t-zUU" customClass="LocalTableViewController" customModule="Appventures" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ty7-TP-auu"/>
+                        <viewControllerLayoutGuide type="bottom" id="hJG-Yp-hrZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5gZ-mq-sSg">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Xvv-Ep-Br7">
+                                <rect key="frame" x="177" y="291" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4nW-UW-bFd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="GTy-Qy-Yau">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="300"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GTy-Qy-Yau" id="3L6-0C-OKe">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4nW-UW-bFd" firstAttribute="centerY" secondItem="5gZ-mq-sSg" secondAttribute="centerY" id="2jp-MY-QzF"/>
+                            <constraint firstItem="4nW-UW-bFd" firstAttribute="centerX" secondItem="5gZ-mq-sSg" secondAttribute="centerX" id="I7q-P1-d0c"/>
+                            <constraint firstItem="4nW-UW-bFd" firstAttribute="height" secondItem="5gZ-mq-sSg" secondAttribute="height" id="Iyh-B8-B22"/>
+                            <constraint firstItem="4nW-UW-bFd" firstAttribute="width" secondItem="5gZ-mq-sSg" secondAttribute="width" id="Xr2-PL-7QG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Appventures" id="x3X-ZN-j5B">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="20B-En-YgT">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="filterBttnPressed:" destination="Fzt-9t-zUU" id="4fN-Ke-7Go"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="4nW-UW-bFd" id="prc-rm-pPI"/>
+                        <segue destination="lLq-ev-H2Y" kind="presentation" identifier="startupLogin" animates="NO" id="DT7-9y-wei"/>
+                        <segue destination="3oh-Ib-z7Y" kind="show" identifier="Alt1" id="aS9-IP-5bw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dbE-NC-YFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="782" y="1250"/>
         </scene>
         <!--Appventures-->
         <scene sceneID="0VJ-Yc-AK1">
@@ -1077,11 +1133,18 @@ Adventure Completed!</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUf-6q-Ex4">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZq-3e-qMy">
-                                        <rect key="frame" x="53" y="15" width="35" height="30"/>
-                                        <state key="normal" title="HINT">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZq-3e-qMy">
+                                        <rect key="frame" x="53" y="19" width="70" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="bxc-a9-a9h"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="HINT" image="vc_create_flag">
                                             <color key="titleColor" red="0.1849155619" green="0.1849155619" blue="0.1849155619" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="revealHint:" destination="BxS-r5-5t0" eventType="touchUpInside" id="x4K-qv-99S"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfE-Da-Lxu">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
@@ -1266,6 +1329,7 @@ Cg
         <image name="locationPinA1" width="600" height="600"/>
         <image name="stopwatch" width="600" height="600"/>
         <image name="trailIcon-X" width="23" height="26"/>
+        <image name="vc_create_flag" width="19" height="18"/>
         <image name="vc_step_checkIn" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -8,6 +8,7 @@
 
 import UIKit
 import PureLayout
+import GooglePlacePicker
 
 protocol EditAppventureDetailsTableViewControllerDelegate: class {
     func appventureRolledBack()
@@ -17,7 +18,8 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     
     var appventure: Appventure?
     weak var delegate: EditAppventureDetailsTableViewControllerDelegate!
-    
+    var placePicker: GMSPlacePicker!
+
     //MARK: Outlets
     //TextView
     @IBOutlet weak var appventureDescription: UITextView!
@@ -39,6 +41,7 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     @IBOutlet weak var tags: UILabel!
     
     let imageViewIndex = IndexPath(row: 0, section: 1)
+    let pickLocationCell = IndexPath(row:1, section: 4)
     let descriptionTextIndex = IndexPath(row:0, section: 3)
     let duationLabelIndex = IndexPath(row: 0, section: 5)
     let durationPickerIndex = IndexPath(row: 1, section: 5)
@@ -46,6 +49,8 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     let endTimeIndex = IndexPath(row: 1, section: 6)
     let restrictionTimePickerIndex = IndexPath(row: 2, section: 6)
 
+    var placeCache: PlaceCache?
+    
     //MARK: Flags
     var edittingDuration = false
     var edittingStartTime = false
@@ -217,6 +222,8 @@ extension EditAppventureDetailsTableViewController {
             edittingDuration = !edittingDuration
             edittingEndTime = false
             edittingStartTime = false
+        case pickLocationCell:
+             pickLocation() 
         case startTimeIndex:
             edittingStartTime = !edittingStartTime
             edittingEndTime = false
@@ -303,6 +310,37 @@ extension EditAppventureDetailsTableViewController {
         startTimeLabel.textColor = edittingStartTime ? UIColor.blue : UIColor.black
         endTimeLabel.textColor = edittingEndTime ? UIColor.blue : UIColor.black
 
+    }
+    
+    //MARK: GMS Picker
+    func pickLocation() {
+        var center: CLLocationCoordinate2D?
+        
+        if let currentCoordinate = appventure?.location.coordinate as CLLocationCoordinate2D! {
+            center = CLLocationCoordinate2DMake(currentCoordinate.latitude, currentCoordinate.longitude)
+        } else {
+            center = CLLocationCoordinate2DMake(0, 0)
+        }
+        
+        let northEast = CLLocationCoordinate2DMake(center!.latitude + 0.001, center!.longitude + 0.001)
+        let southWest = CLLocationCoordinate2DMake(center!.latitude - 0.001, center!.longitude - 0.001)
+        
+        let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+        let config = GMSPlacePickerConfig(viewport: viewport)
+        placePicker = GMSPlacePicker(config: config)
+        
+        placePicker.pickPlace(callback: { (place, error) in
+            if let error = error {
+                print("Pick Place error: \(error.localizedDescription)")
+                return
+            }
+            if let place = place {
+                self.placeCache = PlaceCache(place: place)
+                self.appventure?.location = self.placeCache!.coordinate
+            } else {
+                print("No place selected")
+            }
+        })
     }
     
     

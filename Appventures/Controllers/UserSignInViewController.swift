@@ -66,7 +66,7 @@ class UserSignInViewController: UIViewController {
         view.endEditing(true)
         if emailTextField.text != nil {
             if let password = passwordTextField.text {
-//                User.singUpLogIn(email, password: password, restore: restore())
+                
             } else {
                 //reject
             }

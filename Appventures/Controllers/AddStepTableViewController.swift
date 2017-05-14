@@ -27,6 +27,12 @@ struct PlaceCache {
         self.address = step.locationSubtitle
     }
     
+    init (appventure: Appventure) {
+        self.name = appventure.startingLocationName
+        self.coordinate = appventure.location
+        self.address = ""
+    }
+    
     init (place: GMSPlace) {
         self.name = place.name
         let coordinate = place.coordinate
@@ -63,7 +69,6 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
     
     weak var delegate: AddStepTableViewControllerDelegate?
     //Sound
-    var soundFileURL = URL(fileURLWithPath: "") //cache?
     var totalLength = 0.0 { didSet { if let formattedTime = HelperFunctions.formatTime(ms, nano: false) {
         totalLengthLabel.text = formattedTime
         } } }
@@ -72,7 +77,7 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
     var recorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer!
     //Timer
-    var timer: Timer!
+    var timer: Timer?
     var ms = 0.0 { didSet { if let formattedTime = HelperFunctions.formatTime(ms, nano: false) {
         soundLabel.text = formattedTime
         } } }
@@ -168,13 +173,13 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
             self.locationNameLabel.text = "Set Location..."
         }
         
-
+        //section0 - Location
         var locationSetupString = [String]()
         appventureStep.setup.locationShown ?  locationSetupString.append("Location on map") : locationSetupString.append("No location on map")
         appventureStep.setup.compassShown ? locationSetupString.append("Show direction") : locationSetupString.append("No direction")
         appventureStep.setup.distanceShown ?  locationSetupString.append("Show distance") : locationSetupString.append("No distance")
         locationSetupDetails.text = locationSetupString.joined(separator: ",")
-        
+
         //section1 - Clues
               appventureStep.initialText == "" ? (initialTextLabel.text = "Set instructions...") : (initialTextLabel.text = appventureStep.initialText)
         
@@ -184,12 +189,12 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         }
         
         //section2 - Answer
+        proximityLabel.text = appventureStep.checkInProximity == 0 ? "∞" : String(appventureStep.checkInProximity)
         self.checkInLabel.text = self.locationNameLabel.text
-//        appventureStep.answerText.count == 0 ? (self.answersLabel.text = "Set answers...") :
-//            (self.answersLabel.text = "Answers availabe: \(appventureStep.answerText.count)")
+        appventureStep.answers.count == 0 ? (self.answersLabel.text = "Set answers...") : (self.answersLabel.text = "Answers availabe: \(appventureStep.answers.count)")
         
         //section3 - Hints
-//        self.appventureStep.answerHint.count == 0 ? (self.hintsLabel.text = "Set hints...") : (self.hintsLabel.text = "Hints availabe: \(appventureStep.answerHint.count)")
+        self.appventureStep.hints.count == 0 ? (self.hintsLabel.text = "Set hints...") : (self.hintsLabel.text = "Hints availabe: \(appventureStep.hints.count)")
         self.penaltyLabel.text = String(appventureStep.hintPenalty)
 
     }
@@ -198,11 +203,17 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         let stepNumber = String(appventureStep.stepNumber)
         self.navigationItem.title = ("Step: \(stepNumber)")
         
+       
         
         //section1 - Clues
         soundSwitch.isOn = appventureStep.setup.soundClue
         pictureSwitch.isOn = appventureStep.setup.pictureClue
         intialTextSwitch.isOn = appventureStep.setup.textClue
+        
+        
+        //section2: - Answers
+        checkInControl.selectedSegmentIndex = appventureStep.setup.checkIn ? 0 : 1
+        
         
         //SoundView
         if let soundData = soundDataCache {
@@ -218,15 +229,6 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
             }
             
         }
-        
-        //section2 - Answer
-        self.appventureStep.setup.checkIn == true ? (self.checkInControl.selectedSegmentIndex = 0) : (self.checkInControl.selectedSegmentIndex = 1)
-        self.proximityLabel.text = String(appventureStep.checkInProximity)
-
-        
-        //section3 - Hints
-//        self.appventureStep.answerHint.count == 0 ? (self.hintsLabel.text = "Set hints...") : (self.hintsLabel.text = "Hints availabe: \(appventureStep.answerHint.count)")
-//        self.freeHintsTextField.text = String(appventureStep.freeHints)
         
         //section4 - Completion Text
         self.completionTextView.text = appventureStep.completionText
@@ -275,9 +277,9 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         }
         
         if self.checkInControl.selectedSegmentIndex == 1 {
-//            if appventureStep.answerText.count == 0 {
-//                enableSave = false
-//            }
+            if appventureStep.answers.count == 0 {
+                enableSave = false
+            }
         }
         
         if enableSave == true {
@@ -400,43 +402,51 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
                     //set category and activate recorder session
                     try! audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
                     try! audioSession.setActive(true)
-        
-        let currentFileName = ("temp.caf")
-        let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let docsDir: AnyObject = dirPaths[0] as AnyObject
-//        let soundFilePath = docsDir.appendingPathComponent(currentFileName)
-        let soundFilePath = docsDir.appending(currentFileName)
-        self.soundFileURL = URL(fileURLWithPath: soundFilePath)
-//        appventureStep.sound?.writeToURL(soundFileURL, atomically: true)
-        let filemanager = FileManager.default
-        if filemanager.fileExists(atPath: soundFilePath) {
-            print("sound exists")
-        }
-        
-        let recordSettings = [
-            AVFormatIDKey: NSNumber(value: kAudioFormatAppleIMA4 as UInt32),
-            AVEncoderAudioQualityKey : AVAudioQuality.medium.rawValue,
-            AVEncoderBitRateKey : 320,
-            AVNumberOfChannelsKey: 1,
-            AVSampleRateKey : 440.0
-        ] as [String : Any]
-        
-        do {
-            self.recorder = try AVAudioRecorder(url: self.soundFileURL, settings: recordSettings)
-            self.recorder.delegate = self
-            self.recorder.isMeteringEnabled = true
-            self.recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
-        } catch let error as NSError {
-            self.recorder = nil
-            print(error.localizedDescription)
-        }
+                    
+                    let audioFilename = self.getDocumentsDirectory().appendingPathComponent("recording.m4a")
+
+                    do {
+                       try  self.appventureStep.sound?.write(to: audioFilename)
+                    } catch {
+                        print("no sound")
+                    }
+                    
+                    let settings = [
+                        AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                        AVSampleRateKey: 12000,
+                        AVNumberOfChannelsKey: 1,
+                        AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+                    ]
+                    
+                    do {
+                        self.recorder = try AVAudioRecorder(url: audioFilename, settings: settings)
+                        self.recorder.delegate = self
+                        self.recorder.isMeteringEnabled = true
+                        self.recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
+                    } catch let error as NSError {
+                        self.recorder = nil
+                        print(error.localizedDescription)
+                    }
                     
                 } else{
                     print("not granted")
                 }
             })
-        
+            
         }
+    }
+    
+    func startRecording() {
+        if !recorder.isRecording {
+            recorder.record()
+            startTimer()
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     @IBAction func stopSound(_ sender: AnyObject) {
@@ -444,64 +454,51 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         if recorder.isRecording == true {
             recorder.stop()
             totalLength = ms
-            
-            soundDataCache = try? Data(contentsOf: soundFileURL)
-            ms = 0
-            self.timer.invalidate()
-            self.timer = nil
-
+            let audioFilename = self.getDocumentsDirectory().appendingPathComponent("recording.m4a")
+            soundDataCache = try? Data(contentsOf: audioFilename)
         }
         
         if audioPlayer != nil {
             if audioPlayer.isPlaying == true  {
                 audioPlayer.stop()
-                ms = 0
-                self.timer.invalidate()
-                self.timer = nil
             }
-            
         }
+        
+        ms = 0
+        self.timer?.invalidate()
+        self.timer = nil
+
         
         checkSaveButton()
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         ms = 0
-        self.timer.invalidate()
+        self.timer?.invalidate()
         self.timer = nil
     }
 
     @IBAction func record(_ sender: UIButton) {
         if !recorder.isRecording {
-        recorder.record()
-        startTimer()
+            startRecording()
+            startTimer()
         }
-    
     }
     
     @IBAction func playSound(_ sender: UIButton) {
-        
-        if audioPlayer == nil {
-            if let soundData = soundDataCache as Data! {
+        if let soundData = soundDataCache as Data! {
+            if !audioPlayer.isPlaying {
                 do {
-                        self.audioPlayer = try AVAudioPlayer(data: soundData)
-                        self.audioPlayer.play()
-                        self.startTimer()
-                        self.audioPlayer.delegate = self
+                    self.audioPlayer = try AVAudioPlayer(data: soundData)
+                    self.audioPlayer.play()
+                    self.startTimer()
+                    self.audioPlayer.delegate = self
                 }
                 catch let error as NSError {
-                    //
                     print(error.localizedDescription)
                 }
             }
-        } else {
-            if !audioPlayer.isPlaying {
-                self.audioPlayer.play()
-                self.startTimer()
-            }
         }
-        
-        
         
     }
     

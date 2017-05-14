@@ -37,16 +37,22 @@ class ExploreAppventureCell: UITableViewCell, AppventureImageCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        appventureImage.image = nil
+    }
+    
     func updateUI() {
         startingLocation.text = appventure?.startingLocationName
         appventureTitle.text = appventure?.title
+        themeOne.text = appventure?.themeOne ?? "Theme"
+
         if let image = appventure?.image {
             appventureImage.image = image
         } else {
-            appventureImage.alpha = 0
+            print("do load...")
+//            appventureImage.alpha = 0
             appventure?.loadImageFor(cell: self)
         }
-        themeOne.text = appventure?.themeOne ?? "Theme"
     }
     
     

@@ -7,12 +7,13 @@
 //
 
 import UIKit
-//import Parse
 import CoreLocation
 import FBSDKCoreKit
 import SwiftyJSON
+import Kingfisher
 
-class LocalTableViewController: BaseTableViewController{
+
+class LocalTableViewController: BaseViewController {
     
     var publicAppventuresMessage = "There are no adventures available on our servers at the moment."
     var friendsAppventuresMessage = "There are no adventures that your friends have shared with you."
@@ -31,7 +32,6 @@ class LocalTableViewController: BaseTableViewController{
     var publicAppventures = [Appventure]()
     var searchController = UISearchController()
     var mainTabController: MainTabBarController!
-    
     
     private(set) lazy var catalogueBttn: SegmentButton = {
       let bttn = SegmentButton()
@@ -60,14 +60,23 @@ class LocalTableViewController: BaseTableViewController{
     
     var animatedControl = AnimatedSegmentControl()
     
-    //Don't neeed
+    var filterOpen = false
+    var attachedToTop: NSLayoutConstraint!
+    var attachedToBottom: NSLayoutConstraint!
+    
+    //Don't need - figure out
     var lastLocation: CLLocationCoordinate2D?
     var refreshing = false
     
+    @IBOutlet weak var tableView: UITableView!
+
     @IBOutlet weak var refreshSpinner: UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ImageCache.default.clearDiskCache()
+        ImageCache.default.clearMemoryCache()
 
         setupLocationManager()
         setupTableView()
@@ -87,9 +96,9 @@ class LocalTableViewController: BaseTableViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        tableView.reloadData() //MARK: only required for when appventure is removed from downloads
         HelperFunctions.unhideTabBar(self)
     }
-    
     
     private func setupComplete() {
         if CoreUser.user?.userType == .noLogin {
@@ -99,25 +108,26 @@ class LocalTableViewController: BaseTableViewController{
         }
     }
     
+    var filterHeight: CGFloat!
+    var filterWidth: CGFloat!
+    var filterX: CGFloat!
+    var filterOpenY: CGFloat!
+    var filterClosedY: CGFloat!
+   
+    
     private func setupFilterView() {
-        view.addSubview(filterView)
-        filterView.autoMatch(.width, to: .width, of: tableView)
-        filterView.autoMatch(.height, to: .height, of: tableView)
+        self.view.addSubview(filterView)
         
-//        filterView.autoAlignAxis(toSuperviewAxis: .vertical)
-        filterView.autoAlignAxis(toSuperviewAxis: .horizontal)
-
-         attachedToTop = filterView.autoPinEdge(.bottom, to: .top, of: tableView, withOffset: 0)
-         attachedToBottom = filterView.autoPinEdge(.bottom, to: .bottom, of: tableView, withOffset: 0)
-         attachedToBottom.autoRemove()
+        filterHeight = tableView.frame.size.height
+        filterWidth = tableView.frame.size.width
+        filterClosedY = tableView.frame.origin.y - filterHeight
+        filterOpenY = tableView.frame.origin.y - 36
+        filterX = tableView.frame.origin.x
+        filterView.frame = CGRect(x: filterX, y: filterClosedY, width: filterWidth, height: filterHeight)
         
         filterView.setupCollectionView()
-
     }
-    
-    var filterOpen = false
-    var attachedToTop: NSLayoutConstraint!
-    var attachedToBottom: NSLayoutConstraint!
+
     
     //MARK: Actions
     
@@ -128,26 +138,16 @@ class LocalTableViewController: BaseTableViewController{
 //        locationManager.requestLocation()
     }
     
-    @IBAction func localPublicChange(_ sender: UISegmentedControl) {
-        tableView.reloadData()
-    }
-    
     @IBAction func filterBttnPressed(_ sender: Any) {
         
         switch filterOpen {
         case false:
             UIView.animate(withDuration: 0.3, animations: {
-                self.attachedToBottom.autoInstall()
-                self.attachedToTop.autoRemove()
-                self.view.layoutIfNeeded()
-                self.animatedControl.alpha = 0
+                self.filterView.frame = CGRect(x: self.filterX, y: self.filterOpenY, width: self.filterWidth, height: self.filterHeight)
             }, completion: nil)
         case true:
             UIView.animate(withDuration: 0.3, animations: {
-                self.attachedToBottom.autoRemove()
-                self.attachedToTop.autoInstall()
-                self.animatedControl.alpha = 1
-                self.view.layoutIfNeeded()
+                self.filterView.frame = CGRect(x: self.filterX, y: self.filterClosedY, width: self.filterWidth, height: self.filterHeight)
             }, completion: { (complete) in
                 self.getBackendlessAppventure()
             })
@@ -197,7 +197,7 @@ class LocalTableViewController: BaseTableViewController{
 
 // MARK: - Table Delegate 
 
-extension LocalTableViewController {
+extension LocalTableViewController: UITableViewDelegate, UITableViewDataSource    {
     
     func setupTableView() {
         tableView.register(UINib(nibName: ExploreAppventureCell.cellIdentifierNibName, bundle: nil), forCellReuseIdentifier: ExploreAppventureCell.cellIdentifierNibName)
@@ -209,7 +209,7 @@ extension LocalTableViewController {
         tableView.delegate = self
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+     func numberOfSections(in tableView: UITableView) -> Int {
         switch animatedControl.selectedButton {
         case 0:
             if CoreUser.user!.downloadedArray.count == 0 {
@@ -232,7 +232,7 @@ extension LocalTableViewController {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = 0
         switch animatedControl.selectedButton {
         case 0:
@@ -245,7 +245,7 @@ extension LocalTableViewController {
         return rows
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExploreAppventureCell.cellIdentifierNibName, for: indexPath) as! ExploreAppventureCell
         let row = indexPath.row
         switch animatedControl.selectedButton {
@@ -259,15 +259,15 @@ extension LocalTableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "Alt1", sender: indexPath)
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 36
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return animatedControl
     }
 }
@@ -304,6 +304,8 @@ extension LocalTableViewController: CLLocationManagerDelegate {
 
 }
 
+
+//MARK: - AnimatedSegmentControlDelegate
 extension LocalTableViewController: AnimatedSegmentControlDelegate {
     
     func updatedButton(index: Int) {

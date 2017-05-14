@@ -24,6 +24,7 @@ PODS:
   - GooglePlaces (2.1.1):
     - GoogleMaps/Base (= 2.1.1)
   - Hero (0.1.2)
+  - Kingfisher (3.3.3)
   - PureLayout (3.0.2)
   - SwiftyJSON (3.1.4)
 
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - GooglePlacePicker
   - GooglePlaces
   - Hero
+  - Kingfisher (~> 3.0)
   - PureLayout
   - SwiftyJSON
 
@@ -52,9 +54,10 @@ SPEC CHECKSUMS:
   GooglePlacePicker: 665f39f931f2df32f9dd3fcc45f7e8abf71e535c
   GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
   Hero: 1465b8e2ca4224620d17d09044728dbbe5c08b7a
+  Kingfisher: 893215a42e5c2164e916f69463c68003092b104c
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 94aa31d511f6f547d2372dab1d08e7ee7a5f8bcc
+PODFILE CHECKSUM: 433b76142b2950c84a33a39a451b5c38626e08e8
 
 COCOAPODS: 1.1.1

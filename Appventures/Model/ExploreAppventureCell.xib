@@ -24,7 +24,7 @@
                         <rect key="frame" x="18" y="8" width="250" height="273"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EbI-Fe-35X">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="187.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="188"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="EbI-Fe-35X" secondAttribute="height" multiplier="800:600" id="8x1-Rr-Ux3"/>
                                 </constraints>
@@ -39,7 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMV-va-Zzg">
-                                <rect key="frame" x="5" y="224" width="117.5" height="18"/>
+                                <rect key="frame" x="5" y="224" width="118" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

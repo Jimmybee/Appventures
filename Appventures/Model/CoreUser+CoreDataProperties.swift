@@ -17,6 +17,7 @@ extension CoreUser {
     }
 
     @NSManaged public var facebookId: String?
+    @NSManaged public var backendlessId: String?
     @NSManaged public var facebookPicture: UIImage?
     @NSManaged public var loggedIn: Bool
     @NSManaged public var name: String?
@@ -96,4 +97,40 @@ extension CoreUser {
     @objc(removeDownloaded:)
     @NSManaged public func removeFromDownloaded(_ values: NSOrderedSet)
 
+}
+
+
+// MARK: Generated accessors for grantedAppventures
+extension CoreUser {
+    
+    @objc(insertObject:inGrantedAppventuresAtIndex:)
+    @NSManaged public func insertIntoGrantedAppventures(_ value: Appventure, at idx: Int)
+    
+    @objc(removeObjectFromGrantedAppventuresAtIndex:)
+    @NSManaged public func removeFromGrantedAppventures(at idx: Int)
+    
+    @objc(insertGrantedAppventures:atIndexes:)
+    @NSManaged public func insertIntoGrantedAppventures(_ values: [Appventure], at indexes: NSIndexSet)
+    
+    @objc(removeGrantedAppventuresAtIndexes:)
+    @NSManaged public func removeFromGrantedAppventures(at indexes: NSIndexSet)
+    
+    @objc(replaceObjectInGrantedAppventuresAtIndex:withObject:)
+    @NSManaged public func replaceGrantedAppventures(at idx: Int, with value: Appventure)
+    
+    @objc(replaceGrantedAppventuresAtIndexes:withGrantedAppventures:)
+    @NSManaged public func replaceGrantedAppventures(at indexes: NSIndexSet, with values: [Appventure])
+    
+    @objc(addGrantedAppventuresObject:)
+    @NSManaged public func addToGrantedAppventures(_ value: Appventure)
+    
+    @objc(removeGrantedAppventuresObject:)
+    @NSManaged public func removeFromGrantedAppventures(_ value: Appventure)
+    
+    @objc(addGrantedAppventures:)
+    @NSManaged public func addToGrantedAppventures(_ values: NSOrderedSet)
+    
+    @objc(removeGrantedAppventures:)
+    @NSManaged public func removeFromGrantedAppventures(_ values: NSOrderedSet)
+    
 }

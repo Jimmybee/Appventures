@@ -36,16 +36,4 @@ class BackendlessSetup: NSObject {
         self.compassShown = setup.compassShown
         self.distanceShown = setup.distanceShown
     }
-    
-    init(dict: Dictionary<String, Any>) {
-        self.objectId = dict["objectId"] as? String
-        self.textClue = dict["textClue"] as! Bool
-        self.soundClue = dict["soundClue"] as! Bool
-        self.pictureClue = dict["pictureClue"] as! Bool
-        self.checkIn = dict["checkIn"] as! Bool
-        self.isLocation  = dict["isLocation"] as! Bool
-        self.locationShown = dict["locationShown"] as! Bool
-        self.compassShown = dict["compassShown"] as! Bool
-        self.distanceShown = dict["distanceShown"] as! Bool
-    }
 }

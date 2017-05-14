@@ -12,6 +12,7 @@
 		6602485D1EC50FAF003E320A /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6602485C1EC50FAF003E320A /* FilterView.xib */; };
 		6602485F1EC5106A003E320A /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6602485E1EC5106A003E320A /* FilterView.swift */; };
 		660248651EC71FA5003E320A /* ThemeSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660248641EC71FA5003E320A /* ThemeSelectorViewController.swift */; };
+		6602486C1EC86BCE003E320A /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6602486B1EC86BCE003E320A /* ImageCacher.swift */; };
 		661F99051EC336BE00878F8F /* SegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99041EC336BE00878F8F /* SegmentButton.swift */; };
 		661F99071EC33DAA00878F8F /* AnimatedSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */; };
 		66DDE5B81EBF276D00A3911E /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */; };
@@ -136,6 +137,7 @@
 		6602485C1EC50FAF003E320A /* FilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterView.xib; path = ../Resources/FilterView.xib; sourceTree = "<group>"; };
 		6602485E1EC5106A003E320A /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterView.swift; path = ../Resources/FilterView.swift; sourceTree = "<group>"; };
 		660248641EC71FA5003E320A /* ThemeSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeSelectorViewController.swift; sourceTree = "<group>"; };
+		6602486B1EC86BCE003E320A /* ImageCacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
 		661F99041EC336BE00878F8F /* SegmentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentButton.swift; sourceTree = "<group>"; };
 		661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSegmentControl.swift; path = ../AnimatedSegmentControl.swift; sourceTree = "<group>"; };
 		66DDE5991EBF26AC00A3911E /* Appventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appventures.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -326,6 +328,58 @@
 			name = FilterView;
 			sourceTree = "<group>";
 		};
+		660248661EC73E8A003E320A /* -d- */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE5CC1EBF285200A3911E /* AddTagsViewController.swift */,
+			);
+			name = "-d-";
+			path = ../Controllers;
+			sourceTree = "<group>";
+		};
+		660248671EC73E9D003E320A /* MakerHome */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE5E61EBF285200A3911E /* MakerHomeViewController.swift */,
+			);
+			name = MakerHome;
+			sourceTree = "<group>";
+		};
+		660248681EC73EA3003E320A /* CreateAppventure */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE5D71EBF285200A3911E /* CreateAppventureViewController.swift */,
+			);
+			name = CreateAppventure;
+			sourceTree = "<group>";
+		};
+		660248691EC73EBF003E320A /* EditDetails */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE5D81EBF285200A3911E /* EditAppventureDetailsTableViewController.swift */,
+				660248641EC71FA5003E320A /* ThemeSelectorViewController.swift */,
+			);
+			name = EditDetails;
+			sourceTree = "<group>";
+		};
+		6602486A1EC75B83003E320A /* instructions */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE5E91EBF285200A3911E /* RTFDisplayViewController.swift */,
+				66DDE5DE1EBF285200A3911E /* InstructionsViewController.swift */,
+				66DDE5C11EBF27DF00A3911E /* HowToViewController.swift */,
+			);
+			name = instructions;
+			sourceTree = "<group>";
+		};
+		6602486D1EC86EB7003E320A /* MakeAppventureCell */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE6411EBF291200A3911E /* AppventureMakerCell.swift */,
+			);
+			name = MakeAppventureCell;
+			sourceTree = "<group>";
+		};
 		66DDE5901EBF26AC00A3911E = {
 			isa = PBXGroup;
 			children = (
@@ -384,6 +438,7 @@
 		66DDE5B21EBF274700A3911E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				660248661EC73E8A003E320A /* -d- */,
 				66DDE5EF1EBF285200A3911E /* TargetHelperFunctions.swift */,
 				66DDE5DB1EBF285200A3911E /* HelperFunctions.swift */,
 				66DDE5B51EBF276D00A3911E /* Appventures-Bridging-Header.h */,
@@ -391,6 +446,7 @@
 				66DDE6CF1EBF357400A3911E /* Backendless */,
 				66DDE6D01EBF357C00A3911E /* CoreData */,
 				66DDE6C61EBF34AE00A3911E /* UIExtensions */,
+				6602486B1EC86BCE003E320A /* ImageCacher.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -525,7 +581,7 @@
 			children = (
 				660248591EC2687C003E320A /* ExploreAppventureCell */,
 				66DDE66B1EBF291200A3911E /* TableHeaderSection.swift */,
-				66DDE6411EBF291200A3911E /* AppventureMakerCell.swift */,
+				6602486D1EC86EB7003E320A /* MakeAppventureCell */,
 				66DDE6561EBF291200A3911E /* FacebookFriendTableCell.swift */,
 				66DDE6481EBF291200A3911E /* AppventureStepTableCell.swift */,
 				66DDE6491EBF291200A3911E /* AppventureStepTableViewCell.swift */,
@@ -710,10 +766,8 @@
 			children = (
 				66DDE5E41EBF285200A3911E /* NonFacebookHeaderViewController.swift */,
 				66DDE5E71EBF285200A3911E /* ProfileWrapperViewController.swift */,
-				66DDE5E91EBF285200A3911E /* RTFDisplayViewController.swift */,
 				66DDE5EA1EBF285200A3911E /* SettingsViewController.swift */,
-				66DDE5DE1EBF285200A3911E /* InstructionsViewController.swift */,
-				66DDE5C11EBF27DF00A3911E /* HowToViewController.swift */,
+				6602486A1EC75B83003E320A /* instructions */,
 				66DDE5C31EBF27DF00A3911E /* ProfileHeaderViewController.swift */,
 				66DDE5F41EBF285200A3911E /* UserSummaryViewController.swift */,
 				66DDE5F31EBF285200A3911E /* UserSignInViewController.swift */,
@@ -757,14 +811,10 @@
 		66DDE6D91EBF371C00A3911E /* CreateAppventures */ = {
 			isa = PBXGroup;
 			children = (
-				66DDE5E61EBF285200A3911E /* MakerHomeViewController.swift */,
-				66DDE5D71EBF285200A3911E /* CreateAppventureViewController.swift */,
-				66DDE5D81EBF285200A3911E /* EditAppventureDetailsTableViewController.swift */,
-				66DDE5CC1EBF285200A3911E /* AddTagsViewController.swift */,
+				660248671EC73E9D003E320A /* MakerHome */,
+				660248681EC73EA3003E320A /* CreateAppventure */,
+				660248691EC73EBF003E320A /* EditDetails */,
 				66EE70E91EC22B6D00EF7464 /* EditStep */,
-				66DDE5D91EBF285200A3911E /* EditTextClueViewController.swift */,
-				66DDE5E01EBF285200A3911E /* LocationSettingsTableViewController.swift */,
-				660248641EC71FA5003E320A /* ThemeSelectorViewController.swift */,
 			);
 			name = CreateAppventures;
 			sourceTree = "<group>";
@@ -828,6 +878,8 @@
 				66DDE5DC1EBF285200A3911E /* ImageChooserViewController.swift */,
 				66DDE5CA1EBF285200A3911E /* AddHintTableViewController.swift */,
 				66DDE5C91EBF285200A3911E /* AddAnswerTableViewController.swift */,
+				66DDE5D91EBF285200A3911E /* EditTextClueViewController.swift */,
+				66DDE5E01EBF285200A3911E /* LocationSettingsTableViewController.swift */,
 			);
 			name = EditStep;
 			sourceTree = "<group>";
@@ -1041,6 +1093,7 @@
 				66DDE5F71EBF285200A3911E /* AddHintTableViewController.swift in Sources */,
 				66DDE6A01EBF291200A3911E /* UIImage+ImageEffects.m in Sources */,
 				66DDE61B1EBF285200A3911E /* StepViewController.swift in Sources */,
+				6602486C1EC86BCE003E320A /* ImageCacher.swift in Sources */,
 				66DDE6AA1EBF294D00A3911E /* Model.xcdatamodeld in Sources */,
 				66DDE6A11EBF291200A3911E /* UserFriend.swift in Sources */,
 				66DDE6901EBF291200A3911E /* LiveStatus.swift in Sources */,

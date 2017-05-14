@@ -30,7 +30,6 @@ class StepViewController: UIViewController {
     @IBOutlet weak var stepNumberLabel: UILabel!
 
     @IBOutlet weak var submitBttn: UIButton!
-    
     @IBOutlet weak var clueSelectionContainer: UIView!
     
     var submitTextField: UITextField!
@@ -79,6 +78,14 @@ class StepViewController: UIViewController {
         let bttn = UIButton(frame: .zero)
         bttn.setImage(UIImage(named: ImageNames.VcStep.camera), for: .normal)
         bttn.setImage(UIImage(named: ImageNames.VcStep.cameraSelected), for: .selected)
+        bttn.addTarget(self, action: #selector(clueBttnTapped(sender:)), for: .touchUpInside)
+        return bttn
+    }()
+    
+    private(set) var soundClueBttn: UIButton = {
+        let bttn = UIButton(frame: .zero)
+        bttn.setImage(UIImage(named: ImageNames.VcStep.sound), for: .normal)
+        bttn.setImage(UIImage(named: ImageNames.VcStep.soundSelected), for: .selected)
         bttn.addTarget(self, action: #selector(clueBttnTapped(sender:)), for: .touchUpInside)
         return bttn
     }()
@@ -147,6 +154,7 @@ extension StepViewController {
         clueSelectionContainer.addSubview(purpleLine)
         purpleLine.autoSetDimension(.height, toSize: 5)
         purpleLine.autoPinEdge(toSuperviewEdge: .bottom)
+
     }
     
     
@@ -202,7 +210,7 @@ extension StepViewController {
                 soundClueView.sound = isSound
                 soundClueView.setupAP()
                 activeViews.append(soundClueView.view)
-//                activeBttns.append(textClueBttn)
+                activeBttns.append(soundClueBttn)
             }
         }
         
@@ -242,7 +250,7 @@ extension StepViewController {
         setupSubmitBttn()
         
         stepNumberLabel.text = "\(step.stepNumber) of \(appventure.steps.count)"
-
+        hintsRecieved = 0
         
     }
     
@@ -321,7 +329,7 @@ extension StepViewController {
         flaggedContent.save()
     }
     
-    func revealHint(_ sender: UIButton) {
+    @IBAction func revealHint(_ sender: UIButton) {
         if step.answerHint.count == Int(hintsRecieved) {
             let alert = UIAlertController(title: "No Hints", message: "There are no hints remaining.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
@@ -374,7 +382,6 @@ extension StepViewController {
                 setupViews()
                 timer?.invalidate()
                 timer = nil
-                
             }
         }
     }

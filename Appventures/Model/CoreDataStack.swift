@@ -72,6 +72,11 @@ class CoreDataStack {
         print("rolled back")
     }
     
+    func stageDelete(object: NSManagedObject) {
+        guard let context = object.managedObjectContext else { return }
+        context.delete(object)
+    }
+    
     func delete(object: NSManagedObject, completion: ((Void) -> (Void))?) {
         guard let context = object.managedObjectContext else { return }
         context.delete(object)

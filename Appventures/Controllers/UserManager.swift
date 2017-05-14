@@ -40,11 +40,20 @@ class UserManager {
         
     ]
     
-    
+    /// check if logged in to backendless.
+    /// then attempt to load coreData.
     /// Load latest coredata user. Check if core
     static func setupUser(completion: @escaping () -> ()) {
-
         let context = AppDelegate.coreDataStack.persistentContainer.viewContext
+
+        let backendless = Backendless.sharedInstance()
+        if backendless?.userService.currentUser == nil {
+            CoreUser.user = CoreUser(context: context)
+            CoreUser.user?.userType = .noLogin
+            completion()
+            return
+        }
+        
         do {
             let fetchRequest: NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
             let users = try context.fetch(fetchRequest)
@@ -52,19 +61,13 @@ class UserManager {
                 CoreUser.user = CoreUser(context: context)
                 AppDelegate.coreDataStack.saveContext(completion: nil)
             } else {
-                CoreUser.user = users[0]
+                let backendlessId =  Backendless.sharedInstance().userService.currentUser.objectId as String
+                let user = users.filter({ $0.backendlessId == backendlessId}).first ?? users[0]
+                CoreUser.user = user
             }
         } catch {
             CoreUser.user = CoreUser(context: context)
             AppDelegate.coreDataStack.saveContext(completion: nil)
-        }
-        
-        
-        let backendless = Backendless.sharedInstance()
-        if backendless?.userService.currentUser == nil {
-            CoreUser.user?.userType = .noLogin
-            completion()
-            return
         }
         
         
@@ -93,6 +96,7 @@ class UserManager {
         CoreUser.user?.facebookId = user?.getProperty(backendlessFields.facebookId) as? String
         CoreUser.user?.pictureUrl = "https://graph.facebook.com/\(CoreUser.user!.facebookId!)/picture?type=large"
         CoreUser.user?.userType = .facebook
+        CoreUser.user?.backendlessId = user?.objectId as String?
         DispatchQueue.main.async {
             AppDelegate.coreDataStack.saveContext(completion: nil)
         }
@@ -114,8 +118,19 @@ class UserManager {
         }
     }
     
+    static func loginWith(email: String, password: String, completion: () -> ()) {
+        backendless?.userService.login(email, password: password, response: { (user) in
+            print(user)
+        }, error: { (fault) in
+            print("Server reported an error: \(fault)")
+
+        })
+    }
+    
     static func logout() {
         backendless!.userService.logout()
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
     }
     
 }

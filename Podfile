@@ -17,6 +17,7 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'PureLayout'
 pod 'Hero'
+pod 'Kingfisher', '~> 3.0'
 
 end
 

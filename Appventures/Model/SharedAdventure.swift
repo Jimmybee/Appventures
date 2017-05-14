@@ -47,12 +47,21 @@ class SharedAdventure: NSObject {
         let dataQuery = BackendlessDataQuery()
         dataQuery.whereClause = "shareeFbId = \(shareeFbId)"
         
+
         let dataStore = Backendless.sharedInstance().data.of(SharedAdventure.ofClass())
         dataStore?.find(dataQuery, response: { (collection) in
-            guard let page1 = collection!.getCurrentPage() else { return completion(nil) }
-            let sharedAppventures = page1.map(self.convertToSharedAppventure).flatMap( { $0 })
+            var sharedAppventures = [SharedAdventure]()
+            let page1 = collection!.getCurrentPage()
+            for obj in page1! {
+                let shared = obj as! SharedAdventure
+                sharedAppventures.append(shared)
+            }
+            
+            let ids = sharedAppventures.map({"'\($0.appventureId!)'"}).joined(separator: " OR ")
+            let whereClause = "objectId IN (\(ids))"
             let dataQuery = BackendlessDataQuery()
-            dataQuery.whereClause = "objectId in (\(sharedAppventures.joined(separator: " OR ")))"
+            print(whereClause)
+            dataQuery.whereClause = whereClause
             BackendlessAppventure.loadBackendlessAppventures(persistent: true, dataQuery: dataQuery, completion: { (appventures, fault) in
                 if fault != nil {
                     completion(nil)

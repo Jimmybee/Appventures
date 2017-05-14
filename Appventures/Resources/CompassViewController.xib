@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompassViewController" customModule="Appventures" customModuleProvider="target">
             <connections>
                 <outlet property="compass" destination="unX-fR-WjV" id="VvB-ym-mlR"/>
+                <outlet property="crackedGlass" destination="Fkv-YU-M3M" id="g4y-gf-ady"/>
                 <outlet property="distanceLabel" destination="8VP-Zi-r0e" id="Bpe-3Y-ZgG"/>
                 <outlet property="locationPointer" destination="HsF-KS-wr1" id="q18-FB-dfO"/>
                 <outlet property="view" destination="iN0-l3-epB" id="9ht-do-wuD"/>
@@ -48,7 +49,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="152"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VP-Zi-r0e">
-                            <rect key="frame" x="166.5" y="65.5" width="42" height="21"/>
+                            <rect key="frame" x="167" y="66" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -60,6 +61,9 @@
                         <constraint firstItem="8VP-Zi-r0e" firstAttribute="centerX" secondItem="oz4-RF-mlh" secondAttribute="centerX" id="qDU-U0-5ab"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="v_cracked_glass" translatesAutoresizingMaskIntoConstraints="NO" id="Fkv-YU-M3M">
+                    <rect key="frame" x="37" y="183" width="300" height="300"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -67,11 +71,15 @@
                 <constraint firstItem="oz4-RF-mlh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Eje-qk-DGV"/>
                 <constraint firstItem="HsF-KS-wr1" firstAttribute="height" secondItem="uFd-6m-fLK" secondAttribute="height" id="Hlp-a4-luj"/>
                 <constraint firstItem="HsF-KS-wr1" firstAttribute="centerY" secondItem="uFd-6m-fLK" secondAttribute="centerY" id="X1p-JQ-Cam"/>
+                <constraint firstItem="Fkv-YU-M3M" firstAttribute="width" secondItem="HsF-KS-wr1" secondAttribute="width" id="bYG-oW-4Og"/>
+                <constraint firstItem="Fkv-YU-M3M" firstAttribute="centerX" secondItem="HsF-KS-wr1" secondAttribute="centerX" id="bhO-Gv-XmW"/>
+                <constraint firstItem="Fkv-YU-M3M" firstAttribute="centerY" secondItem="HsF-KS-wr1" secondAttribute="centerY" id="cZX-ob-pMd"/>
                 <constraint firstItem="HsF-KS-wr1" firstAttribute="centerX" secondItem="uFd-6m-fLK" secondAttribute="centerX" id="h2M-US-CKT"/>
                 <constraint firstItem="uFd-6m-fLK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hPV-jd-BXw"/>
                 <constraint firstItem="oz4-RF-mlh" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="kZr-60-CSd"/>
                 <constraint firstItem="uFd-6m-fLK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mM1-o8-IHR"/>
                 <constraint firstItem="oz4-RF-mlh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rrd-zs-BkP"/>
+                <constraint firstItem="Fkv-YU-M3M" firstAttribute="height" secondItem="HsF-KS-wr1" secondAttribute="height" id="skG-ly-rNj"/>
                 <constraint firstItem="HsF-KS-wr1" firstAttribute="width" secondItem="uFd-6m-fLK" secondAttribute="width" id="wgD-yb-JJa"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="54.5"/>
@@ -79,6 +87,7 @@
     </objects>
     <resources>
         <image name="v_compass_triangle" width="300" height="300"/>
+        <image name="v_cracked_glass" width="222" height="222"/>
         <image name="vc_step_compass_outer" width="300" height="300"/>
     </resources>
 </document>

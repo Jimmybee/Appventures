@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 import Alamofire
+import Kingfisher
 
 public class Appventure: NSManagedObject {
        
@@ -85,26 +86,22 @@ public class Appventure: NSManagedObject {
     
     //MARK: Load Image
     func loadImageFor(cell: AppventureImageCell) {
-        print("loading Image")
-        loadImage(completion: {
-            cell.appventureImage.image = self.image
-            UIView.animate(withDuration: 0.3, animations: {
-                cell.appventureImage.alpha = 1
-            })
-            cell.setNeedsDisplay()
-        })
-        
-    }
-    
-    func loadImage(completion: ((Void) -> (Void))?) {
-        guard let imageUrl = self.imageUrl else { return }
-        Alamofire.request(imageUrl).response { response in
-            guard let data = response.data,
-             let image = UIImage(data: data) else { return }
+        guard let stringUrl = self.imageUrl else { return }
+        guard let url = URL(string: stringUrl) else { return }
+
+        let resource = ImageResource(downloadURL: url)
+        cell.appventureImage.kf.setImage(with: resource, placeholder: nil, options: nil, progressBlock: nil) { (image, error, type, url) in
             self.image = image
-            guard let function = completion else { return }
-            function()
         }
     }
     
+    func isValid() -> Bool {
+        var valid = true
+        
+        if !CLLocationCoordinate2DIsValid(self.location.coordinate) { valid = false }
+        if self.steps.count == 0 { valid = false }
+//        if !(self.title?.characters.count > count?) { valid = false }
+        return valid 
+    }
+      
 }

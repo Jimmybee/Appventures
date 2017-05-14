@@ -90,7 +90,6 @@ class AppventureStartViewController: BaseViewController {
         animatedSegmentContainer.addSubview(animatedControl)
         animatedControl.autoPinEdgesToSuperviewEdges()
         animatedControl.setNeedsDisplay()
-//        animatedControl.setupBttnConstraints()
         animatedControl.backgroundColor = .white
         
     }

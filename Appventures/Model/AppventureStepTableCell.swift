@@ -24,8 +24,7 @@ class AppventureStepTableCell: UITableViewCell {
     @IBOutlet weak var locationImage2: UIImageView!
     @IBOutlet weak var locationImage3: UIImageView!
     @IBOutlet weak var hintsCount: UILabel!
-    @IBOutlet weak var proximityLabel: UILabel!
-    
+    @IBOutlet weak var answersOrProximity: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +35,7 @@ class AppventureStepTableCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
     }
+    
     
     func setupView() {
         clueTypes.removeAll()
@@ -55,7 +55,9 @@ class AppventureStepTableCell: UITableViewCell {
         
         stepNumberLabel.text = String(step.stepNumber)
         stepNameOrLocation.text = step.nameOrLocation
-        hintsCount.text = String(step.freeHints)
+        hintsCount.text = String(step.hints.count)
+        
+        answersOrProximity.text = step.setup.checkIn ? proximityCheckIn(step.checkInProximity) : String(step.answers.count)
         
         let locationImages = [locationImage1, locationImage2, locationImage3]
         
@@ -74,4 +76,9 @@ class AppventureStepTableCell: UITableViewCell {
 
     }
     
+    
+    func proximityCheckIn(_ proximity: Int16) -> String {
+        if proximity == 0 { return "∞" }
+        return String(step.checkInProximity)
+    }
 }
