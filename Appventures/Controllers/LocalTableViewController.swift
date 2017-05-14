@@ -15,6 +15,9 @@ import Kingfisher
 
 class LocalTableViewController: BaseViewController {
     
+    var fethcedAppventuresController: NSFetchedResultsController<Appventure>!
+
+    
     var publicAppventuresMessage = "There are no adventures available on our servers at the moment."
     var friendsAppventuresMessage = "There are no adventures that your friends have shared with you."
     
@@ -96,14 +99,20 @@ class LocalTableViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.reloadData() //MARK: only required for when appventure is removed from downloads
         HelperFunctions.unhideTabBar(self)
+        do {
+            try fethcedAppventuresController?.performFetch()
+        } catch {
+            print("An error occurred")
+        }
+
     }
     
     private func setupComplete() {
         if CoreUser.user?.userType == .noLogin {
             self.performSegue(withIdentifier: StoryboardNames.startupLogin, sender: nil)
         } else {
+           createController()
            getBackendlessAppventure()
         }
     }
@@ -128,6 +137,24 @@ class LocalTableViewController: BaseViewController {
         filterView.setupCollectionView()
     }
 
+    func createController() {
+        guard let context = CoreUser.user?.managedObjectContext else { return }
+        
+        let primarySortDescriptor = NSSortDescriptor(key: "liveStatusNum", ascending: true)
+        let fetch:NSFetchRequest<Appventure> = Appventure.fetchRequest()
+        
+        fetch.sortDescriptors = [primarySortDescriptor]
+        fetch.predicate = NSPredicate(format: "buyer == %@", CoreUser.user!)
+        
+        fethcedAppventuresController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fethcedAppventuresController.delegate = self
+        do {
+            try fethcedAppventuresController.performFetch()
+        } catch {
+            print("An error occurred")
+        }
+        
+    }
     
     //MARK: Actions
     
@@ -166,7 +193,7 @@ class LocalTableViewController: BaseViewController {
                 if let aastvc = segue.destination as? AppventureStartViewController {
                     switch animatedControl.selectedButton {
                     case 0:
-                        aastvc.appventure = CoreUser.user!.downloadedArray[indexPath.row]
+                        aastvc.appventure = fethcedAppventuresController.object(at: indexPath)
                     case 1:
                         aastvc.appventure = publicAppventures[indexPath.row]
                     default:
@@ -212,7 +239,7 @@ extension LocalTableViewController: UITableViewDelegate, UITableViewDataSource  
      func numberOfSections(in tableView: UITableView) -> Int {
         switch animatedControl.selectedButton {
         case 0:
-            if CoreUser.user!.downloadedArray.count == 0 {
+            if CoreUser.user!.downloaded?.count == 0 {
 //                HelperFunctions.noTableDataMessage(tableView, message: publicAppventuresMessage)
                 return 1
             }
@@ -236,7 +263,7 @@ extension LocalTableViewController: UITableViewDelegate, UITableViewDataSource  
         var rows = 0
         switch animatedControl.selectedButton {
         case 0:
-            rows = CoreUser.user!.downloadedArray.count
+            rows = CoreUser.user!.downloaded!.count
         case 1:
             rows = publicAppventures.count
         default:
@@ -250,7 +277,7 @@ extension LocalTableViewController: UITableViewDelegate, UITableViewDataSource  
         let row = indexPath.row
         switch animatedControl.selectedButton {
         case 0:
-            cell.appventure = CoreUser.user!.downloadedArray[row]
+            cell.appventure = fethcedAppventuresController.object(at: indexPath)
         case 1:
             cell.appventure = publicAppventures[row]
         default:
@@ -355,11 +382,12 @@ extension LocalTableViewController {
     }
     
     private func setDownloadForAppventures() {
-        let downloadedAppventures = CoreUser.user!.downloadedArray.flatMap( { $0.backendlessId })
-        let unownedAppventures = publicAppventures.filter { (appventure) -> Bool in
-            return !downloadedAppventures.contains(appventure.backendlessId!)
-        }
+        let downloadedAppventures = fethcedAppventuresController?.fetchedObjects
         
+        let ids = downloadedAppventures?.flatMap( { $0.backendlessId }) ?? [""]
+        let unownedAppventures = publicAppventures.filter { (appventure) -> Bool in
+            return !ids.contains(appventure.backendlessId!)
+        }
         for appventure in unownedAppventures { appventure.downloaded = false }
         publicAppventures = unownedAppventures
     }
@@ -378,3 +406,52 @@ extension LocalTableViewController : LoginViewControllerDelegate {
         print("failed login")
     }
 }
+
+
+//MARK: - Fetched Results Delegate
+
+extension LocalTableViewController: NSFetchedResultsControllerDelegate {
+    // MARK: NSFetchedResultsControllerDelegate methods
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChange anObject: Any,
+        at indexPath: IndexPath?,
+        for type: NSFetchedResultsChangeType,
+        newIndexPath: IndexPath?) {
+        
+        switch type {
+        case NSFetchedResultsChangeType.insert:
+            if let insertIndexPath = newIndexPath {
+                self.tableView.insertRows(at: [insertIndexPath], with: UITableViewRowAnimation.fade)
+            }
+        case NSFetchedResultsChangeType.delete:
+            if let deleteIndexPath = indexPath {
+                self.tableView.deleteRows(at: [deleteIndexPath], with: UITableViewRowAnimation.fade)
+            }
+        case NSFetchedResultsChangeType.update:
+            if let updateIndexPath = indexPath {
+                
+            }
+        case NSFetchedResultsChangeType.move:
+            if let deleteIndexPath = indexPath {
+                self.tableView.deleteRows(at: [deleteIndexPath], with: UITableViewRowAnimation.fade)
+            }
+            
+            if let insertIndexPath = newIndexPath {
+                self.tableView.insertRows(at: [insertIndexPath], with: UITableViewRowAnimation.fade)
+            }
+        }
+    }
+    
+    
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
+}
+
+

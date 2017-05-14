@@ -471,7 +471,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose Friend" id="6cu-3M-aV2">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="j6g-Nt-MYi">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.92549019610000005" green="0.56862745100000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="dismiss:" destination="BDk-Vx-GDw" id="XH2-b5-eNE"/>
                             </connections>
@@ -1283,7 +1283,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="HOX-0k-pJ0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="default" indentationWidth="10" rowHeight="100" id="HOX-0k-pJ0">
                                         <rect key="frame" x="0.0" y="541" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HOX-0k-pJ0" id="jOT-FF-lus">
@@ -1782,8 +1782,8 @@
                                                         <action selector="updateShowCompass:" destination="kbm-Mr-zA1" eventType="valueChanged" id="7do-MK-qQC"/>
                                                     </connections>
                                                 </switch>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="vc_create_compass" translatesAutoresizingMaskIntoConstraints="NO" id="bx9-Aq-UHh">
-                                                    <rect key="frame" x="8" y="10" width="26" height="26"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vc_create_compass" translatesAutoresizingMaskIntoConstraints="NO" id="bx9-Aq-UHh">
+                                                    <rect key="frame" x="8" y="9" width="26" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="Ebo-L8-bba"/>
                                                         <constraint firstAttribute="height" constant="26" id="zkZ-XU-E3z"/>
@@ -1819,8 +1819,8 @@
                                                         <action selector="updateShowDistance:" destination="kbm-Mr-zA1" eventType="valueChanged" id="lft-JE-fLl"/>
                                                     </connections>
                                                 </switch>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="vc_create_ruler" translatesAutoresizingMaskIntoConstraints="NO" id="UEk-s0-jHc">
-                                                    <rect key="frame" x="8" y="10" width="26" height="26"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vc_create_ruler" translatesAutoresizingMaskIntoConstraints="NO" id="UEk-s0-jHc">
+                                                    <rect key="frame" x="8" y="9" width="26" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="LDb-MZ-PcF"/>
                                                         <constraint firstAttribute="width" constant="26" id="iCz-gG-lPG"/>
@@ -1884,8 +1884,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8U-f8-b9b">
-                                <rect key="frame" x="152" y="357" width="111" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8U-f8-b9b">
+                                <rect key="frame" x="132" y="322" width="111" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1897,16 +1897,6 @@
                                 </state>
                                 <connections>
                                     <action selector="dismiss:" destination="cwJ-67-hSW" eventType="touchUpInside" id="sQI-lm-2u8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTh-C1-GdI">
-                                <rect key="frame" x="245" y="28" width="114" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Update Image">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="changeImage" destination="cwJ-67-hSW" eventType="touchUpInside" id="LDz-Rg-Yea"/>
                                 </connections>
                             </button>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KRs-RL-llo">
@@ -1925,11 +1915,9 @@
                             <constraint firstItem="skd-qe-BgN" firstAttribute="top" secondItem="Sgl-Ka-MWj" secondAttribute="bottom" constant="8" symbolic="YES" id="8kj-To-q1h"/>
                             <constraint firstItem="S8U-f8-b9b" firstAttribute="centerX" secondItem="N19-v0-BzQ" secondAttribute="centerX" id="BgB-jD-bsS"/>
                             <constraint firstItem="skd-qe-BgN" firstAttribute="leading" secondItem="N19-v0-BzQ" secondAttribute="leadingMargin" id="GuY-Ky-aRo"/>
-                            <constraint firstItem="YTh-C1-GdI" firstAttribute="top" secondItem="Sgl-Ka-MWj" secondAttribute="bottom" constant="8" id="JF5-UM-CAb"/>
                             <constraint firstItem="KRs-RL-llo" firstAttribute="centerY" secondItem="N19-v0-BzQ" secondAttribute="centerY" id="JjQ-yZ-5vr"/>
                             <constraint firstItem="KRs-RL-llo" firstAttribute="width" secondItem="N19-v0-BzQ" secondAttribute="width" id="QWf-gn-hlx"/>
                             <constraint firstItem="KRs-RL-llo" firstAttribute="centerX" secondItem="N19-v0-BzQ" secondAttribute="centerX" id="je6-qZ-YTH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YTh-C1-GdI" secondAttribute="trailing" id="oih-wY-o4b"/>
                             <constraint firstItem="S8U-f8-b9b" firstAttribute="centerY" secondItem="N19-v0-BzQ" secondAttribute="centerY" id="z8U-1U-ybz"/>
                         </constraints>
                     </view>
@@ -1984,7 +1972,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="QNm-fx-55f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -2062,13 +2049,13 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Edit Text Clue" id="8ic-pr-tel">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="X3P-Jo-Krl">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.53725490200000003" green="0.25490196079999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="3zk-IL-ZiF" id="TTW-Lk-mcN"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Confirm" id="baM-sP-Jpg">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.53725490200000003" green="0.25490196079999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="submit:" destination="3zk-IL-ZiF" id="rWI-f6-8YW"/>
                             </connections>
@@ -2128,14 +2115,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Answers" id="4uB-2M-TZq">
-                        <barButtonItem key="leftBarButtonItem" image="BackButton" id="Obc-11-rJ2">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Obc-11-rJ2">
+                            <color key="tintColor" red="0.53725490200000003" green="0.25490196079999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="backButton:" destination="cgA-y2-dOp" id="Iah-C3-f2l"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="d2E-5L-Yux">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="tintColor" red="0.53725490200000003" green="0.25490196079999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addAnswer:" destination="cgA-y2-dOp" id="3wN-Bj-TLC"/>
                             </connections>
@@ -2350,14 +2337,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Hints" id="pjo-YR-lp2">
-                        <barButtonItem key="leftBarButtonItem" image="BackButton" id="xWU-b5-zHn">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="xWU-b5-zHn">
+                            <color key="tintColor" red="0.53725490200000003" green="0.25490196079999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="backButton:" destination="Sey-63-fQj" id="Zcd-i9-m0b"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Yk7-8A-9Mk">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.53725490200000003" green="0.25490196079999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addHint:" destination="Sey-63-fQj" id="cfn-VL-gzW"/>
                             </connections>

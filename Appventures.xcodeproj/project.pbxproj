@@ -380,6 +380,14 @@
 			name = MakeAppventureCell;
 			sourceTree = "<group>";
 		};
+		6602486E1EC8D1B6003E320A /* StepTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				66DDE6481EBF291200A3911E /* AppventureStepTableCell.swift */,
+			);
+			name = StepTableCell;
+			sourceTree = "<group>";
+		};
 		66DDE5901EBF26AC00A3911E = {
 			isa = PBXGroup;
 			children = (
@@ -583,7 +591,7 @@
 				66DDE66B1EBF291200A3911E /* TableHeaderSection.swift */,
 				6602486D1EC86EB7003E320A /* MakeAppventureCell */,
 				66DDE6561EBF291200A3911E /* FacebookFriendTableCell.swift */,
-				66DDE6481EBF291200A3911E /* AppventureStepTableCell.swift */,
+				6602486E1EC8D1B6003E320A /* StepTableCell */,
 				66DDE6491EBF291200A3911E /* AppventureStepTableViewCell.swift */,
 			);
 			name = UITableViewCell;

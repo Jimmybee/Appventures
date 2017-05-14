@@ -55,9 +55,9 @@ class FacebookFriendTableCell: UITableViewCell {
     func setupViewContent(){
         
         nameLabel.text = facebookFriend.firstName + " " + facebookFriend.lastName
+
         if let image = facebookFriend?.profilePicture {
             profilePictureView.image = image
-            HelperFunctions.circle(profilePictureView)
         } else {
             profilePictureView.image = nil
             facebookFriend?.loadImageFor(cell: self)

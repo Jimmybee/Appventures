@@ -40,4 +40,5 @@ struct ImageNames {
         static let locationStrike = UIImage(named:"common_location_strike")
 
     }
+    
 }

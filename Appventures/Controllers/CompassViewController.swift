@@ -57,6 +57,10 @@ class CompassViewController: UIViewController {
         locationPointerImage = locationPointer.image
     }
     
+    func cleanup(){
+        locationManager.stopUpdatingHeading()
+        locationManager.stopUpdatingLocation()
+    }
     
 
 }

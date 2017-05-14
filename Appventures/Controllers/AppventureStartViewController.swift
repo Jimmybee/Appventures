@@ -300,7 +300,32 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
 
 extension AppventureStartViewController : AppventureDetailsViewDelegate {
     func leftBttnPressed() {
-        //go to map
+        let alert = UIAlertController(title: "Directions", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        if UIApplication.shared.canOpenURL(NSURL(string:"citymapper://")! as URL) {
+            alert.addAction(UIAlertAction(title: "City Mapper", style: .default, handler: { action in
+                let urlString = "citymapper://directions?endcoord=\(self.appventure.location.coordinate.latitude),\(self.appventure.location.coordinate.longitude)"
+                UIApplication.shared.open(URL(string: urlString)!)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Apple Maps", style: .default, handler: { action in
+            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: self.appventure.location.coordinate, addressDictionary:nil))
+            mapItem.name = self.appventure.startingLocationName
+            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        }))
+        
+        
+        if UIApplication.shared.canOpenURL(NSURL(string:"comgooglemaps://")! as URL) {
+            alert.addAction(UIAlertAction(title: "Google Maps", style: .default, handler: { action in
+                UIApplication.shared.open(URL(string:
+                    "comgooglemaps://?saddr=&daddr=\(self.appventure.location.coordinate.latitude),\(self.appventure.location.coordinate.longitude)&directionsmode=driving")! as URL, options: [:], completionHandler: nil)
+            }))
+        }
+        
+        self.present(alert, animated: true, completion: nil)
+
     }
     
     func rightBttnPressed(sender: UIButton) {

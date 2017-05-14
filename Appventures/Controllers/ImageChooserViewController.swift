@@ -18,28 +18,16 @@ class ImageChooserViewController: UIViewController,UIImagePickerControllerDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if step.image != nil {
             selectImageLabel.alpha = 0
             imageView.image = step.image
         }
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     //MARK: IB Actions
     
     @IBAction func changeImageTap(_ sender: AnyObject) {
-        print("tapped")
-        self.changeImage()
-        
-    }
-    @IBAction func changeImage() {
-        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))

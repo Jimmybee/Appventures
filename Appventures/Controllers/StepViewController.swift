@@ -368,6 +368,7 @@ extension StepViewController {
             if let acvc = storyBoard.instantiateViewController(withIdentifier: Constants.AppventureComplete) as? AppventureCompleteViewController {
                 acvc.appventure = self.appventure
                 acvc.completeTime = self.ms
+                cleanup()
                 self.dismiss(animated: true, completion: nil)
                 self.presentingViewController?.present(acvc, animated: true, completion: nil)
             }
@@ -386,6 +387,9 @@ extension StepViewController {
         }
     }
     
+    func cleanup() {
+      compassView
+    }
     
     //MARK: Timer
     

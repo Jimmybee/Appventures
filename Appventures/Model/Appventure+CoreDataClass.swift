@@ -90,7 +90,7 @@ public class Appventure: NSManagedObject {
         guard let url = URL(string: stringUrl) else { return }
 
         let resource = ImageResource(downloadURL: url)
-        cell.appventureImage.kf.setImage(with: resource, placeholder: nil, options: nil, progressBlock: nil) { (image, error, type, url) in
+        cell.appventureImage.kf.setImage(with: resource, placeholder: nil, options: [.transition(.fade(0.2))], progressBlock: nil) { (image, error, type, url) in
             self.image = image
         }
     }

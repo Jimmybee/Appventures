@@ -27,6 +27,22 @@ class CreateAppventureViewController: BaseViewController, UITextFieldDelegate, U
         return view!
     }()
     
+    private(set) lazy var editBarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(CreateAppventureViewController.editDetailsSegue))
+        button.tintColor = .white
+        return button
+    }()
+    private(set) lazy var reorderBarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Reorder", style: .plain, target: self, action: #selector(CreateAppventureViewController.editStepTable(_:)))
+        button.tintColor = .white
+        return button
+    }()
+    private(set) lazy var doneBarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(CreateAppventureViewController.doneEditStepTable(_:)))
+        button.tintColor = .white
+        return button
+    }()
+
     private(set) lazy var detailsBttn: SegmentButton = {
         let bttn = SegmentButton()
         bttn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
@@ -108,25 +124,7 @@ class CreateAppventureViewController: BaseViewController, UITextFieldDelegate, U
         detailsEqualSuperHeight.isActive = true
     }
     
-    //UI Control
-    @IBOutlet weak var segmentControl: UISegmentedControl!
-    
-    private(set) lazy var editBarButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(CreateAppventureViewController.editDetailsSegue))
-        button.tintColor = Colors.purple
-        return button
-    }()
-    private(set) lazy var reorderBarButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Reorder", style: .plain, target: self, action: #selector(CreateAppventureViewController.editStepTable(_:)))
-        button.tintColor = Colors.purple
-        return button
-    }()
-    private(set) lazy var doneBarButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(CreateAppventureViewController.doneEditStepTable(_:)))
-        button.tintColor = Colors.purple
-        return button
-    }()
-
+  
     
 //    MARK: View Lifecycle
     override func viewDidLoad() {
@@ -221,6 +219,13 @@ class CreateAppventureViewController: BaseViewController, UITextFieldDelegate, U
     
     //MARK: Private functions
     @IBAction func playBttnPressed(_ sender: UIButton) {
+        if !newAppventure.isValid() {
+            let alert = UIAlertController(title: "PLAY", message: "Complete creating the Appventure before trying to play.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         let storyboard = UIStoryboard(name: Storyboards.LaunchAppventure, bundle: nil)
         let stepViewController = storyboard.instantiateViewController(withIdentifier: ViewControllerIds.Step) as! StepViewController
         stepViewController.appventure = self.newAppventure
@@ -232,7 +237,7 @@ class CreateAppventureViewController: BaseViewController, UITextFieldDelegate, U
         if CoreUser.user?.userType == .facebook {
             performSegue(withIdentifier: Constants.shareWithFriend, sender: self)
         } else {
-            let alert = UIAlertController(title: "Share", message: "Sharing is only supported for facebook connected users", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "SHARE", message: "Sharing is only supported for facebook connected users", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
         }
@@ -258,11 +263,13 @@ class CreateAppventureViewController: BaseViewController, UITextFieldDelegate, U
     
     func editStepTable(_ sender: AnyObject) {
         navigationItem.rightBarButtonItem = doneBarButton
+        animatedControl.isEnabled = false
         tableView.setEditing(true, animated: true)
     }
     
     func doneEditStepTable(_ sender: AnyObject) {
         navigationItem.rightBarButtonItem = reorderBarButton
+        animatedControl.isEnabled = true
         tableView.setEditing(false , animated: true)
         AppDelegate.coreDataStack.saveContext(completion: nil)
         tableView.reloadData()

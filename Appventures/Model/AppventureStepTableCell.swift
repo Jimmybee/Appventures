@@ -12,7 +12,6 @@ import PureLayout
 class AppventureStepTableCell: UITableViewCell {
     
     var step: AppventureStep!
-    
     var clueTypes = [UIImageView]()
     
     @IBOutlet weak var locationPinImage: UIImageView!
@@ -26,16 +25,14 @@ class AppventureStepTableCell: UITableViewCell {
     @IBOutlet weak var hintsCount: UILabel!
     @IBOutlet weak var answersOrProximity: UILabel!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
     }
-    
     
     func setupView() {
         clueTypes.removeAll()
@@ -43,9 +40,9 @@ class AppventureStepTableCell: UITableViewCell {
         let camera = UIImage(named: ImageNames.VcStep.cameraSelected)
         let sound = UIImage(named: ImageNames.VcStep.soundSelected)
 
-        if step.setup.textClue == true {clueTypes.append(UIImageView(image: file))}
-        if step.setup.pictureClue == true {clueTypes.append(UIImageView(image: camera))}
-        if step.setup.soundClue == true {clueTypes.append(UIImageView(image: sound))}
+        if step.setup.textClue {clueTypes.append(UIImageView(image: file))}
+        if step.setup.pictureClue {clueTypes.append(UIImageView(image: camera))}
+        if step.setup.soundClue {clueTypes.append(UIImageView(image: sound))}
         
         locationImage1.image = step.setup.locationShown ? ImageNames.VcCreate.locationOnMap : ImageNames.VcCreate.locationOnMapStrike
         locationImage2.image = step.setup.compassShown ? ImageNames.VcCreate.compass : ImageNames.VcCreate.compassStrike
@@ -54,7 +51,7 @@ class AppventureStepTableCell: UITableViewCell {
         answerTypeImage.image = step.setup.checkIn ? ImageNames.VcCreate.checkIn : ImageNames.VcCreate.pencilHighlight
         
         stepNumberLabel.text = String(step.stepNumber)
-        stepNameOrLocation.text = step.nameOrLocation
+        stepNameOrLocation.text =  step.setup.isLocation ? step.nameOrLocation : "No location"
         hintsCount.text = String(step.hints.count)
         
         answersOrProximity.text = step.setup.checkIn ? proximityCheckIn(step.checkInProximity) : String(step.answers.count)
@@ -73,7 +70,7 @@ class AppventureStepTableCell: UITableViewCell {
             clueImage.autoAlignAxis(.vertical, toSameAxisOf: locationImages[index]!)
             clueImage.autoAlignAxis(toSuperviewAxis: .horizontal)
         }
-
+        
     }
     
     

@@ -138,7 +138,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="wdr-iu-H9X"/>
                                 </constraints>
-                                <state key="normal" title="Finished" backgroundImage="Gradient">
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="FINISHED" backgroundImage="Gradient">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -193,7 +194,7 @@
                                 <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asl-9W-nG1">
-                                <rect key="frame" x="0.0" y="61" width="375" height="38"/>
+                                <rect key="frame" x="0.0" y="61.5" width="375" height="37.5"/>
                                 <string key="text">Congratulations!
 Adventure Completed!</string>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
@@ -282,11 +283,11 @@ Adventure Completed!</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="e5d-tW-hUI">
-                                <rect key="frame" x="20" y="110" width="343" height="467"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="e5d-tW-hUI">
+                                <rect key="frame" x="16" y="100" width="343" height="467"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step Complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dU9-wS-XpT">
-                                        <rect key="frame" x="116" y="0.0" width="111" height="19"/>
+                                        <rect key="frame" x="116.5" y="0.0" width="110.5" height="19"/>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -299,16 +300,16 @@ Adventure Completed!</string>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="255" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="09f-cI-TzX">
-                                        <rect key="frame" x="96" y="146" width="152" height="19"/>
+                                        <rect key="frame" x="96" y="145.5" width="151" height="19"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycF-Ve-XF7">
-                                                <rect key="frame" x="0.0" y="0.0" width="102" height="19"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="101.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9w-EO-J3G">
-                                                <rect key="frame" x="110" y="0.0" width="42" height="19"/>
+                                                <rect key="frame" x="109.5" y="0.0" width="41.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -316,14 +317,14 @@ Adventure Completed!</string>
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjg-69-auL" userLabel="HLine">
-                                        <rect key="frame" x="0.0" y="228" width="343" height="1"/>
+                                        <rect key="frame" x="0.0" y="227.5" width="343" height="1"/>
                                         <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="vLp-eR-eDO"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHt-tH-tvO">
-                                        <rect key="frame" x="151" y="291" width="42" height="19"/>
+                                        <rect key="frame" x="151" y="291.5" width="41.5" height="19"/>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -336,8 +337,11 @@ Adventure Completed!</string>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deN-dY-e4I">
-                                        <rect key="frame" x="138" y="437" width="68" height="30"/>
-                                        <state key="normal" title="Next Step"/>
+                                        <rect key="frame" x="130.5" y="437" width="82" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="NEXT STEP">
+                                            <color key="titleColor" red="0.53725490200000003" green="0.25490196079999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="nextStep:" destination="NBA-Qb-txY" eventType="touchUpInside" id="22M-rC-mxb"/>
                                         </connections>
@@ -385,11 +389,13 @@ Adventure Completed!</string>
                                 <items>
                                     <navigationItem title="Rate" id="hpw-sU-OSz">
                                         <barButtonItem key="leftBarButtonItem" title="Dismiss" id="M6Q-dZ-CWN">
+                                            <color key="tintColor" red="0.92549019610000005" green="0.56862745100000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="cancel:" destination="RCe-pb-pOP" id="yey-bg-gqv"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Submit" id="1je-CK-yHI">
+                                            <color key="tintColor" red="0.92549019610000005" green="0.56862745100000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="submitRating:" destination="RCe-pb-pOP" id="L3F-Od-jpD"/>
                                             </connections>
@@ -398,10 +404,10 @@ Adventure Completed!</string>
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JcL-VE-Xyf">
-                                <rect key="frame" x="19" y="74" width="338" height="134"/>
+                                <rect key="frame" x="19" y="74" width="338" height="133.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please rate the appventure:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPa-Bz-lQ7">
-                                        <rect key="frame" x="0.0" y="0.0" width="338" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="338" height="20.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="42" id="EfU-SS-6aM"/>
                                         </constraints>
@@ -415,14 +421,14 @@ Adventure Completed!</string>
                                         </variation>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUu-Nv-fLw">
-                                        <rect key="frame" x="0.0" y="31" width="338" height="1"/>
+                                        <rect key="frame" x="0.0" y="30.5" width="338" height="1"/>
                                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="VgU-Jp-CkL"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMu-kn-swh" customClass="RatingControl" customModule="Appventures" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="42" width="338" height="65"/>
+                                        <rect key="frame" x="0.0" y="41.5" width="338" height="65"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="DDO-FR-mRC"/>
@@ -435,7 +441,7 @@ Adventure Completed!</string>
                                         </variation>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Star = Bad, 5 Star = Great" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gp9-pB-yqD">
-                                        <rect key="frame" x="0.0" y="117" width="338" height="17"/>
+                                        <rect key="frame" x="0.0" y="116.5" width="338" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="42" id="8nB-Px-6Mn"/>
                                         </constraints>
@@ -451,7 +457,7 @@ Adventure Completed!</string>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leave feedback:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9f-xT-fhm">
-                                <rect key="frame" x="19" y="74" width="337" height="21"/>
+                                <rect key="frame" x="19" y="74" width="337" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="7pO-vQ-PLV"/>
                                 </constraints>
@@ -465,7 +471,7 @@ Adventure Completed!</string>
                                 </variation>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r4d-fa-FOe">
-                                <rect key="frame" x="19" y="105" width="337" height="547"/>
+                                <rect key="frame" x="19" y="104.5" width="337" height="547.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -507,162 +513,6 @@ Adventure Completed!</string>
             </objects>
             <point key="canvasLocation" x="1490.5" y="717"/>
         </scene>
-        <!--Appventures-->
-        <scene sceneID="zuC-hP-MsI">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="huI-7C-rdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="4BS-rB-9SW" customClass="LocalTableViewController" customModule="Appventures" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="286" sectionHeaderHeight="28" sectionFooterHeight="28" id="vjH-Sg-jZY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.77393321700507611" green="0.77393321700507611" blue="0.77393321700507611" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextCell" id="CfU-Ai-AEK" customClass="ExploreAppventureTableViewCell" customModule="Appventures">
-                                <rect key="frame" x="0.0" y="28" width="375" height="286"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CfU-Ai-AEK" id="e4F-sp-dOA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="286"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rrS-Md-xFC">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="150" id="Xb2-uT-LzI"/>
-                                                <constraint firstAttribute="width" secondItem="rrS-Md-xFC" secondAttribute="height" multiplier="138:95" id="ggt-hi-pXA"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="ggt-hi-pXA"/>
-                                                </mask>
-                                            </variation>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyMask300" translatesAutoresizingMaskIntoConstraints="NO" id="B2C-0g-7SZ">
-                                            <rect key="frame" x="0.0" y="-1" width="375" height="301"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1R-xf-tyA">
-                                            <rect key="frame" x="164" y="113" width="47" height="21"/>
-                                            <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="19"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <size key="shadowOffset" width="0.0" height="0.0"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dse-3l-gw8">
-                                            <rect key="frame" x="169" y="166" width="37" height="17"/>
-                                            <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <size key="shadowOffset" width="0.0" height="0.0"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationPinA1" translatesAutoresizingMaskIntoConstraints="NO" id="7Ef-m5-ser">
-                                            <rect key="frame" x="148" y="164" width="15" height="15"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="15" id="K7o-dv-eAU"/>
-                                                <constraint firstAttribute="height" constant="15" id="p9a-cF-oQt"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFc-Wm-EVg">
-                                            <rect key="frame" x="169" y="191" width="37" height="17"/>
-                                            <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <size key="shadowOffset" width="0.0" height="0.0"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stopwatch" translatesAutoresizingMaskIntoConstraints="NO" id="heT-aU-G6f">
-                                            <rect key="frame" x="148" y="189" width="15" height="15"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="CA9-13-sal"/>
-                                                <constraint firstAttribute="width" constant="15" id="aHp-OU-7XO"/>
-                                            </constraints>
-                                        </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJL-ba-mp9" customClass="RatingControlOrangeDisplay" customModule="Appventures" customModuleProvider="target">
-                                            <rect key="frame" x="147" y="142" width="80" height="16"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="QPr-WV-5DW"/>
-                                                <constraint firstAttribute="width" secondItem="bJL-ba-mp9" secondAttribute="height" multiplier="5:1" id="Shb-DC-sYf"/>
-                                            </constraints>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0K1-OU-Maz">
-                                            <rect key="frame" x="0.0" y="292" width="375" height="8"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="8" id="Edh-BI-aJe"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="B2C-0g-7SZ" firstAttribute="centerX" secondItem="rrS-Md-xFC" secondAttribute="centerX" id="586-k4-GBy"/>
-                                        <constraint firstItem="rrS-Md-xFC" firstAttribute="width" secondItem="e4F-sp-dOA" secondAttribute="width" id="5rD-EU-0du"/>
-                                        <constraint firstItem="0K1-OU-Maz" firstAttribute="centerX" secondItem="B2C-0g-7SZ" secondAttribute="centerX" id="6fx-Le-hG7"/>
-                                        <constraint firstItem="0K1-OU-Maz" firstAttribute="top" secondItem="B2C-0g-7SZ" secondAttribute="bottom" constant="-8" id="7vM-tO-Mcz"/>
-                                        <constraint firstItem="7Ef-m5-ser" firstAttribute="bottom" secondItem="Dse-3l-gw8" secondAttribute="bottom" constant="-4" id="941-3Z-VgV"/>
-                                        <constraint firstItem="bJL-ba-mp9" firstAttribute="top" secondItem="g1R-xf-tyA" secondAttribute="bottom" constant="8" symbolic="YES" id="BOB-Km-yjt"/>
-                                        <constraint firstItem="rrS-Md-xFC" firstAttribute="centerX" secondItem="e4F-sp-dOA" secondAttribute="centerX" id="DGn-w0-AIA"/>
-                                        <constraint firstItem="bJL-ba-mp9" firstAttribute="centerX" secondItem="g1R-xf-tyA" secondAttribute="centerX" id="IWx-vz-r5g"/>
-                                        <constraint firstItem="B2C-0g-7SZ" firstAttribute="centerY" secondItem="rrS-Md-xFC" secondAttribute="centerY" id="QcK-EG-Z07"/>
-                                        <constraint firstItem="eFc-Wm-EVg" firstAttribute="leading" secondItem="heT-aU-G6f" secondAttribute="trailing" constant="6" id="RP7-dp-snt"/>
-                                        <constraint firstItem="bJL-ba-mp9" firstAttribute="centerY" secondItem="e4F-sp-dOA" secondAttribute="centerY" id="UIb-pg-zOY"/>
-                                        <constraint firstItem="rrS-Md-xFC" firstAttribute="height" secondItem="e4F-sp-dOA" secondAttribute="height" id="WMS-ga-Wuo"/>
-                                        <constraint firstItem="0K1-OU-Maz" firstAttribute="width" secondItem="B2C-0g-7SZ" secondAttribute="width" id="X5e-BQ-0IZ"/>
-                                        <constraint firstItem="B2C-0g-7SZ" firstAttribute="height" secondItem="rrS-Md-xFC" secondAttribute="height" id="bzh-r5-aGC"/>
-                                        <constraint firstItem="rrS-Md-xFC" firstAttribute="centerY" secondItem="e4F-sp-dOA" secondAttribute="centerY" id="cOp-94-o2G"/>
-                                        <constraint firstItem="B2C-0g-7SZ" firstAttribute="width" secondItem="rrS-Md-xFC" secondAttribute="width" id="f9M-Cu-R8Z"/>
-                                        <constraint firstItem="eFc-Wm-EVg" firstAttribute="top" secondItem="Dse-3l-gw8" secondAttribute="bottom" constant="8" id="fif-q3-GWD"/>
-                                        <constraint firstItem="heT-aU-G6f" firstAttribute="bottom" secondItem="eFc-Wm-EVg" secondAttribute="bottom" constant="-4" id="jjR-KE-zA0"/>
-                                        <constraint firstItem="Dse-3l-gw8" firstAttribute="centerX" secondItem="B2C-0g-7SZ" secondAttribute="centerX" id="mes-Gm-2Zy"/>
-                                        <constraint firstItem="Dse-3l-gw8" firstAttribute="top" secondItem="bJL-ba-mp9" secondAttribute="bottom" constant="8" id="pBW-vh-9bz"/>
-                                        <constraint firstItem="eFc-Wm-EVg" firstAttribute="centerX" secondItem="B2C-0g-7SZ" secondAttribute="centerX" id="tVi-gH-3GV"/>
-                                        <constraint firstItem="Dse-3l-gw8" firstAttribute="leading" secondItem="7Ef-m5-ser" secondAttribute="trailing" constant="6" id="xok-t9-909"/>
-                                        <constraint firstItem="g1R-xf-tyA" firstAttribute="centerX" secondItem="rrS-Md-xFC" secondAttribute="centerX" id="zru-hA-gBb"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="appventureImage"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="appventureImage" destination="rrS-Md-xFC" id="QEw-7p-a3b"/>
-                                    <outlet property="appventureTitle" destination="g1R-xf-tyA" id="XLF-A0-rdA"/>
-                                    <outlet property="duration" destination="eFc-Wm-EVg" id="PmZ-gB-tQ1"/>
-                                    <outlet property="ratingDisplay" destination="bJL-ba-mp9" id="ZAh-dx-KAp"/>
-                                    <outlet property="startingLocation" destination="Dse-3l-gw8" id="eTe-nq-iSS"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="4BS-rB-9SW" id="Jh1-SD-IzO"/>
-                            <outlet property="delegate" destination="4BS-rB-9SW" id="uRl-hb-ERu"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Appventures" id="hNl-SL-xdT">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="qxN-zk-obv">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="filterBttnPressed:" destination="4BS-rB-9SW" id="77P-LW-gaT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="HPa-e5-TB3">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <action selector="refeshTable:" destination="4BS-rB-9SW" eventType="valueChanged" id="ken-BE-Gw9"/>
-                        </connections>
-                    </refreshControl>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="refreshSpinner" destination="HPa-e5-TB3" id="uyv-eD-deV"/>
-                        <outlet property="tableView" destination="vjH-Sg-jZY" id="Izn-ju-Fle"/>
-                    </connections>
-                </tableViewController>
-            </objects>
-            <point key="canvasLocation" x="-954" y="1952"/>
-        </scene>
         <!--How To View Controller-->
         <scene sceneID="L5C-KY-03E">
             <objects>
@@ -700,7 +550,7 @@ Adventure Completed!</string>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose an adventure. Get some friends and head to the start point." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qe-kz-wl2">
-                                                <rect key="frame" x="20" y="374" width="334" height="38"/>
+                                                <rect key="frame" x="20" y="374" width="334" height="37.5"/>
                                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -731,7 +581,7 @@ Adventure Completed!</string>
                                                 <rect key="frame" x="107" y="60" width="160" height="160"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Solve mysterious riddles using  multiple clues across the city." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWF-fm-0rM">
-                                                <rect key="frame" x="20" y="374" width="334" height="38"/>
+                                                <rect key="frame" x="20" y="374" width="334" height="37.5"/>
                                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -749,7 +599,7 @@ Adventure Completed!</string>
                                         <rect key="frame" x="748" y="0.0" width="374" height="678"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record the best time and record your name on the leaderboard." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8m-ao-aR2">
-                                                <rect key="frame" x="20" y="374" width="334" height="38"/>
+                                                <rect key="frame" x="20" y="374" width="334" height="37.5"/>
                                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -839,7 +689,7 @@ Adventure Completed!</string>
                     <tabBarItem key="tabBarItem" title="Adventure" image="trailIcon-X" id="Dt4-3B-Ro2"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U8e-dP-2Ft">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="U8e-dP-2Ft">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -917,7 +767,7 @@ Adventure Completed!</string>
             </objects>
             <point key="canvasLocation" x="782" y="1250"/>
         </scene>
-        <!--Appventures-->
+        <!--Appventure Start View Controller-->
         <scene sceneID="0VJ-Yc-AK1">
             <objects>
                 <viewController id="3oh-Ib-z7Y" customClass="AppventureStartViewController" customModule="Appventures" customModuleProvider="target" sceneMemberID="viewController">
@@ -981,7 +831,7 @@ Adventure Completed!</string>
                                     <constraint firstAttribute="height" constant="49" id="A8Z-xn-iTH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Download">
+                                <state key="normal" title="DOWNLOAD">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -1023,14 +873,14 @@ Adventure Completed!</string>
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Appventures" id="hX4-M6-Wmc">
-                        <barButtonItem key="leftBarButtonItem" image="BackButton" id="0PR-IY-fEx">
-                            <color key="tintColor" red="0.89411764709999997" green="0.33725490200000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <navigationItem key="navigationItem" id="hX4-M6-Wmc">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="0PR-IY-fEx">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="popController:" destination="3oh-Ib-z7Y" id="odK-sB-u2f"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="BackButton" id="EGn-Sc-jBi">
+                        <barButtonItem key="rightBarButtonItem" image="common_menu" id="EGn-Sc-jBi">
                             <connections>
                                 <action selector="menuPopUp:" destination="3oh-Ib-z7Y" id="imA-oM-Vbu"/>
                             </connections>
@@ -1073,22 +923,22 @@ Adventure Completed!</string>
                                         <rect key="frame" x="20" y="0.0" width="335" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 of 9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="co1-Kh-oWe">
-                                                <rect key="frame" x="0.0" y="0.0" width="112" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="111.5" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="01:20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdJ-fo-RP1">
-                                                <rect key="frame" x="112" y="0.0" width="111" height="40"/>
+                                                <rect key="frame" x="111.5" y="0.0" width="112" height="40"/>
                                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="21"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yZ-EE-rMW">
-                                                <rect key="frame" x="223" y="0.0" width="112" height="40"/>
+                                                <rect key="frame" x="223.5" y="0.0" width="111.5" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71j-Do-5CH">
-                                                        <rect key="frame" x="82" y="7" width="30" height="25"/>
+                                                        <rect key="frame" x="81.5" y="7" width="30" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="5h9-iA-MQB"/>
                                                             <constraint firstAttribute="width" constant="30" id="xnk-EL-5Dk"/>
@@ -1222,8 +1072,8 @@ Adventure Completed!</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYn-qk-BUI">
-                                <rect key="frame" x="20" y="72" width="374" height="420"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYn-qk-BUI">
+                                <rect key="frame" x="16" y="72" width="343" height="439"/>
                                 <attributedString key="attributedText">
                                     <fragment content="How to Play?">
                                         <attributes>
@@ -1281,7 +1131,7 @@ Cg
                     </view>
                     <navigationItem key="navigationItem" title="Instructions" id="F1g-wE-uC0">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="9tm-ys-zbY">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.53725490200000003" green="0.25490196079999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="DismissVC:" destination="BRq-cj-yqG" id="Dha-hp-fDb"/>
                             </connections>
@@ -1290,17 +1140,16 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0C-PX-n8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3021" y="2362"/>
+            <point key="canvasLocation" x="3290" y="2362"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1uP-1v-Gvi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ofg-Dh-DBt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HS7-xK-ZO5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HS7-xK-ZO5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.053199561809999997" green="0.1702644401" blue="0.20602509469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -1316,7 +1165,6 @@ Cg
         </scene>
     </scenes>
     <resources>
-        <image name="BackButton" width="16" height="10"/>
         <image name="Gradient" width="320" height="39"/>
         <image name="MapC" width="142" height="142"/>
         <image name="Medal" width="200" height="200"/>
@@ -1325,9 +1173,6 @@ Cg
         <image name="SpyGlass" width="143" height="143"/>
         <image name="close-icon" width="256" height="256"/>
         <image name="common_menu" width="24" height="18"/>
-        <image name="greyMask300" width="300" height="300"/>
-        <image name="locationPinA1" width="600" height="600"/>
-        <image name="stopwatch" width="600" height="600"/>
         <image name="trailIcon-X" width="23" height="26"/>
         <image name="vc_create_flag" width="19" height="18"/>
         <image name="vc_step_checkIn" width="62" height="62"/>

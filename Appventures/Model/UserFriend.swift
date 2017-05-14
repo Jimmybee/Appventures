@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 class UserFriend: NSObject {
     
@@ -26,13 +27,11 @@ class UserFriend: NSObject {
     }
     
     func loadImageFor(cell: FacebookFriendTableCell) {
-//            if let getURL = URL(string: pictureURL) {
-                if let data = try? Data(contentsOf: pictureURL){
-                    self.profilePicture = UIImage(data: data)
-                    cell.profilePictureView.image = self.profilePicture
-                    HelperFunctions.circle(cell.profilePictureView)
-                }
-//        }
+        let processor = RoundCornerImageProcessor(cornerRadius: 30)
+        let resource = ImageResource(downloadURL: pictureURL)
+        cell.profilePictureView.kf.setImage(with: resource, placeholder: nil, options: [.processor(processor), .transition(.fade(0.2))], progressBlock: nil) { (image, error, type, url) in
+            self.profilePicture = image
+        }
     }
     
 }

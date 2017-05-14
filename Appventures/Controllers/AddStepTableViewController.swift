@@ -149,6 +149,7 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
 
         setCaches()
         
+        
         initialUISetup()
         setupPickerView()
     }
@@ -168,9 +169,7 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
     func updatePartUI () {
         //section0 - Location
         if let place = placeCache  {
-            self.locationNameLabel.text = place.name
-        } else {
-            self.locationNameLabel.text = "Set Location..."
+            self.locationNameLabel.text = place.name == "" ?  "Set Location..." : place.name
         }
         
         //section0 - Location
@@ -181,7 +180,7 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         locationSetupDetails.text = locationSetupString.joined(separator: ",")
 
         //section1 - Clues
-              appventureStep.initialText == "" ? (initialTextLabel.text = "Set instructions...") : (initialTextLabel.text = appventureStep.initialText)
+        appventureStep.initialText == nil ? (initialTextLabel.text = "Set instructions...") : (initialTextLabel.text = appventureStep.initialText)
         
         //ImageView
         if let image = appventureStep.image {
@@ -203,17 +202,14 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         let stepNumber = String(appventureStep.stepNumber)
         self.navigationItem.title = ("Step: \(stepNumber)")
         
-       
-        
         //section1 - Clues
+        locationSwitch.isOn = appventureStep.setup.isLocation
         soundSwitch.isOn = appventureStep.setup.soundClue
         pictureSwitch.isOn = appventureStep.setup.pictureClue
         intialTextSwitch.isOn = appventureStep.setup.textClue
         
-        
         //section2: - Answers
         checkInControl.selectedSegmentIndex = appventureStep.setup.checkIn ? 0 : 1
-        
         
         //SoundView
         if let soundData = soundDataCache {
@@ -252,7 +248,7 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
     func checkSaveButton() {
         var enableSave = true
         
-        if placeCache == nil {
+        if locationSwitch.isOn && placeCache == nil {
             enableSave = false
         }
 
@@ -271,7 +267,7 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
             }
         }
         if intialTextSwitch.isOn == true {
-            if appventureStep.initialText == "" {
+            if appventureStep.initialText == "" ||  appventureStep.initialText == nil {
                 enableSave = false
             }
         }
@@ -313,6 +309,7 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
     func updateStep() {
         appventureStep.setup.checkIn = checkInControl.selectedSegmentIndex == 0 ? true : false
 
+        appventureStep.setup.isLocation = locationSwitch.isOn
         appventureStep.setup.soundClue = soundSwitch.isOn
         appventureStep.setup.pictureClue = pictureSwitch.isOn
         appventureStep.setup.textClue = intialTextSwitch.isOn
@@ -626,7 +623,8 @@ extension AddStepTableViewController {
         
         switch indexPath {
         case locationButton:
-            float = 0.0
+            break
+//            float = 0.0
         case pickLocationPath:
             self.locationSwitch.isOn ?  (float = 44.0) : (float = 0.0 )
         case locationSettingsPath:
@@ -652,8 +650,6 @@ extension AddStepTableViewController {
         default:
             break
         }
-        
-        
         
         return float
     }

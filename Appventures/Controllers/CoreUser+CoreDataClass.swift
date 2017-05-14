@@ -24,23 +24,6 @@ public class CoreUser: NSManagedObject {
         }
     }
     
-    var appventuresArray: [Appventure] {
-        get {
-            guard let appventures = ownedAppventures else { return [Appventure]() }
-            return Array(appventures)
-        }
-    }
-    var downloadedArray: [Appventure] {
-        get {
-            guard let appventures = downloaded else { return [Appventure]() }
-            if appventures.count > 0 {
-                return Array(appventures)
-            } else {
-                return [Appventure]()
-            }
-        }
-    }
-    
     var facebookFriends = [UserFriend]()
     
     /// Check if cached user object exists. Otherwise load from context or create in context.
@@ -87,7 +70,7 @@ extension CoreUser {
     
     func getFriends(completion: @escaping () -> ()) {
       facebookFriends.removeAll()
-        let fbGraph = FBSDKGraphRequest.init(graphPath: "me/friends", parameters: ["fields": "first_name, last_name, picture.type(small)"])
+        let fbGraph = FBSDKGraphRequest.init(graphPath: "me/friends", parameters: ["fields": "first_name, last_name, picture.type(large)"])
         _ = fbGraph?.start(completionHandler: { (connection, resultAny, error) -> Void in
             if error != nil {
                 print("Error: \(String(describing: error))")

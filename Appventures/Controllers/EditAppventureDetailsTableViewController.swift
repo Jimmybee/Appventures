@@ -58,7 +58,7 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        if appventure != nil { updateUI() }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,13 +78,9 @@ class EditAppventureDetailsTableViewController: UITableViewController {
         durationPicker.alpha = 0
         durationPicker.setDate(Date(), animated: false)
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func setupForNewAppventure() {
-        
+        tags.text = "Select..."
     }
     
     func updateUI(){
@@ -139,7 +135,6 @@ class EditAppventureDetailsTableViewController: UITableViewController {
         if edittingEndTime { appventure?.endTime = dateFormatter.string(from: sender.date)}
         startTimeLabel.text = appventure?.startTime
         endTimeLabel.text = appventure?.endTime
-        
     }
     
 }
@@ -163,7 +158,7 @@ extension EditAppventureDetailsTableViewController : ImagePicker {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
             let savedImage = HelperFunctions.resizeImage(pickedImage, desiredWidth: 800)
-            imageView.image = savedImage
+            appventure?.image = savedImage
         }
         
         checkSave()

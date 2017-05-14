@@ -21,6 +21,11 @@ class AnimatedSegmentControl: UIView {
     
     var selectViewVertical : NSLayoutConstraint?
     var selectViewWidth : NSLayoutConstraint?
+    var isEnabled: Bool = true {
+        didSet {
+            activeBttns.forEach({ $0.isEnabled = self.isEnabled })
+        }
+    }
     
     private(set) var clueTypeStackView: UIStackView = {
         let stackView = UIStackView()
@@ -72,13 +77,6 @@ class AnimatedSegmentControl: UIView {
             if index > 0 {
                 activeBttns[index].autoMatch(.width, to: .width, of: activeBttns[index - 1])
             }
-//            if index < activeBttns.count - 1 {
-//                let separator = UIView()
-//                separator.backgroundColor = UIColor.lightGray
-//                clueTypeStackView.addArrangedSubview(separator)
-//                separator.autoMatch(.height, to: .height, of: clueTypeStackView, withMultiplier: 0.9)
-//                separator.autoSetDimension(.width, toSize: 1)
-//            }
         }
         
         let firstButton = activeBttns[selectedButton]
@@ -89,6 +87,7 @@ class AnimatedSegmentControl: UIView {
     }
     
     func clueBttnTapped(sender: UIButton) {
+        if !isEnabled { return }
         selectViewVertical?.autoRemove()
         
         for bttn in activeBttns {
