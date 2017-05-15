@@ -585,7 +585,7 @@ If you have any questions regarding privacy while using the Application, or have
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics">
                         <color key="tintColor" red="0.40894466638565063" green="0.95327186584472656" blue="0.07545144110918045" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </simulatedTabBarMetrics>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Kq-5P-vbq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4Kq-5P-vbq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -619,20 +619,20 @@ If you have any questions regarding privacy while using the Application, or have
                                 <rect key="frame" x="20" y="8" width="374" height="720"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up to make your own appventures and see your stats." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd8-SC-yNE">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="46"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="45.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOm-c8-cU6">
-                                        <rect key="frame" x="0.0" y="120" width="374" height="46"/>
+                                        <rect key="frame" x="0.0" y="119.5" width="374" height="46"/>
                                         <state key="normal" image="facebook-login-blue"/>
                                         <connections>
                                             <action selector="facebookLogin:" destination="UOT-Z9-yFj" eventType="touchUpInside" id="MYS-yA-ywa"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3ip-ma-7Rt">
-                                        <rect key="frame" x="0.0" y="240" width="374" height="60"/>
+                                        <rect key="frame" x="0.0" y="239.5" width="374" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WOh-in-I9h">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>

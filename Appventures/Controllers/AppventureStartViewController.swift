@@ -192,6 +192,7 @@ extension AppventureStartViewController {
                 self.hideProgressView()
                 AppDelegate.coreDataStack.saveContext(completion: nil)
                 self.startButton.setTitle("Play", for: UIControlState())
+                //Remove from explore array
             })
             
         }

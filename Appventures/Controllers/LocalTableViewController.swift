@@ -423,11 +423,11 @@ extension LocalTableViewController: NSFetchedResultsControllerDelegate {
         at indexPath: IndexPath?,
         for type: NSFetchedResultsChangeType,
         newIndexPath: IndexPath?) {
-        
+        print("type \(type)")
         switch type {
         case NSFetchedResultsChangeType.insert:
             if let insertIndexPath = newIndexPath {
-                self.tableView.insertRows(at: [insertIndexPath], with: UITableViewRowAnimation.fade)
+         //       self.tableView.insertRows(at: [insertIndexPath], with: UITableViewRowAnimation.fade)
             }
         case NSFetchedResultsChangeType.delete:
             if let deleteIndexPath = indexPath {

@@ -37,6 +37,7 @@ class BackendlessAppventure: NSObject {
     
     init(appventure: Appventure) {
         super.init()
+        print(CoreUser.user?.backendlessId ?? "nill user id")
         self.ownerId = CoreUser.user?.backendlessId
         self.duration = appventure.duration
         self.startTime = appventure.startTime
@@ -72,43 +73,53 @@ class BackendlessAppventure: NSObject {
     
     static let apiUploadGroup = DispatchGroup()
     
-    /// save an appventure to backend. Checks if objectId is nil as this is needed to pictureUrl
+    /// save an appventure to backend.
+    /// Saved apppventure now definietly has backendlessId, so assign
+    /// Make sure backendlessAppventure has the same url or assign a new one.
     class func save(appventure: Appventure, withImage: Bool, completion: @escaping () -> ()) {
         
+        var appventureWithId: Appventure!
         apiUploadGroup.enter()
         let backendlessAppventure = BackendlessAppventure(appventure: appventure)
         backendlessAppventure.save(completion: { (backendlessAppventure) in
-            let appventureWithId = Appventure(backendlessAppventure: backendlessAppventure, persistent: true)
-            appventureWithId.imageUrl = appventureWithId.imageUrl == appventure.imageUrl ? appventure.imageUrl : imageUrl(fromObjectId: appventureWithId.backendlessId!)
-
-            
-            if withImage == true {
-                uploadImageAsync(url: appventureWithId.imageUrl, image: appventure.image, completion: { (imageUrl) in
+             appventureWithId = Appventure(backendlessAppventure: backendlessAppventure, persistent: true)
+            //if appventureWithId.imageUrl != appventure.imageUrl {
+                appventureWithId.image = appventure.image
+                let imageString = self.imageUrl(fromObjectId: appventureWithId.backendlessId!)
+                uploadImageAsync(url: imageString, image: appventureWithId.image, completion: { (imageUrl) in
                     print("File has been uploaded. File URL is - \(String(describing: imageUrl))")
-//                    appventure.imageUrl = imageUrl
+                    appventureWithId.imageUrl = imageUrl
                 })
-            }
+            //}
             
             for (index, step) in appventureWithId.appventureSteps.enumerated() {
-                step.image = appventure.appventureSteps[index].image
-                uploadImageAsync(objectId: step.backendlessId, image: step.image, completion: { (imageUrl) in
-                    step.imageUrl = imageUrl
-                    
-                })
+                let oldStep = appventure.appventureSteps[index]
+                if oldStep.image != nil {
+                   // if step.imageUrl != oldStep.imageUrl {
+                        step.image = oldStep.image
+                        let imageString = self.imageUrl(fromObjectId: step.backendlessId!)
+                        uploadImageAsync(url: imageString, image: step.image, completion: { (imageUrl) in
+                            print("File has been uploaded. File URL is - \(String(describing: imageUrl))")
+                            step.imageUrl = imageUrl
+                        })
+                   // }
+                }
             }
             apiUploadGroup.leave()
             
-            apiUploadGroup.notify(queue: .main) {
-                backendlessAppventure.save(completion: { (fullySavedAppventure) in
-                    CoreUser.user?.removeFromOwnedAppventures(appventure)
-                    CoreUser.user?.addToOwnedAppventures(fullySavedAppventure)
-                    AppDelegate.coreDataStack.saveContext(completion: nil)
-                    completion()
-                })
-            }
             
         })
         
+        apiUploadGroup.notify(queue: .main) {
+            print("notified")
+            backendlessAppventure.save(completion: { (fullySavedAppventure) in
+                CoreUser.user?.removeFromOwnedAppventures(appventure)
+                CoreUser.user?.addToOwnedAppventures(appventureWithId)
+                print("resaved")
+                //  AppDelegate.coreDataStack.saveContext(completion: nil)
+                completion()
+            })
+        }
 
         
     }
