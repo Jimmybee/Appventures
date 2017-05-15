@@ -32,9 +32,7 @@ public class Appventure: NSManagedObject {
     }
     
     var saveImage = false
-    
     var rating = 5
-    
     
     /// init for a new appventure
     convenience init () {

@@ -312,7 +312,10 @@ extension EditAppventureDetailsTableViewController {
         var center: CLLocationCoordinate2D?
         
         if let currentCoordinate = appventure?.location.coordinate as CLLocationCoordinate2D! {
-            center = CLLocationCoordinate2DMake(currentCoordinate.latitude, currentCoordinate.longitude)
+            if CLLocationCoordinate2DIsValid(currentCoordinate) {
+                center = CLLocationCoordinate2DMake(currentCoordinate.latitude, currentCoordinate.longitude)
+            }
+            center = CLLocationCoordinate2DMake(0, 0)
         } else {
             center = CLLocationCoordinate2DMake(0, 0)
         }

@@ -16,6 +16,7 @@ class BackendlessAppventure: NSObject {
     static let dataStore = backendless?.persistenceService.of(BackendlessAppventure.ofClass())
 
     public var objectId: String?
+    public var ownerId: String?
     public var imageUrl: String?
     public var duration: Int64 = 3600
     public var themeOne: String?
@@ -36,6 +37,7 @@ class BackendlessAppventure: NSObject {
     
     init(appventure: Appventure) {
         super.init()
+        self.ownerId = CoreUser.user?.backendlessId
         self.duration = appventure.duration
         self.startTime = appventure.startTime
         self.endTime = appventure.endTime
@@ -76,45 +78,52 @@ class BackendlessAppventure: NSObject {
         apiUploadGroup.enter()
         let backendlessAppventure = BackendlessAppventure(appventure: appventure)
         backendlessAppventure.save(completion: { (backendlessAppventure) in
-            let updatedAppventure = Appventure(backendlessAppventure: backendlessAppventure, persistent: true)
-            updatedAppventure.image = appventure.image
-            CoreUser.user?.removeFromOwnedAppventures(appventure)
-            CoreUser.user?.addToOwnedAppventures(updatedAppventure)
+            let appventureWithId = Appventure(backendlessAppventure: backendlessAppventure, persistent: true)
+            appventureWithId.imageUrl = appventureWithId.imageUrl == appventure.imageUrl ? appventure.imageUrl : imageUrl(fromObjectId: appventureWithId.backendlessId!)
+
             
             if withImage == true {
-                uploadImageAsync(objectId: updatedAppventure.backendlessId, image: appventure.image, completion: { (imageUrl) in
-                    appventure.imageUrl = imageUrl
+                uploadImageAsync(url: appventureWithId.imageUrl, image: appventure.image, completion: { (imageUrl) in
+                    print("File has been uploaded. File URL is - \(String(describing: imageUrl))")
+//                    appventure.imageUrl = imageUrl
                 })
             }
             
-            for step in updatedAppventure.appventureSteps {
+            for (index, step) in appventureWithId.appventureSteps.enumerated() {
+                step.image = appventure.appventureSteps[index].image
                 uploadImageAsync(objectId: step.backendlessId, image: step.image, completion: { (imageUrl) in
                     step.imageUrl = imageUrl
                     
                 })
             }
             apiUploadGroup.leave()
+            
+            apiUploadGroup.notify(queue: .main) {
+                backendlessAppventure.save(completion: { (fullySavedAppventure) in
+                    CoreUser.user?.removeFromOwnedAppventures(appventure)
+                    CoreUser.user?.addToOwnedAppventures(fullySavedAppventure)
+                    AppDelegate.coreDataStack.saveContext(completion: nil)
+                    completion()
+                })
+            }
+            
         })
         
-        apiUploadGroup.notify(queue: .main) {
-            
-            
-            completion()
-        }
-        
+
         
     }
     
-    class func uploadImageAsync(objectId: String?, image: UIImage?, completion: @escaping (String?) -> ()) {
+    class func imageUrl(fromObjectId: String) -> String {
+        let filename = String(Date().timeIntervalSince1970 * 100)
+        return "myfiles/\(fromObjectId)/\(filename).jpg"
+    }
+    
+    class func uploadImageAsync(url: String?, image: UIImage?, completion: @escaping (String?) -> ()) {
         print("\n============ Uploading files with the ASYNC API ============")
         guard  let image = image  else { return }
-        guard let id = objectId else { return }
         
-        let filename = String(Date().timeIntervalSince1970 * 100)
-
-        let url = "myfiles/\(id)/\(filename).jpg"
         let data = UIImagePNGRepresentation(image)
-        
+
         apiUploadGroup.enter()
         BackendlessAppventure.backendless?.fileService.upload(
             url,

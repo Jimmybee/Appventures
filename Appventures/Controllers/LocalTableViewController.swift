@@ -399,6 +399,7 @@ extension LocalTableViewController {
 extension LocalTableViewController : LoginViewControllerDelegate {
     func loginSucceed() {
         getBackendlessAppventure()
+        createController()
         print("login succeed")
     }
     

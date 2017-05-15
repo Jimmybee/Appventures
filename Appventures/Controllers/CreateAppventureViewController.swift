@@ -358,18 +358,20 @@ extension CreateAppventureViewController : NSFetchedResultsControllerDelegate {
             }
         case NSFetchedResultsChangeType.update:
             if let updateIndexPath = indexPath {
-                guard let cell = self.tableView.cellForRow(at: updateIndexPath) as? AppventureStepTableCell else { return }
-                cell.step = fethcedStepsController.object(at: updateIndexPath)
-                cell.setupView()
+//                guard let cell = self.tableView.cellForRow(at: updateIndexPath) as? AppventureStepTableCell else { return }
+//                cell.step = fethcedStepsController.object(at: updateIndexPath)
+//                cell.setupView()
             }
         case NSFetchedResultsChangeType.move:
-            if let deleteIndexPath = indexPath {
+            guard let deleteIndexPath = indexPath else { return }
                 self.tableView.deleteRows(at: [deleteIndexPath], with: UITableViewRowAnimation.fade)
-            }
             
-            if let insertIndexPath = newIndexPath {
+            guard let insertIndexPath = newIndexPath else { return }
                 self.tableView.insertRows(at: [insertIndexPath], with: UITableViewRowAnimation.fade)
-            }
+            
+            tableView.reloadData()
+//            AppDelegate.coreDataStack.saveContext(completion: nil)
+
         }
     }
     
@@ -441,12 +443,15 @@ extension CreateAppventureViewController : UITableViewDelegate, UITableViewDataS
     /// Moving from 0 to 2, would reqiure row 1
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath){
         guard let sections = fethcedStepsController.sections,
-            let steps = sections[0].objects as? [AppventureStep] else { return }
+            var steps = sections[0].objects as? [AppventureStep] else { return }
+        
+        let step = steps.remove(at: sourceIndexPath.row)
+        steps.insert(step, at: destinationIndexPath.row)
         
         for (index, step) in steps.enumerated() {
-                step.stepNumber = index + 1
+            step.stepNumber = index + 1
         }
-        AppDelegate.coreDataStack.saveContext(completion: nil)
+
     }
     
     func confirmDeletePopup (_ indexPath: IndexPath) {
@@ -455,6 +460,13 @@ extension CreateAppventureViewController : UITableViewDelegate, UITableViewDataS
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.destructive, handler: { action in
             self.deleteStepFromDB(indexPath)
             self.removeFromCoreData(indexPath)
+            
+            guard let sections = self.fethcedStepsController.sections,
+                var steps = sections[0].objects as? [AppventureStep] else { return }
+            
+            for (index, step) in steps.enumerated() {
+                step.stepNumber = index + 1
+            }
         }))
         
         self.present(alert, animated: true, completion: nil)
@@ -499,7 +511,7 @@ extension CreateAppventureViewController : AppventureDetailsViewDelegate {
 extension CreateAppventureViewController : AddStepTableViewControllerDelegate {
     
     func updateAppventureLocation(_ location: CLLocation) {
-        self.newAppventure.location = location
+
     }
 }
 

@@ -13,6 +13,7 @@ class BackendlessStep : NSObject {
     static let backendless = Backendless.sharedInstance()
     static let dataStore = backendless?.persistenceService.of(BackendlessAppventure.ofClass())
     
+    public var ownerId: String?
     public var objectId: String?
     public var stepNumber: Int16 = 0
     public var nameOrLocation: String?
@@ -31,6 +32,7 @@ class BackendlessStep : NSObject {
     }
     
     init(step: AppventureStep) {
+        self.ownerId = CoreUser.user?.backendlessId
         self.objectId = step.backendlessId
         self.stepNumber = step.stepNumber
         self.nameOrLocation = step.nameOrLocation

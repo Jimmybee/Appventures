@@ -27,9 +27,11 @@ class LocationSettingsTableViewController: UITableViewController {
         if step.setup.locationShown == true {
             showLocation.isOn = true
         }
+        
         if step.setup.compassShown == true {
             showCompass.isOn = true
         }
+        
         if step.setup.distanceShown == false {
             showDistance.isOn = false
         }
@@ -50,10 +52,10 @@ class LocationSettingsTableViewController: UITableViewController {
         step.setup.locationShown = showLocation.isOn
     }
     @IBAction func updateShowCompass(_ sender: AnyObject) {
-        step.setup.compassShown = showLocation.isOn
+        step.setup.compassShown = showCompass.isOn
     }
     @IBAction func updateShowDistance(_ sender: UISwitch) {
-        step.setup.distanceShown = showLocation.isOn
+        step.setup.distanceShown = showDistance.isOn
     }
     
    
