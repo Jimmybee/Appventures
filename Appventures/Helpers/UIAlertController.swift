@@ -24,5 +24,32 @@ extension UIAlertController {
         }
     }
 
+    class func createDirectionsAlert(coordinate: CLLocationCoordinate2D, name: String?) -> UIAlertController {
+        let alert = UIAlertController(title: "Directions", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        if UIApplication.shared.canOpenURL(NSURL(string:"citymapper://")! as URL) {
+            alert.addAction(UIAlertAction(title: "City Mapper", style: .default, handler: { action in
+                let urlString = "citymapper://directions?endcoord=\(coordinate.latitude),\(coordinate.longitude)"
+                UIApplication.shared.open(URL(string: urlString)!)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Apple Maps", style: .default, handler: { action in
+            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+            mapItem.name = name
+            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        }))
+        
+        
+        if UIApplication.shared.canOpenURL(NSURL(string:"comgooglemaps://")! as URL) {
+            alert.addAction(UIAlertAction(title: "Google Maps", style: .default, handler: { action in
+                UIApplication.shared.open(URL(string:
+                    "comgooglemaps://?saddr=&daddr=\(coordinate.latitude),\(coordinate.longitude)&directionsmode=driving")! as URL, options: [:], completionHandler: nil)
+            }))
+        }
+        
+        return alert
+    }
     
 }

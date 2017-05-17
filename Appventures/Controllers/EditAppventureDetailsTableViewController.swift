@@ -159,9 +159,7 @@ extension EditAppventureDetailsTableViewController : ImagePicker {
             imageView.contentMode = .scaleAspectFit
             let savedImage = HelperFunctions.resizeImage(pickedImage, desiredWidth: 800)
             appventure?.image = savedImage
-            if let id = appventure?.backendlessId {
-                appventure?.imageUrl = BackendlessAppventure.imageUrl(fromObjectId: id)
-            }
+            appventure?.requiresImageSave = true
         }
         
         checkSave()

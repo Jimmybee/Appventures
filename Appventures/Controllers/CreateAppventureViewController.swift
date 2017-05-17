@@ -494,16 +494,13 @@ extension CreateAppventureViewController : AppventureDetailsViewDelegate {
     
     func rightBttnPressed(sender: UIButton) {
         self.showProgressView()
-        BackendlessAppventure.save(appventure: newAppventure, withImage: true) { 
+        BackendlessAppventure.save(appventure: newAppventure) {
             self.hideProgressView()
-            self.saveComplete()
+            DispatchQueue.main.async {
+                AppDelegate.coreDataStack.saveContext(completion: nil)
+            }
+
             UIAlertController.showAlertToast("Saved")
-        }
-    }
-    
-    func saveComplete() {
-        DispatchQueue.main.async {
-            AppDelegate.coreDataStack.saveContext(completion: nil)
         }
     }
 }

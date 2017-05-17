@@ -76,33 +76,33 @@ class BackendlessAppventure: NSObject {
     /// save an appventure to backend.
     /// Saved apppventure now definietly has backendlessId, so assign
     /// Make sure backendlessAppventure has the same url or assign a new one.
-    class func save(appventure: Appventure, withImage: Bool, completion: @escaping () -> ()) {
+    class func save(appventure: Appventure, completion: @escaping () -> ()) {
         
         var appventureWithId: Appventure!
         apiUploadGroup.enter()
         let backendlessAppventure = BackendlessAppventure(appventure: appventure)
         backendlessAppventure.save(completion: { (backendlessAppventure) in
              appventureWithId = Appventure(backendlessAppventure: backendlessAppventure, persistent: true)
-            //if appventureWithId.imageUrl != appventure.imageUrl {
+            if appventure.requiresImageSave {
                 appventureWithId.image = appventure.image
                 let imageString = self.imageUrl(fromObjectId: appventureWithId.backendlessId!)
                 uploadImageAsync(url: imageString, image: appventureWithId.image, completion: { (imageUrl) in
                     print("File has been uploaded. File URL is - \(String(describing: imageUrl))")
                     appventureWithId.imageUrl = imageUrl
                 })
-            //}
-            
+            }
+        
             for (index, step) in appventureWithId.appventureSteps.enumerated() {
                 let oldStep = appventure.appventureSteps[index]
                 if oldStep.image != nil {
-                   // if step.imageUrl != oldStep.imageUrl {
+                    if appventure.appventureSteps[index].requiresImageSave {
                         step.image = oldStep.image
                         let imageString = self.imageUrl(fromObjectId: step.backendlessId!)
                         uploadImageAsync(url: imageString, image: step.image, completion: { (imageUrl) in
                             print("File has been uploaded. File URL is - \(String(describing: imageUrl))")
                             step.imageUrl = imageUrl
                         })
-                   // }
+                    }
                 }
             }
             apiUploadGroup.leave()

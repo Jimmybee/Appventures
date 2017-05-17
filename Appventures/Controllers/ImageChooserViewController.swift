@@ -69,7 +69,7 @@ class ImageChooserViewController: UIViewController,UIImagePickerControllerDelega
             let savedImage = HelperFunctions.resizeImage(pickedImage, desiredWidth: 800)
             imageView.image = savedImage
             step.image = savedImage
-            
+            step.requiresImageSave = true
         }
         
         self.dismiss(animated: true, completion: nil)

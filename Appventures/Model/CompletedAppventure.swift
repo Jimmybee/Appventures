@@ -50,11 +50,13 @@ class CompletedAppventure: NSObject {
         
         let dataStore = Backendless.sharedInstance().data.of(self.ofClass())
         dataStore?.find(dataQuery, response: { (collection) in
-            guard let page1 = collection!.getCurrentPage() else { return completion(nil) }
-            let completedAppventures = page1.map(convertToCompletedAppventure).flatMap({$0})
-            completion(completedAppventures)
+            
+            if let page1 = collection!.getCurrentPage() {
+                let completedAppventures = page1.map({return $0 as? CompletedAppventure}).flatMap({ $0})
+                completion(completedAppventures)
+            }
         }, error: { (fault) in
-            print("Server reported an error: \(fault)")
+            print("Server reported an error: \(String(describing: fault))")
             completion(nil)
         })
         
