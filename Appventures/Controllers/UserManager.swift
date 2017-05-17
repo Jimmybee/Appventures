@@ -50,6 +50,7 @@ class UserManager {
         if backendless?.userService.currentUser == nil {
             CoreUser.user = CoreUser(context: context)
             CoreUser.user?.userType = .noLogin
+            AppDelegate.coreDataStack.saveContext(completion: nil)
             completion()
             return
         }

@@ -159,6 +159,7 @@ class BackendlessAppventure: NSObject {
         var appventures = [Appventure]()
         let dataStore = Backendless.sharedInstance().data.of(BackendlessAppventure.ofClass())
         dataStore?.find(dataQuery, response: { (collection) in
+            print("Reponse")
             let page1 = collection!.getCurrentPage()
             for obj in page1! {
                 let backendlessAppventure = obj as! BackendlessAppventure

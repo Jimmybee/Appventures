@@ -62,10 +62,8 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if appventure == nil {
-            self.setupForNewAppventure()
-        } else {
-            self.updateUI()
+        if appventure != nil {
+            updateSafeOnViewDidAppear()
         }
     }
     
@@ -84,18 +82,22 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     }
     
     func updateUI(){
-        if appventure?.image != nil {
-            imageView.image = appventure!.image
-        }
         appventureNameField.text =  appventure!.title
         appventureDescription.text = appventure!.subtitle
         durationLabel.text = appventure!.duration.secondsComponentToLongTimeString()
         startingLocation.text = appventure!.startingLocationName
         startTimeLabel.text = appventure?.startTime
         endTimeLabel.text = appventure?.endTime
+        updateSafeOnViewDidAppear()
+    }
+    
+    func updateSafeOnViewDidAppear() {
         let themeTwo = appventure?.themeTwo == nil ? "" : ", \(appventure!.themeTwo!)"
         let themeOne = appventure!.themeOne ?? ""
         tags.text = themeOne + themeTwo
+        if appventure?.image != nil {
+            imageView.image = appventure!.image
+        }
     }
     
     func checkSave() {
