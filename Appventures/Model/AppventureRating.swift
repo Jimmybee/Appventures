@@ -40,8 +40,21 @@ class Rating: NSObject {
     }
     
 
-    class func loadRating(_ appventure: Appventure, handler: AppventureRatingDelegate?) {
-
+    class func loadReviews(_ appventureId: String, completion: @escaping ([Rating]?) -> ()) {
+        let dataQuery = BackendlessDataQuery()
+        dataQuery.whereClause = "appventureId = '\(appventureId)' AND review != ''"
+        
+        let dataStore = Backendless.sharedInstance().data.of(self.ofClass())
+        dataStore?.find(dataQuery, response: { (collection) in
+            
+            if let page1 = collection!.getCurrentPage() {
+                let ratings = page1.map({return $0 as? Rating}).flatMap({ $0})
+                completion(ratings)
+            }
+        }, error: { (fault) in
+            print("Server reported an error: \(String(describing: fault))")
+            completion(nil)
+        })
     }
     
     

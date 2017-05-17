@@ -62,10 +62,6 @@ class CompletedAppventure: NSObject {
         
     }
     
-    private class func convertToCompletedAppventure(obj: Any) -> CompletedAppventure? {
-        guard let dict = obj as? Dictionary<String, Any> else { return nil }
-        return CompletedAppventure(backendlessDictionary: dict)
-    }
     
     class func countCompleted(completion: @escaping ([CompletedAppventure]?) -> ()) {
         let dataQuery = BackendlessDataQuery()
@@ -75,11 +71,12 @@ class CompletedAppventure: NSObject {
         
         let dataStore = Backendless.sharedInstance().data.of(self.ofClass())
         dataStore?.find(dataQuery, response: { (collection) in
-            guard let page1 = collection!.getCurrentPage() else { return }
-            let completedAppventures = page1.map(convertToCompletedAppventure).flatMap({$0})
-            completion(completedAppventures)
+            if let page1 = collection!.getCurrentPage() {
+                let completedAppventures = page1.map({return $0 as? CompletedAppventure}).flatMap({ $0})
+                completion(completedAppventures)
+            }
         }, error: { (fault) in
-            print("Server reported an error: \(fault)")
+            print("Server reported an error: \(String(describing: fault))")
             completion(nil)
         })
     }

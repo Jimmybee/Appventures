@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8VW-wx-j4B">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8VW-wx-j4B">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -266,7 +266,7 @@ If you have any questions regarding privacy while using the Application, or have
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DB5-6F-0nT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="508" y="3241"/>
+            <point key="canvasLocation" x="1112" y="3255"/>
         </scene>
         <!--Profile-->
         <scene sceneID="zHh-ZR-BfZ">
@@ -309,7 +309,7 @@ If you have any questions regarding privacy while using the Application, or have
                             <tableViewSection headerTitle="Your Adventures" id="FAV-uU-9GB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9fx-Sq-qBk">
-                                        <rect key="frame" x="0.0" y="186" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="185.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9fx-Sq-qBk" id="FrV-F9-X2m">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -337,7 +337,7 @@ If you have any questions regarding privacy while using the Application, or have
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hJk-7f-7PL">
-                                        <rect key="frame" x="0.0" y="230" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="229.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hJk-7f-7PL" id="Sp8-AX-8vG">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -369,7 +369,7 @@ If you have any questions regarding privacy while using the Application, or have
                             <tableViewSection headerTitle="Help" id="AVr-pH-TqU">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="afF-V9-ILb">
-                                        <rect key="frame" x="0.0" y="331" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="329.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="afF-V9-ILb" id="2SS-op-bfI">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="44"/>
@@ -389,7 +389,7 @@ If you have any questions regarding privacy while using the Application, or have
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Y2B-ty-bJX">
-                                        <rect key="frame" x="0.0" y="375" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="373.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y2B-ty-bJX" id="jai-9n-9rC">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="44"/>
@@ -409,7 +409,7 @@ If you have any questions regarding privacy while using the Application, or have
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="byG-Go-9sY">
-                                        <rect key="frame" x="0.0" y="419" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="417.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="byG-Go-9sY" id="fRp-IT-tWc">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="44"/>
@@ -433,7 +433,7 @@ If you have any questions regarding privacy while using the Application, or have
                             <tableViewSection headerTitle="Policies" id="mh7-UJ-0yr">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="GUz-dO-cV1">
-                                        <rect key="frame" x="0.0" y="520" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="517.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GUz-dO-cV1" id="u3y-ba-bvA">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="44"/>
@@ -459,7 +459,7 @@ If you have any questions regarding privacy while using the Application, or have
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="kud-Rk-rix">
-                                        <rect key="frame" x="0.0" y="564" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="561.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kud-Rk-rix" id="eBE-6J-Wi7">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="44"/>
@@ -483,7 +483,7 @@ If you have any questions regarding privacy while using the Application, or have
                             <tableViewSection headerTitle=" " id="Fdq-lI-P9n">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3Z4-Tu-XMi">
-                                        <rect key="frame" x="0.0" y="665" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="661.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Z4-Tu-XMi" id="dnm-b6-g89">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -503,7 +503,7 @@ If you have any questions regarding privacy while using the Application, or have
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="z3Z-VP-vEa">
-                                        <rect key="frame" x="0.0" y="709" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="705.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z3Z-VP-vEa" id="CoJ-7o-kZl">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -527,7 +527,7 @@ If you have any questions regarding privacy while using the Application, or have
                             <tableViewSection headerTitle=" " id="j6v-iG-C9h">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="CIE-UL-AG1">
-                                        <rect key="frame" x="0.0" y="810" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="805.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CIE-UL-AG1" id="NdC-o8-lvx">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -574,7 +574,7 @@ If you have any questions regarding privacy while using the Application, or have
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IZC-IF-tf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="71" y="2213"/>
+            <point key="canvasLocation" x="256" y="2139"/>
         </scene>
         <!--Me-->
         <scene sceneID="n1y-QJ-4VA">
@@ -699,7 +699,7 @@ If you have any questions regarding privacy while using the Application, or have
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBi-Og-eEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8" y="3249"/>
+            <point key="canvasLocation" x="-301" y="3256"/>
         </scene>
         <!--Profile Header View Controller-->
         <scene sceneID="RGq-Sg-5Oj">
@@ -748,7 +748,7 @@ If you have any questions regarding privacy while using the Application, or have
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SNF-Sl-ynN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="915" y="1678"/>
+            <point key="canvasLocation" x="1363" y="1691"/>
         </scene>
         <!--Non Facebook Header View Controller-->
         <scene sceneID="0RI-3W-oS9">
@@ -789,7 +789,7 @@ If you have any questions regarding privacy while using the Application, or have
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TI3-EI-zxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="942" y="1968"/>
+            <point key="canvasLocation" x="1442" y="2213"/>
         </scene>
     </scenes>
     <resources>

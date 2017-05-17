@@ -83,7 +83,6 @@
 		66DDE6741EBF291200A3911E /* AppventureDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6401EBF291200A3911E /* AppventureDetailsView.swift */; };
 		66DDE6751EBF291200A3911E /* AppventureMakerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6411EBF291200A3911E /* AppventureMakerCell.swift */; };
 		66DDE6761EBF291200A3911E /* AppventureRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6421EBF291200A3911E /* AppventureRating.swift */; };
-		66DDE6771EBF291200A3911E /* AppventureReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6431EBF291200A3911E /* AppventureReviews.swift */; };
 		66DDE6781EBF291200A3911E /* AppventureStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6441EBF291200A3911E /* AppventureStep.swift */; };
 		66DDE6791EBF291200A3911E /* AppventureStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6451EBF291200A3911E /* AppventureStep+CoreDataClass.swift */; };
 		66DDE67A1EBF291200A3911E /* AppventureStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6461EBF291200A3911E /* AppventureStep+CoreDataProperties.swift */; };
@@ -214,7 +213,6 @@
 		66DDE6401EBF291200A3911E /* AppventureDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureDetailsView.swift; sourceTree = "<group>"; };
 		66DDE6411EBF291200A3911E /* AppventureMakerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureMakerCell.swift; sourceTree = "<group>"; };
 		66DDE6421EBF291200A3911E /* AppventureRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureRating.swift; sourceTree = "<group>"; };
-		66DDE6431EBF291200A3911E /* AppventureReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureReviews.swift; sourceTree = "<group>"; };
 		66DDE6441EBF291200A3911E /* AppventureStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureStep.swift; sourceTree = "<group>"; };
 		66DDE6451EBF291200A3911E /* AppventureStep+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppventureStep+CoreDataClass.swift"; sourceTree = "<group>"; };
 		66DDE6461EBF291200A3911E /* AppventureStep+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppventureStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -479,7 +477,6 @@
 				66DDE6B51EBF2B1100A3911E /* Appventure */,
 				66DDE6B61EBF2B2000A3911E /* Step */,
 				66DDE6C91EBF34EB00A3911E /* Rating */,
-				66DDE6CA1EBF34F000A3911E /* Review */,
 				66DDE6CB1EBF34F500A3911E /* Completed */,
 				66DDE6BD1EBF333A00A3911E /* User */,
 				66DDE6CC1EBF351300A3911E /* FlaggedContent */,
@@ -683,14 +680,6 @@
 				66DDE6421EBF291200A3911E /* AppventureRating.swift */,
 			);
 			name = Rating;
-			sourceTree = "<group>";
-		};
-		66DDE6CA1EBF34F000A3911E /* Review */ = {
-			isa = PBXGroup;
-			children = (
-				66DDE6431EBF291200A3911E /* AppventureReviews.swift */,
-			);
-			name = Review;
 			sourceTree = "<group>";
 		};
 		66DDE6CB1EBF34F500A3911E /* Completed */ = {
@@ -1151,7 +1140,6 @@
 				66DDE6001EBF285200A3911E /* CheckInHintViewController.swift in Sources */,
 				66DDE6B21EBF29C100A3911E /* UIAlertController.swift in Sources */,
 				66DDE61C1EBF285200A3911E /* TargetHelperFunctions.swift in Sources */,
-				66DDE6771EBF291200A3911E /* AppventureReviews.swift in Sources */,
 				66DDE67A1EBF291200A3911E /* AppventureStep+CoreDataProperties.swift in Sources */,
 				66DDE6151EBF285200A3911E /* RateViewController.swift in Sources */,
 				66DDE61E1EBF285200A3911E /* TimePenaltyViewController.swift in Sources */,

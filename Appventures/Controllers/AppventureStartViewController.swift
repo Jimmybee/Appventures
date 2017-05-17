@@ -19,7 +19,7 @@ class AppventureStartViewController: BaseViewController {
     
     lazy var appventure = Appventure()
     var completedAppventures = [CompletedAppventure]()
-    var reviews = [String]()
+    var reviews = [Rating]()
     var apiDownloadGroup = DispatchGroup()
     
 //    @IBOutlet weak var startAppventure: UIButton!
@@ -88,20 +88,14 @@ class AppventureStartViewController: BaseViewController {
         detailsSubView.setup()
         
         getLeaderboard()
-        
+        getRatings()
+
         animatedControl = AnimatedSegmentControl(bttns: [detailsBttn, reviewBttn, leaderboardBttn], delegate: self)
         animatedSegmentContainer.addSubview(animatedControl)
         animatedControl.autoPinEdgesToSuperviewEdges()
         animatedControl.setNeedsDisplay()
         animatedControl.backgroundColor = .white
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//                animatedControl.setNeedsDisplay()
-//        animatedControl.layoutIfNeeded()
-
     }
     
     func updateUI () {
@@ -201,7 +195,7 @@ extension AppventureStartViewController {
         }
     }
     
-    func getLeaderboard() {
+    fileprivate func getLeaderboard() {
         CompletedAppventure.loadLeaderboardFor(appventureId: appventure.backendlessId!) { (completedAppventures) in
             if completedAppventures == nil {
                 return
@@ -212,33 +206,15 @@ extension AppventureStartViewController {
         }
     }
     
-}
-
-extension AppventureStartViewController  {
-    
-     func handleQueryResults(_ objects: [AnyObject]?, handlerCase: String?) {
-        switch handlerCase! {
-        case AppventureReviews.appventureReviewsHC:
-            reviews.removeAll()
-            for object in objects! {
-                let review = object.object(forKey: AppventureReviews.parseCol.review) as! String
-                reviews.append(review)
+    fileprivate func getRatings() {
+        Rating.loadReviews(appventure.backendlessId!, completion: { (ratings) in
+            if ratings == nil {
+                return
+            } else {
+                self.reviews = ratings!
+                self.tableView.reloadData()
             }
-            tableView.reloadData()
-        default:
-            break
-        }
-        
-    }
-    
-
-    
-    @IBAction func tapForDirections(_ sender: UITapGestureRecognizer) {
-        openMapLocation(sender)
-    }
-    
-    func openMapLocation(_ sender: AnyObject) {
-        HelperFunctions.openMaps("Shoreditch, London", vc: self)
+        })
     }
     
 }
@@ -256,7 +232,7 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
                 let message = "No one has completed this appventure yet. Be the first!"
                 HelperFunctions.noTableDataMessage(tableView, message: message)
             }
-            return 0
+            return 1
         case 2:
             return 1
         default:
@@ -279,9 +255,8 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
 
         switch animatedControl.selectedButton {
         case 1 :
-            cell?.textLabel?.text = reviews[indexPath.row]
-            cell?.detailTextLabel?.text = ""
-
+            cell?.textLabel?.text = "Stars: \(reviews[indexPath.row].rating)"
+            cell?.detailTextLabel?.text = reviews[indexPath.row].review
         case 2 :
             let completedCell = tableView.dequeueReusableCell(withIdentifier: CompletedAppventureTableViewCell.cellIdentifierNibName) as! CompletedAppventureTableViewCell
             completedCell.appventure = completedAppventures[indexPath.row]

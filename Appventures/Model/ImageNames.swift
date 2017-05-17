@@ -38,6 +38,7 @@ struct ImageNames {
     struct Common {
         static let location = UIImage(named:"common_location")
         static let locationStrike = UIImage(named:"common_location_strike")
+        static let info = UIImage(named:"common_info")
 
     }
     
