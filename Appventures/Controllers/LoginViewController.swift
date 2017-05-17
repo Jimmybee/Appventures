@@ -24,15 +24,24 @@ class LoginViewController: UIViewController {
     
     var player: AVPlayer?
     
+    @IBOutlet weak var logInBttn: UIButton!
+    @IBOutlet weak var mainStackView: UIStackView!
+    
     weak var delegate: LoginViewControllerDelegate!
-    let backendless = Backendless.sharedInstance()
     var user = BackendlessUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.addVideoPlayer()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.logInBttn.alpha = 1
+            self.mainStackView.alpha = 1
+        }) { (complete) in
+
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,47 +50,30 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func skipSignIn(_ sender: UIButton) {
-        
-        self.dismiss(animated: true, completion: nil)
-         NotificationCenter.default.post(name: Notification.Name(rawValue: skipLoginNotification), object: self)
+        UIView.animate(withDuration: 0.4, animations: {
+            self.logInBttn.alpha = 0
+            self.mainStackView.alpha = 0
+        }) { (complete) in
+            self.performSegue(withIdentifier: "LogIn", sender: self)
+        }
     }
 
+    @IBAction func registerTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.logInBttn.alpha = 0
+            self.mainStackView.alpha = 0
+        }) { (complete) in
+            self.performSegue(withIdentifier: "CreateAccount", sender: self)
+        }
+    
+    }
 
     @IBAction func facebookLogin(_ sender: UIButton) {
         centralDispatchGroup.enter()
         UserManager.loginWithFacebookSDK(viewController: self)
     }
     
-    func addVideoPlayer() {
-        
-        // Load the video from the app bundle.
-        let videoURL: URL = Bundle.main.url(forResource: "video", withExtension: "mov")!
-        
-        player = AVPlayer(url: videoURL)
-        player?.actionAtItemEnd = .none
-        player?.isMuted = true
-        
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        playerLayer.zPosition = -1
-        
-        playerLayer.frame = view.frame
-        
-        view.layer.addSublayer(playerLayer)
-        
-        player?.play()
-        
-        //loop video
-        NotificationCenter.default.addObserver(self,
-                                                         selector: #selector(LoginViewController.loopVideo),
-                                                         name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-                                                         object: nil)
-    }
-    
-    func loopVideo() {
-        player?.seek(to: kCMTimeZero)
-        player?.play()
-    }
+   
 }
 
 extension LoginViewController : FacebookLoginController {

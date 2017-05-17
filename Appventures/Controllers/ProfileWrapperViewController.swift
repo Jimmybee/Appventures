@@ -11,30 +11,24 @@ import UIKit
 class ProfileWrapperViewController: UIViewController {
 
     @IBOutlet weak var containerForUser: UIView!
-    @IBOutlet weak var containerForSignIn: UIView!
     
     var embeddedSettings: SettingsTableViewController!
-    var embeddedSignIn: UserSignInViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         containerForUser.alpha = 1
-        containerForSignIn.alpha = 0
         // Do any additional setup after loading the view.
     }
     
     
     func showForUser() {
         containerForUser.alpha = 1
-        containerForSignIn.alpha = 0
         embeddedSettings.updateUI()
     }
     
     func showForSignIn() {
         containerForUser.alpha = 0
-        containerForSignIn.alpha = 1
-        embeddedSignIn.cleanFields()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,7 +49,6 @@ class ProfileWrapperViewController: UIViewController {
             self.embeddedSettings = vc
         }
         if let vc = segue.destination as? UserSignInViewController {
-            self.embeddedSignIn = vc
             vc.parentContainer = self
         }
     }

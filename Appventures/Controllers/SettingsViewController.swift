@@ -35,7 +35,6 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var profileHeaderContainer: UIView!
-    @IBOutlet weak var nonFacebookHeader: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +43,10 @@ class SettingsTableViewController: UITableViewController {
     
     //MARK: Get container view controllers & Navigation
     var embeddedProfileHeader: ProfileHeaderViewController!
-    var embeddedNonFacebookHeader: NonFacebookHeaderViewController!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ProfileHeaderViewController {
             self.embeddedProfileHeader = vc
-        }
-        if let vc = segue.destination as? NonFacebookHeaderViewController {
-            self.embeddedNonFacebookHeader = vc
         }
         
         if segue.identifier == rtfDisplay {
@@ -77,7 +72,6 @@ class SettingsTableViewController: UITableViewController {
     func setupHeaderView () {
         
         profileHeaderContainer.alpha = 1
-        nonFacebookHeader.alpha = 0
         if let picture = CoreUser.user?.facebookPicture {
             embeddedProfileHeader.circledImageView.image = picture
             embeddedProfileHeader.updateCircleImage()
@@ -118,8 +112,6 @@ class SettingsTableViewController: UITableViewController {
 
     func parseUserHeader() {
         profileHeaderContainer.alpha = 0
-        nonFacebookHeader.alpha = 1
-        embeddedNonFacebookHeader.headerLabel.text = "User1"
     }
 
 }
@@ -160,9 +152,7 @@ extension SettingsTableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertActionStyle.destructive, handler: { action in
             UserManager.logout()
-            if let pwvc = self.parent as? ProfileWrapperViewController  {
-                pwvc.showForSignIn()
-            }
+            
         }))
         
         self.present(alert, animated: true, completion: nil)

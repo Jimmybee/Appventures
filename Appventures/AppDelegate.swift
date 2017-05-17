@@ -72,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                            open: url,
                                                                            sourceApplication: sourceApplication,
                                                                            annotation: annotation)
+        print("url")
         return true
     }
     

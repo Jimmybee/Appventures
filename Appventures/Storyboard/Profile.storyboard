@@ -29,34 +29,23 @@
                                     <segue destination="nhk-Fb-EvN" kind="embed" id="XkO-ge-L3l"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L9D-hV-8Xt">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <connections>
-                                    <segue destination="UOT-Z9-yFj" kind="embed" id="8NJ-wv-qfd"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7B7-YI-gyS" firstAttribute="width" secondItem="Vv4-Pp-dOo" secondAttribute="width" id="6Sl-mu-6z0"/>
                             <constraint firstItem="7B7-YI-gyS" firstAttribute="height" secondItem="Vv4-Pp-dOo" secondAttribute="height" id="7AN-kY-02V"/>
                             <constraint firstItem="7B7-YI-gyS" firstAttribute="centerY" secondItem="Vv4-Pp-dOo" secondAttribute="centerY" id="KBc-Bp-cjg"/>
-                            <constraint firstItem="L9D-hV-8Xt" firstAttribute="height" secondItem="Vv4-Pp-dOo" secondAttribute="height" id="QKI-iT-v7M"/>
                             <constraint firstItem="7B7-YI-gyS" firstAttribute="centerX" secondItem="Vv4-Pp-dOo" secondAttribute="centerX" id="T9d-rQ-Vjg"/>
-                            <constraint firstItem="L9D-hV-8Xt" firstAttribute="width" secondItem="Vv4-Pp-dOo" secondAttribute="width" id="ThT-Q1-Bgl"/>
-                            <constraint firstItem="L9D-hV-8Xt" firstAttribute="centerX" secondItem="Vv4-Pp-dOo" secondAttribute="centerX" id="ccl-h8-Oa6"/>
-                            <constraint firstItem="L9D-hV-8Xt" firstAttribute="centerY" secondItem="Vv4-Pp-dOo" secondAttribute="centerY" id="hJp-BQ-cTT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="qLe-FM-pSx"/>
                     <connections>
-                        <outlet property="containerForSignIn" destination="L9D-hV-8Xt" id="IDB-kA-w7K"/>
                         <outlet property="containerForUser" destination="7B7-YI-gyS" id="gWF-qO-4Rt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgT-nq-Lvx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-625" y="2387"/>
+            <point key="canvasLocation" x="-838" y="2373"/>
         </scene>
         <!--Display View Controller-->
         <scene sceneID="Vwx-yG-j79">
@@ -281,12 +270,6 @@ If you have any questions regarding privacy while using the Application, or have
                             <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGN-xc-7yy">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
-                                    <connections>
-                                        <segue destination="oa7-T3-lib" kind="embed" id="msn-3U-zvY"/>
-                                    </connections>
-                                </containerView>
                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Og6-Qi-1py">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
                                     <connections>
@@ -298,11 +281,7 @@ If you have any questions regarding privacy while using the Application, or have
                                 <constraint firstItem="Og6-Qi-1py" firstAttribute="centerX" secondItem="BWt-ha-bSh" secondAttribute="centerX" id="2K2-rP-Pfq"/>
                                 <constraint firstItem="Og6-Qi-1py" firstAttribute="centerY" secondItem="BWt-ha-bSh" secondAttribute="centerY" id="5oY-p7-Wfz"/>
                                 <constraint firstItem="Og6-Qi-1py" firstAttribute="width" secondItem="BWt-ha-bSh" secondAttribute="width" id="82S-l6-fzt"/>
-                                <constraint firstItem="wGN-xc-7yy" firstAttribute="height" secondItem="BWt-ha-bSh" secondAttribute="height" id="Fgl-6L-pCj"/>
                                 <constraint firstItem="Og6-Qi-1py" firstAttribute="height" secondItem="BWt-ha-bSh" secondAttribute="height" id="TlK-qv-CAK"/>
-                                <constraint firstItem="wGN-xc-7yy" firstAttribute="width" secondItem="BWt-ha-bSh" secondAttribute="width" id="a5M-DJ-rZw"/>
-                                <constraint firstItem="wGN-xc-7yy" firstAttribute="centerX" secondItem="BWt-ha-bSh" secondAttribute="centerX" id="aeg-Cz-dT8"/>
-                                <constraint firstItem="wGN-xc-7yy" firstAttribute="centerY" secondItem="BWt-ha-bSh" secondAttribute="centerY" id="qzs-a2-ygi"/>
                             </constraints>
                         </view>
                         <sections>
@@ -565,7 +544,6 @@ If you have any questions regarding privacy while using the Application, or have
                         <outlet property="licencesCell" destination="GUz-dO-cV1" id="Gch-1u-X0V"/>
                         <outlet property="logOutCell" destination="z3Z-VP-vEa" id="VlW-UG-C5a"/>
                         <outlet property="makingAdventureCell" destination="byG-Go-9sY" id="Ezk-uN-MJ8"/>
-                        <outlet property="nonFacebookHeader" destination="wGN-xc-7yy" id="cFA-8I-f9k"/>
                         <outlet property="privacyCell" destination="kud-Rk-rix" id="xuZ-L9-iQ6"/>
                         <outlet property="profileHeaderContainer" destination="Og6-Qi-1py" id="mWC-wY-9xF"/>
                         <outlet property="restoreDataCell" destination="3Z4-Tu-XMi" id="xyz-2A-sHW"/>
@@ -612,35 +590,35 @@ If you have any questions regarding privacy while using the Application, or have
                         <viewControllerLayoutGuide type="bottom" id="J7e-El-Ugp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hIq-a6-IJI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="QAr-oU-TkU">
-                                <rect key="frame" x="20" y="8" width="374" height="720"/>
+                                <rect key="frame" x="16" y="28" width="343" height="631"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up to make your own appventures and see your stats." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd8-SC-yNE">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="45.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="45.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOm-c8-cU6">
-                                        <rect key="frame" x="0.0" y="119.5" width="374" height="46"/>
+                                        <rect key="frame" x="0.0" y="105.5" width="343" height="46"/>
                                         <state key="normal" image="facebook-login-blue"/>
                                         <connections>
                                             <action selector="facebookLogin:" destination="UOT-Z9-yFj" eventType="touchUpInside" id="MYS-yA-ywa"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3ip-ma-7Rt">
-                                        <rect key="frame" x="0.0" y="239.5" width="374" height="60"/>
+                                        <rect key="frame" x="0.0" y="211.5" width="343" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WOh-in-I9h">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBi-jc-3Oj">
-                                                <rect key="frame" x="0.0" y="30" width="374" height="30"/>
+                                                <rect key="frame" x="0.0" y="30" width="343" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
@@ -650,18 +628,18 @@ If you have any questions regarding privacy while using the Application, or have
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe8-oa-ypy">
-                                        <rect key="frame" x="0.0" y="374" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="331" width="343" height="30"/>
                                         <state key="normal" title="Sign Up / Log In"/>
                                         <connections>
                                             <action selector="signUpLogIn:" destination="UOT-Z9-yFj" eventType="touchUpInside" id="K7E-vT-3B2"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAJ-vu-VRj">
-                                        <rect key="frame" x="0.0" y="478" width="374" height="144"/>
+                                        <rect key="frame" x="0.0" y="421" width="343" height="126"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We'll never post to Facebook without your permission. By using Appventures, you agree to the Terms &amp; Conditions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2XF-k1-dhM">
-                                        <rect key="frame" x="0.0" y="696" width="374" height="24"/>
+                                        <rect key="frame" x="0.0" y="607" width="343" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -699,7 +677,7 @@ If you have any questions regarding privacy while using the Application, or have
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBi-Og-eEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8" y="3249"/>
+            <point key="canvasLocation" x="-219" y="3240"/>
         </scene>
         <!--Profile Header View Controller-->
         <scene sceneID="RGq-Sg-5Oj">
@@ -749,47 +727,6 @@ If you have any questions regarding privacy while using the Application, or have
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SNF-Sl-ynN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="915" y="1678"/>
-        </scene>
-        <!--Non Facebook Header View Controller-->
-        <scene sceneID="0RI-3W-oS9">
-            <objects>
-                <viewController id="oa7-T3-lib" customClass="NonFacebookHeaderViewController" customModule="Appventures" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6eh-N0-Roj"/>
-                        <viewControllerLayoutGuide type="bottom" id="zAq-bL-hFm"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Igq-1m-Ft0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBR-XI-K7z">
-                                <rect key="frame" x="186" y="54" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.053199561809999997" green="0.1702644401" blue="0.20602509469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.053199561809999997" green="0.1702644401" blue="0.20602509469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="QBR-XI-K7z" firstAttribute="centerY" secondItem="Igq-1m-Ft0" secondAttribute="centerY" id="Nx7-dH-z4w"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="QBR-XI-K7z" secondAttribute="trailing" constant="166" id="hdW-R2-dTn"/>
-                            <constraint firstItem="QBR-XI-K7z" firstAttribute="centerX" secondItem="Igq-1m-Ft0" secondAttribute="centerX" id="qXu-hH-SNy"/>
-                            <constraint firstItem="QBR-XI-K7z" firstAttribute="leading" secondItem="Igq-1m-Ft0" secondAttribute="leadingMargin" constant="166" id="yUA-ki-Qsr"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="hdW-R2-dTn"/>
-                                <exclude reference="yUA-ki-Qsr"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="headerLabel" destination="QBR-XI-K7z" id="wBd-hX-Sni"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TI3-EI-zxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="942" y="1968"/>
         </scene>
     </scenes>
     <resources>

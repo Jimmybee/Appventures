@@ -108,6 +108,10 @@ class UserManager {
         let loginManager = FBSDKLoginManager()
         loginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: viewController) { (result, error) in
             let token = FBSDKAccessToken.current()
+            if token == nil {
+                print(error)
+                return
+            }
             backendless?.userService.login(withFacebookSDK: token, fieldsMapping: fieldsMapping, response: { (user) in
                 mapBackendlessToCoreUser()
                 viewController.dismiss(animated: true, completion: nil)
