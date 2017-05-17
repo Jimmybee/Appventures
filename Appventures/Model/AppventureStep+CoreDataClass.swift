@@ -29,6 +29,8 @@ public class AppventureStep: NSManagedObject {
         @nonobjc static var entityName = "AppventureStep"
     }
     
+    var requiresImageSave = false
+    
     /// init for creating a step
     convenience init (appventure: Appventure) {
         let context = AppDelegate.coreDataStack.persistentContainer.viewContext

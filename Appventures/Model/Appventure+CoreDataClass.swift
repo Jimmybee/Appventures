@@ -31,7 +31,7 @@ public class Appventure: NSManagedObject {
         static let entityName = "Appventure"
     }
     
-    var saveImage = false
+    var requiresImageSave = false
     var rating = 5
     
     /// init for a new appventure

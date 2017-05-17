@@ -19,7 +19,7 @@ class AppventureStartViewController: BaseViewController {
     
     lazy var appventure = Appventure()
     var completedAppventures = [CompletedAppventure]()
-    var reviews = [String]()
+    var reviews = [Rating]()
     var apiDownloadGroup = DispatchGroup()
     
 //    @IBOutlet weak var startAppventure: UIButton!
@@ -76,6 +76,9 @@ class AppventureStartViewController: BaseViewController {
 //        CompletedAppventure.loadAppventuresCompleted(appventure.pFObjectID!, handler: self)
 //        AppventureReviews.loadAppventuresReviews(appventure.pFObjectID!, handler: self)
         HelperFunctions.hideTabBar(self)
+        tableView.register(UINib(nibName: CompletedAppventureTableViewCell.cellIdentifierNibName, bundle: nil), forCellReuseIdentifier: CompletedAppventureTableViewCell.cellIdentifierNibName)
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         detailsView.addSubview(detailsSubView)
         detailsSubView.appventure = self.appventure
@@ -85,20 +88,14 @@ class AppventureStartViewController: BaseViewController {
         detailsSubView.setup()
         
         getLeaderboard()
-        
+        getRatings()
+
         animatedControl = AnimatedSegmentControl(bttns: [detailsBttn, reviewBttn, leaderboardBttn], delegate: self)
         animatedSegmentContainer.addSubview(animatedControl)
         animatedControl.autoPinEdgesToSuperviewEdges()
         animatedControl.setNeedsDisplay()
         animatedControl.backgroundColor = .white
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//                animatedControl.setNeedsDisplay()
-//        animatedControl.layoutIfNeeded()
-
     }
     
     func updateUI () {
@@ -198,7 +195,7 @@ extension AppventureStartViewController {
         }
     }
     
-    func getLeaderboard() {
+    fileprivate func getLeaderboard() {
         CompletedAppventure.loadLeaderboardFor(appventureId: appventure.backendlessId!) { (completedAppventures) in
             if completedAppventures == nil {
                 return
@@ -209,33 +206,15 @@ extension AppventureStartViewController {
         }
     }
     
-}
-
-extension AppventureStartViewController  {
-    
-     func handleQueryResults(_ objects: [AnyObject]?, handlerCase: String?) {
-        switch handlerCase! {
-        case AppventureReviews.appventureReviewsHC:
-            reviews.removeAll()
-            for object in objects! {
-                let review = object.object(forKey: AppventureReviews.parseCol.review) as! String
-                reviews.append(review)
+    fileprivate func getRatings() {
+        Rating.loadReviews(appventure.backendlessId!, completion: { (ratings) in
+            if ratings == nil {
+                return
+            } else {
+                self.reviews = ratings!
+                self.tableView.reloadData()
             }
-            tableView.reloadData()
-        default:
-            break
-        }
-        
-    }
-    
-
-    
-    @IBAction func tapForDirections(_ sender: UITapGestureRecognizer) {
-        openMapLocation(sender)
-    }
-    
-    func openMapLocation(_ sender: AnyObject) {
-        HelperFunctions.openMaps("Shoreditch, London", vc: self)
+        })
     }
     
 }
@@ -246,25 +225,16 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
     func numberOfSections(in tableView: UITableView) -> Int {
         switch animatedControl.selectedButton {
         case 1:
-            if self.completedAppventures.count > 0 {
+            if self.reviews.count > 0 {
                 self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
                 self.tableView.backgroundView = UIView()
-                return 1
             } else {
                 let message = "No one has completed this appventure yet. Be the first!"
                 HelperFunctions.noTableDataMessage(tableView, message: message)
             }
-            return 0
+            return 1
         case 2:
-            if self.reviews.count > 0 {
-                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-                self.tableView.backgroundView = UIView()
-                return 1
-            } else {
-                let message = "No one has reviewed this appventure yet."
-                HelperFunctions.noTableDataMessage(tableView, message: message)
-            }
-            return 0
+            return 1
         default:
             break
         }
@@ -273,26 +243,27 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if animatedControl.selectedButton == 1 {
-            return self.completedAppventures.count
-        } else  {
             return self.reviews.count
+        } else  {
+            return self.completedAppventures.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
  
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID) as UITableViewCell!
-        
+
         switch animatedControl.selectedButton {
         case 1 :
-            cell?.textLabel?.text = completedAppventures[indexPath.row].teamName
-            let tString = HelperFunctions.formatTime(completedAppventures[indexPath.row].time, nano: false)
-            cell?.detailTextLabel?.text = tString!
+            cell?.textLabel?.text = "Stars: \(reviews[indexPath.row].rating)"
+            cell?.detailTextLabel?.text = reviews[indexPath.row].review
         case 2 :
-            cell?.textLabel?.text = reviews[indexPath.row]
-            cell?.detailTextLabel?.text = ""
-
-        default : break
+            let completedCell = tableView.dequeueReusableCell(withIdentifier: CompletedAppventureTableViewCell.cellIdentifierNibName) as! CompletedAppventureTableViewCell
+            completedCell.appventure = completedAppventures[indexPath.row]
+            completedCell.setupCell()
+            return completedCell
+        default :
+            break
         }
         
         return cell!
@@ -301,30 +272,7 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
 
 extension AppventureStartViewController : AppventureDetailsViewDelegate {
     func leftBttnPressed() {
-        let alert = UIAlertController(title: "Directions", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        
-        if UIApplication.shared.canOpenURL(NSURL(string:"citymapper://")! as URL) {
-            alert.addAction(UIAlertAction(title: "City Mapper", style: .default, handler: { action in
-                let urlString = "citymapper://directions?endcoord=\(self.appventure.location.coordinate.latitude),\(self.appventure.location.coordinate.longitude)"
-                UIApplication.shared.open(URL(string: urlString)!)
-            }))
-        }
-        
-        alert.addAction(UIAlertAction(title: "Apple Maps", style: .default, handler: { action in
-            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: self.appventure.location.coordinate, addressDictionary:nil))
-            mapItem.name = self.appventure.startingLocationName
-            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-        }))
-        
-        
-        if UIApplication.shared.canOpenURL(NSURL(string:"comgooglemaps://")! as URL) {
-            alert.addAction(UIAlertAction(title: "Google Maps", style: .default, handler: { action in
-                UIApplication.shared.open(URL(string:
-                    "comgooglemaps://?saddr=&daddr=\(self.appventure.location.coordinate.latitude),\(self.appventure.location.coordinate.longitude)&directionsmode=driving")! as URL, options: [:], completionHandler: nil)
-            }))
-        }
-        
+        let alert = UIAlertController.createDirectionsAlert(coordinate: appventure.location.coordinate, name: appventure.startingLocationName ?? "Start")
         self.present(alert, animated: true, completion: nil)
 
     }

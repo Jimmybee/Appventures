@@ -161,9 +161,7 @@ extension EditAppventureDetailsTableViewController : ImagePicker {
             imageView.contentMode = .scaleAspectFit
             let savedImage = HelperFunctions.resizeImage(pickedImage, desiredWidth: 800)
             appventure?.image = savedImage
-            if let id = appventure?.backendlessId {
-                appventure?.imageUrl = BackendlessAppventure.imageUrl(fromObjectId: id)
-            }
+            appventure?.requiresImageSave = true
         }
         
         checkSave()
@@ -212,6 +210,25 @@ extension EditAppventureDetailsTableViewController : UITextFieldDelegate {
 
 // MARK: Table Functions
 extension EditAppventureDetailsTableViewController {
+    
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        let label = UILabel()
+        let button = UIButton()
+        view.addSubview(label)
+        view.addSubview(button)
+        
+        label.text = "Test"
+        label.autoPinEdge(toSuperviewMargin: .leading)
+        label.autoAlignAxis(toSuperviewAxis: .horizontal)
+        
+        button.setImage(ImageNames.Common.info, for: .normal)
+        button.autoAlignAxis(toSuperviewAxis: .horizontal)
+        button.autoPinEdge(toSuperviewMargin: .trailing)
+        
+        return view
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

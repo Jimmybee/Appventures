@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="skn-cX-nSS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="skn-cX-nSS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -689,7 +689,7 @@ Adventure Completed!</string>
                     <tabBarItem key="tabBarItem" title="Adventure" image="trailIcon-X" id="Dt4-3B-Ro2"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="U8e-dP-2Ft">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U8e-dP-2Ft">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -734,7 +734,7 @@ Adventure Completed!</string>
                                         <rect key="frame" x="0.0" y="28" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GTy-Qy-Yau" id="3L6-0C-OKe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -750,7 +750,7 @@ Adventure Completed!</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Appventures" id="x3X-ZN-j5B">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="20B-En-YgT">
+                        <barButtonItem key="rightBarButtonItem" image="v_filter_menu" id="20B-En-YgT">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="filterBttnPressed:" destination="Fzt-9t-zUU" id="4fN-Ke-7Go"/>
@@ -794,18 +794,18 @@ Adventure Completed!</string>
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gK3-Lo-bzM" id="AXJ-MV-b2J">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W1W-Nl-QGU">
-                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rqg-xI-FgA">
-                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1147,7 +1147,7 @@ Cg
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ofg-Dh-DBt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HS7-xK-ZO5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HS7-xK-ZO5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -1174,6 +1174,7 @@ Cg
         <image name="close-icon" width="256" height="256"/>
         <image name="common_menu" width="24" height="18"/>
         <image name="trailIcon-X" width="23" height="26"/>
+        <image name="v_filter_menu" width="24" height="24"/>
         <image name="vc_create_flag" width="19" height="18"/>
         <image name="vc_step_checkIn" width="62" height="62"/>
     </resources>

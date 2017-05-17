@@ -263,7 +263,7 @@ extension LocalTableViewController: UITableViewDelegate, UITableViewDataSource  
         var rows = 0
         switch animatedControl.selectedButton {
         case 0:
-            rows = CoreUser.user!.downloaded!.count
+            rows = fethcedAppventuresController?.fetchedObjects?.count ?? 0
         case 1:
             rows = publicAppventures.count
         default:

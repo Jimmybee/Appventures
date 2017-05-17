@@ -15,6 +15,8 @@
 		6602486C1EC86BCE003E320A /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6602486B1EC86BCE003E320A /* ImageCacher.swift */; };
 		661F99051EC336BE00878F8F /* SegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99041EC336BE00878F8F /* SegmentButton.swift */; };
 		661F99071EC33DAA00878F8F /* AnimatedSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */; };
+		667A51D71ECB276600BD7892 /* CompletedAppventureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A51D51ECB276600BD7892 /* CompletedAppventureTableViewCell.swift */; };
+		667A51D81ECB276600BD7892 /* CompletedAppventureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667A51D61ECB276600BD7892 /* CompletedAppventureTableViewCell.xib */; };
 		66DDE5B81EBF276D00A3911E /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */; };
 		66DDE5B91EBF276D00A3911E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B71EBF276D00A3911E /* BaseViewController.swift */; };
 		66DDE5BE1EBF27A800A3911E /* Choosing Adventure.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 66DDE5BB1EBF27A800A3911E /* Choosing Adventure.rtf */; };
@@ -79,7 +81,6 @@
 		66DDE6741EBF291200A3911E /* AppventureDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6401EBF291200A3911E /* AppventureDetailsView.swift */; };
 		66DDE6751EBF291200A3911E /* AppventureMakerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6411EBF291200A3911E /* AppventureMakerCell.swift */; };
 		66DDE6761EBF291200A3911E /* AppventureRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6421EBF291200A3911E /* AppventureRating.swift */; };
-		66DDE6771EBF291200A3911E /* AppventureReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6431EBF291200A3911E /* AppventureReviews.swift */; };
 		66DDE6781EBF291200A3911E /* AppventureStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6441EBF291200A3911E /* AppventureStep.swift */; };
 		66DDE6791EBF291200A3911E /* AppventureStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6451EBF291200A3911E /* AppventureStep+CoreDataClass.swift */; };
 		66DDE67A1EBF291200A3911E /* AppventureStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE6461EBF291200A3911E /* AppventureStep+CoreDataProperties.swift */; };
@@ -140,6 +141,8 @@
 		6602486B1EC86BCE003E320A /* ImageCacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
 		661F99041EC336BE00878F8F /* SegmentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentButton.swift; sourceTree = "<group>"; };
 		661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSegmentControl.swift; path = ../AnimatedSegmentControl.swift; sourceTree = "<group>"; };
+		667A51D51ECB276600BD7892 /* CompletedAppventureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedAppventureTableViewCell.swift; sourceTree = "<group>"; };
+		667A51D61ECB276600BD7892 /* CompletedAppventureTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedAppventureTableViewCell.xib; sourceTree = "<group>"; };
 		66DDE5991EBF26AC00A3911E /* Appventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appventures.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DDE5B51EBF276D00A3911E /* Appventures-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Appventures-Bridging-Header.h"; path = "../Controllers/Appventures-Bridging-Header.h"; sourceTree = "<group>"; };
 		66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -209,7 +212,6 @@
 		66DDE6401EBF291200A3911E /* AppventureDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureDetailsView.swift; sourceTree = "<group>"; };
 		66DDE6411EBF291200A3911E /* AppventureMakerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureMakerCell.swift; sourceTree = "<group>"; };
 		66DDE6421EBF291200A3911E /* AppventureRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureRating.swift; sourceTree = "<group>"; };
-		66DDE6431EBF291200A3911E /* AppventureReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureReviews.swift; sourceTree = "<group>"; };
 		66DDE6441EBF291200A3911E /* AppventureStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppventureStep.swift; sourceTree = "<group>"; };
 		66DDE6451EBF291200A3911E /* AppventureStep+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppventureStep+CoreDataClass.swift"; sourceTree = "<group>"; };
 		66DDE6461EBF291200A3911E /* AppventureStep+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppventureStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -389,6 +391,15 @@
 			name = StepTableCell;
 			sourceTree = "<group>";
 		};
+		667A51D91ECB276900BD7892 /* Completed */ = {
+			isa = PBXGroup;
+			children = (
+				667A51D51ECB276600BD7892 /* CompletedAppventureTableViewCell.swift */,
+				667A51D61ECB276600BD7892 /* CompletedAppventureTableViewCell.xib */,
+			);
+			name = Completed;
+			sourceTree = "<group>";
+		};
 		66DDE5901EBF26AC00A3911E = {
 			isa = PBXGroup;
 			children = (
@@ -467,7 +478,6 @@
 				66DDE6B51EBF2B1100A3911E /* Appventure */,
 				66DDE6B61EBF2B2000A3911E /* Step */,
 				66DDE6C91EBF34EB00A3911E /* Rating */,
-				66DDE6CA1EBF34F000A3911E /* Review */,
 				66DDE6CB1EBF34F500A3911E /* Completed */,
 				66DDE6BD1EBF333A00A3911E /* User */,
 				66DDE6CC1EBF351300A3911E /* FlaggedContent */,
@@ -594,6 +604,7 @@
 				66DDE6561EBF291200A3911E /* FacebookFriendTableCell.swift */,
 				6602486E1EC8D1B6003E320A /* StepTableCell */,
 				66DDE6491EBF291200A3911E /* AppventureStepTableViewCell.swift */,
+				667A51D91ECB276900BD7892 /* Completed */,
 			);
 			name = UITableViewCell;
 			path = Model;
@@ -670,14 +681,6 @@
 				66DDE6421EBF291200A3911E /* AppventureRating.swift */,
 			);
 			name = Rating;
-			sourceTree = "<group>";
-		};
-		66DDE6CA1EBF34F000A3911E /* Review */ = {
-			isa = PBXGroup;
-			children = (
-				66DDE6431EBF291200A3911E /* AppventureReviews.swift */,
-			);
-			name = Review;
 			sourceTree = "<group>";
 		};
 		66DDE6CB1EBF34F500A3911E /* Completed */ = {
@@ -986,6 +989,7 @@
 				66DDE6AE1EBF299600A3911E /* Assets.xcassets in Resources */,
 				66EE70DC1EC1E5E200EF7464 /* ExploreAppventureCell.xib in Resources */,
 				66DDE63B1EBF28AE00A3911E /* TextClueViewController.xib in Resources */,
+				667A51D81ECB276600BD7892 /* CompletedAppventureTableViewCell.xib in Resources */,
 				66DDE6BA1EBF2DEB00A3911E /* LaunchAppventure.storyboard in Resources */,
 				66DDE6381EBF28AE00A3911E /* MapCompassViewController.xib in Resources */,
 				66DDE62F1EBF28A300A3911E /* Profile.storyboard in Resources */,
@@ -1062,6 +1066,7 @@
 				66DDE68E1EBF291200A3911E /* FlaggedContent.swift in Sources */,
 				66DDE6941EBF291200A3911E /* RatingControl.swift in Sources */,
 				66DDE6181EBF285200A3911E /* SoundClueViewController.swift in Sources */,
+				667A51D71ECB276600BD7892 /* CompletedAppventureTableViewCell.swift in Sources */,
 				66DDE6091EBF285200A3911E /* ImageChooserViewController.swift in Sources */,
 				66DDE67D1EBF291200A3911E /* AppventureStepTableViewCell.swift in Sources */,
 				66DDE6BC1EBF2F7F00A3911E /* ExploreAppventureCell.swift in Sources */,
@@ -1137,7 +1142,6 @@
 				66DDE6001EBF285200A3911E /* CheckInHintViewController.swift in Sources */,
 				66DDE6B21EBF29C100A3911E /* UIAlertController.swift in Sources */,
 				66DDE61C1EBF285200A3911E /* TargetHelperFunctions.swift in Sources */,
-				66DDE6771EBF291200A3911E /* AppventureReviews.swift in Sources */,
 				66DDE67A1EBF291200A3911E /* AppventureStep+CoreDataProperties.swift in Sources */,
 				66DDE6151EBF285200A3911E /* RateViewController.swift in Sources */,
 				66DDE61E1EBF285200A3911E /* TimePenaltyViewController.swift in Sources */,
