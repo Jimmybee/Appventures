@@ -12,7 +12,6 @@ class ProfileHeaderViewController: UIViewController {
     
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var loadSpinner: UIActivityIndicatorView!
     @IBOutlet weak var blurredImageView: UIImageView!
     @IBOutlet weak var circledImageView: UIImageView!
     
@@ -31,16 +30,7 @@ class ProfileHeaderViewController: UIViewController {
     
     
      func updateCircleImage() {
-//        fbConnect.alpha = 0
         HelperFunctions.circle(circledImageView)
-        self.loadSpinner.stopAnimating()
     }
-    
-    func setFbConnectBttn() {
-//        fbConnect.alpha = 1
-        
-        self.loadSpinner.stopAnimating()
-    }
-
  
 }

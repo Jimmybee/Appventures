@@ -27,15 +27,6 @@ class ProfileWrapperViewController: UIViewController {
         embeddedSettings.updateUI()
     }
     
-    func showForSignIn() {
-        containerForUser.alpha = 0
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        CoreUser.checkLogin(false, vc: self) ? showForUser() : showForSignIn()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,9 +38,6 @@ class ProfileWrapperViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? SettingsTableViewController {
             self.embeddedSettings = vc
-        }
-        if let vc = segue.destination as? UserSignInViewController {
-            vc.parentContainer = self
         }
     }
 

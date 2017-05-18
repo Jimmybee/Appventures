@@ -39,6 +39,14 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        setupCoreDataMonitor()
+    }
+    
+    func setupCoreDataMonitor() {
+        let managedObjectContext = AppDelegate.coreDataStack.persistentContainer.viewContext
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(managedObjectContextDidSave), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext)
+
     }
     
     //MARK: Get container view controllers & Navigation
@@ -60,10 +68,11 @@ class SettingsTableViewController: UITableViewController {
     
     func updateUI() {
         if let user = CoreUser.user {
+            embeddedProfileHeader.nameLabel.text = CoreUser.user?.name
 //            self.completedAdventuresCount.text = String(User.user!.completedAdventures)
 //            CompletedAppventure.countCompleted(self)
 //            Appventure.loadUserAppventure(User.user!.pfObject, handler: self, handlerCase: "")
-            user.userType == .facebook ? (self.setupHeaderView()) : self.parseUserHeader()
+            if user.userType == .facebook { self.setupHeaderView() }
         }
     }
     
@@ -91,7 +100,6 @@ class SettingsTableViewController: UITableViewController {
             })
         }
     
-        embeddedProfileHeader.nameLabel.text = CoreUser.user?.name
         
         if CoreUser.user!.facebookPicture != nil {
 //            if let blur = User.user!.blurPicture {
@@ -108,10 +116,6 @@ class SettingsTableViewController: UITableViewController {
         } else {
 //            User.user?.getFBImage()
         }
-    }
-
-    func parseUserHeader() {
-        profileHeaderContainer.alpha = 0
     }
 
 }
@@ -152,7 +156,7 @@ extension SettingsTableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertActionStyle.destructive, handler: { action in
             UserManager.logout()
-            
+            self.performSegue(withIdentifier: "logIn", sender: nil)
         }))
         
         self.present(alert, animated: true, completion: nil)
@@ -165,24 +169,20 @@ extension SettingsTableViewController {
 
 
 
+// MARK: - managedObjectContextDidSave
 
-extension SettingsTableViewController : UserDataHandler {
-    func userFuncComplete(_ funcKey: String) {
-//        switch funcKey{
-//        case User.funcKeys.fbGraphLoaded:
-//            print("fbGraphloaded")
-////            profileHeaderView.nameLabel.text = "\(User.user!.firstName) \(User.user!.lastName)"
-//        case User.funcKeys.fbImageLoaded:
-//            print("fbGraphloaded")
-//
-////            self.setupHeaderView()
-////            self.saveLocalData()
-//        case User.funcKeys.localDataLoaded:
-//            print("fbGraphloaded")
-//
-////            self.setupHeaderView()
-//        default: break
-//        }
+extension SettingsTableViewController  {
+    func managedObjectContextDidSave(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        if let inserts = userInfo[NSInsertedObjectsKey] as? Set<NSManagedObject>, inserts.count > 0 {
+            if let _ = inserts.first as? CoreUser {
+                updateUI()
+            }
+        }
+        
     }
 }
+
+
+
 

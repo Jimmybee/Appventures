@@ -15,19 +15,13 @@ import AVFoundation
 
 var centralDispatchGroup = DispatchGroup()
 
-protocol LoginViewControllerDelegate: class {
-    func loginSucceed()
-    func loginFailed()
-}
-
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, PresentingViewController {
     
     var player: AVPlayer?
     
     @IBOutlet weak var logInBttn: UIButton!
     @IBOutlet weak var mainStackView: UIStackView!
     
-    weak var delegate: LoginViewControllerDelegate!
     var user = BackendlessUser()
     
     override func viewDidLoad() {
@@ -73,15 +67,15 @@ class LoginViewController: UIViewController {
         UserManager.loginWithFacebookSDK(viewController: self)
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let elvc = segue.destination as? EmailLoginViewController {
+            elvc.delegate = self
+        }
+        if let cavc = segue.destination as? CreateAccountViewController {
+            cavc.delegate = self
+        }
+    }
    
 }
 
-extension LoginViewController : FacebookLoginController {
-    func facebookLoginSucceed() {
-        delegate.loginSucceed()
-    }
-    
-    func facebookLoginFailed() {
-        delegate.loginFailed()
-    }
-}

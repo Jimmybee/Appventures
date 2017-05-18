@@ -9,35 +9,23 @@
 import Foundation
 import FBSDKLoginKit
 
-protocol FacebookLoginController {
-    func facebookLoginSucceed()
-    func facebookLoginFailed()
-}
-
-protocol UserDataHandler : NSObjectProtocol {
-    func userFuncComplete(_ funcKey: String)
-}
-
 class UserManager {
     
     static var backendless = Backendless.sharedInstance()
     
     struct backendlessFields {
         static let facebookId = "facebookId"
-        static let name = "name"
-        static let pictureUrl = "pictureURL"
+        static let firstName = "firstName"
+        static let lastName = "lastName"
     }
     
     static let fieldsMapping = [
         "id" : backendlessFields.facebookId,
-        "name" : backendlessFields.name,
         "birthday": "birthday",
-        "first_name": "fb_first_name",
-        "last_name" : "fb_last_name",
+        "first_name": "firstName",
+        "last_name" : "lastName",
         "gender": "gender",
         "email": "email",
-//        "pictureURL": backendlessFields.pictureUrl
-        
     ]
     
     /// check if logged in to backendless.
@@ -64,7 +52,9 @@ class UserManager {
             } else {
                 let backendlessId =  Backendless.sharedInstance().userService.currentUser.objectId as String
                 let user = users.filter({ $0.backendlessId == backendlessId}).first ?? users[0]
+                print(user)
                 CoreUser.user = user
+                AppDelegate.coreDataStack.saveContext(completion: nil)
             }
         } catch {
             CoreUser.user = CoreUser(context: context)
@@ -74,10 +64,10 @@ class UserManager {
         
         backendless?.userService.isValidUserToken({ (valid) in
             if FBSDKAccessToken.current() == nil {
-                CoreUser.user?.userType = .backendlessOnly
+//                CoreUser.user?.userType = .backendlessOnly
             } else {
                 
-                CoreUser.user?.userType = .facebook
+//                CoreUser.user?.userType = .facebook
             }
             completion()
             return
@@ -92,43 +82,68 @@ class UserManager {
     }
     
     static func mapBackendlessToCoreUser() {
+        let context = AppDelegate.coreDataStack.persistentContainer.viewContext
         let user = backendless!.userService.currentUser
-        CoreUser.user?.name = user?.getProperty(backendlessFields.name) as? String
-        CoreUser.user?.facebookId = user?.getProperty(backendlessFields.facebookId) as? String
-        CoreUser.user?.pictureUrl = "https://graph.facebook.com/\(CoreUser.user!.facebookId!)/picture?type=large"
-        CoreUser.user?.userType = .facebook
+        let userId = user?.objectId as String?
+        if CoreUser.user?.backendlessId != userId { CoreUser.user = CoreUser(context: context) }
         CoreUser.user?.backendlessId = user?.objectId as String?
+        CoreUser.user?.name = user?.getProperty(backendlessFields.firstName) as? String
+        if let facebookId = user?.getProperty(backendlessFields.facebookId) as? String {
+            CoreUser.user?.facebookId = facebookId
+            CoreUser.user?.pictureUrl = "https://graph.facebook.com/\(facebookId)/picture?type=large"
+            CoreUser.user?.userType = .facebook
+        } else {
+            CoreUser.user?.userType = .backendlessOnly
+        }
         DispatchQueue.main.async {
             AppDelegate.coreDataStack.saveContext(completion: nil)
         }
     }
     
     static func loginWithFacebookSDK(viewController: UIViewController) {
-        guard let facebookLoginController = viewController as? FacebookLoginController else { return }
         let loginManager = FBSDKLoginManager()
         loginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: viewController) { (result, error) in
             let token = FBSDKAccessToken.current()
             if token == nil {
-                print(error)
+                print(error ?? "Facebook token error")
                 return
             }
             backendless?.userService.login(withFacebookSDK: token, fieldsMapping: fieldsMapping, response: { (user) in
                 mapBackendlessToCoreUser()
-                viewController.dismiss(animated: true, completion: nil)
-                facebookLoginController.facebookLoginSucceed()
+                viewController.dismiss(animated: false, completion: nil)
             }, error: { (fault) in
+                guard let fault = fault else { return }
                 print("Server reported an error: \(fault)")
-                facebookLoginController.facebookLoginFailed()
             })
         }
     }
     
-    static func loginWith(email: String, password: String, completion: () -> ()) {
-        backendless?.userService.login(email, password: password, response: { (user) in
-            print(user)
-        }, error: { (fault) in
-            print("Server reported an error: \(fault)")
+    static func createAccount(account: CreateAccount,  completion: @escaping (Bool) -> ()) {
+        let user = BackendlessUser()
+        user.setProperty("firstName", object: account.firstName)
+        user.setProperty("lastName", object: account.lastName)
+        user.email = account.email as NSString
+        user.password = account.password as NSString
 
+        backendless?.userService.registering(user, response: { (user) in
+            loginWith(email: account.email, password: account.password, completion: { (complete) in
+                completion(true)
+            })
+        }, error: { (fault) in
+            completion(false)
+            print("Server reported an error: \(fault!)")
+        })
+    }
+    
+    static func loginWith(email: String, password: String, completion: @escaping (Bool) -> ()) {
+
+        backendless?.userService.login(email, password: password, response: { (user) in
+            mapBackendlessToCoreUser()
+            completion(true)
+        }, error: { (fault) in
+            guard let fault = fault else { return }
+            print("Server reported an error: \(fault)")
+            completion(false)
         })
     }
     
@@ -140,4 +155,10 @@ class UserManager {
     
 }
 
+struct CreateAccount {
+    let firstName: String
+    let lastName: String
+    let email: String
+    let password: String
+}
 

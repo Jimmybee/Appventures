@@ -77,7 +77,11 @@ class LocalTableViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        let managedObjectContext = AppDelegate.coreDataStack.persistentContainer.viewContext
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(managedObjectContextDidSave), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext)
+
         ImageCache.default.clearDiskCache()
         ImageCache.default.clearMemoryCache()
 
@@ -201,10 +205,6 @@ class LocalTableViewController: BaseViewController {
                     }
                 }
             }
-        }
-        
-        if let lvc = segue.destination as? LoginViewController {
-            lvc.delegate = self
         }
     }
     
@@ -394,17 +394,35 @@ extension LocalTableViewController {
     
 }
 
-// MARK: - LoginViewController Delegate
+// MARK: - managedObjectContextDidSave
 
-extension LocalTableViewController : LoginViewControllerDelegate {
-    func loginSucceed() {
-        getBackendlessAppventure()
-        createController()
-        print("login succeed")
-    }
-    
-    func loginFailed() {
-        print("failed login")
+extension LocalTableViewController  {
+    func managedObjectContextDidSave(notification: NSNotification) {
+
+        guard let userInfo = notification.userInfo else { return }
+        if let inserts = userInfo[NSInsertedObjectsKey] as? Set<NSManagedObject>, inserts.count > 0 {
+            if let user = inserts.first as? CoreUser {
+                getBackendlessAppventure()
+                createController()
+            }
+            print("--- INSERTS ---")
+            print(inserts)
+            print("+++++++++++++++")
+        }
+        
+        if let updates = userInfo[NSUpdatedObjectsKey] as? Set<NSManagedObject> , updates.count > 0 {
+            print("--- UPDATES ---")
+            for update in updates {
+                print(update.changedValues())
+            }
+            print("+++++++++++++++")
+        }
+        
+        if let deletes = userInfo[NSDeletedObjectsKey] as? Set<NSManagedObject> , deletes.count > 0 {
+            print("--- DELETES ---")
+            print(deletes)
+            print("+++++++++++++++")
+        }
     }
 }
 

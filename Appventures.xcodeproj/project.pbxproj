@@ -192,8 +192,6 @@
 		66DDE5F01EBF285200A3911E /* TextClueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextClueViewController.swift; sourceTree = "<group>"; };
 		66DDE5F11EBF285200A3911E /* TimePenaltyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePenaltyViewController.swift; sourceTree = "<group>"; };
 		66DDE5F21EBF285200A3911E /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		66DDE5F31EBF285200A3911E /* UserSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignInViewController.swift; sourceTree = "<group>"; };
-		66DDE5F41EBF285200A3911E /* UserSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSummaryViewController.swift; sourceTree = "<group>"; };
 		66DDE6241EBF28A300A3911E /* ImageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageController.storyboard; sourceTree = "<group>"; };
 		66DDE6251EBF28A300A3911E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		66DDE6261EBF28A300A3911E /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -778,10 +776,8 @@
 			children = (
 				66DDE5E71EBF285200A3911E /* ProfileWrapperViewController.swift */,
 				66DDE5EA1EBF285200A3911E /* SettingsViewController.swift */,
-				6602486A1EC75B83003E320A /* instructions */,
 				66DDE5C31EBF27DF00A3911E /* ProfileHeaderViewController.swift */,
-				66DDE5F41EBF285200A3911E /* UserSummaryViewController.swift */,
-				66DDE5F31EBF285200A3911E /* UserSignInViewController.swift */,
+				6602486A1EC75B83003E320A /* instructions */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
