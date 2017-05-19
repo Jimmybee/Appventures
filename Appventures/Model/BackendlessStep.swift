@@ -15,6 +15,8 @@ class BackendlessStep : NSObject {
     
     public var ownerId: String?
     public var objectId: String?
+    public var imageUrl: String?
+    public var soundUrl: String?
     public var stepNumber: Int16 = 0
     public var nameOrLocation: String?
     public var initialText: String?
@@ -34,6 +36,8 @@ class BackendlessStep : NSObject {
     init(step: AppventureStep) {
         self.ownerId = CoreUser.user?.backendlessId
         self.objectId = step.backendlessId
+        self.imageUrl = step.imageUrl
+        self.soundUrl = step.soundUrl
         self.stepNumber = step.stepNumber
         self.nameOrLocation = step.nameOrLocation
         self.setup = BackendlessSetup(setup: step.setup)

@@ -185,6 +185,8 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         //ImageView
         if let image = appventureStep.image {
             stepThumbnail.image = image
+        } else {
+            appventureStep.setImage(imageView: stepThumbnail)
         }
         
         //section2 - Answer

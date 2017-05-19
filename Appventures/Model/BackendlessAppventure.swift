@@ -87,7 +87,6 @@ class BackendlessAppventure: NSObject {
                 appventureWithId.image = appventure.image
                 let imageString = self.imageUrl(fromObjectId: appventureWithId.backendlessId!)
                 uploadImageAsync(url: imageString, image: appventureWithId.image, completion: { (imageUrl) in
-                    print("File has been uploaded. File URL is - \(String(describing: imageUrl))")
                     appventureWithId.imageUrl = imageUrl
                 })
             }
@@ -99,7 +98,6 @@ class BackendlessAppventure: NSObject {
                         step.image = oldStep.image
                         let imageString = self.imageUrl(fromObjectId: step.backendlessId!)
                         uploadImageAsync(url: imageString, image: step.image, completion: { (imageUrl) in
-                            print("File has been uploaded. File URL is - \(String(describing: imageUrl))")
                             step.imageUrl = imageUrl
                         })
                     }
@@ -111,12 +109,11 @@ class BackendlessAppventure: NSObject {
         })
         
         apiUploadGroup.notify(queue: .main) {
-            print("notified")
+            let backendlessAppventure = BackendlessAppventure(appventure: appventureWithId)
             backendlessAppventure.save(completion: { (fullySavedAppventure) in
                 CoreUser.user?.removeFromOwnedAppventures(appventure)
                 CoreUser.user?.addToOwnedAppventures(appventureWithId)
-                print("resaved")
-                //  AppDelegate.coreDataStack.saveContext(completion: nil)
+                AppDelegate.coreDataStack.saveContext(completion: nil)
                 completion()
             })
         }
@@ -125,12 +122,11 @@ class BackendlessAppventure: NSObject {
     }
     
     class func imageUrl(fromObjectId: String) -> String {
-        let filename = String(Date().timeIntervalSince1970 * 100)
+        let filename = String(Int(Date().timeIntervalSince1970 * 100))
         return "myfiles/\(fromObjectId)/\(filename).jpg"
     }
     
     class func uploadImageAsync(url: String?, image: UIImage?, completion: @escaping (String?) -> ()) {
-        print("\n============ Uploading files with the ASYNC API ============")
         guard  let image = image  else { return }
         
         let data = UIImagePNGRepresentation(image)
@@ -141,10 +137,8 @@ class BackendlessAppventure: NSObject {
             content: data,
             overwrite:true,
             response: { ( uploadedFile ) in
-                print("File has been uploaded. File URL is - \(String(describing: uploadedFile?.fileURL))")
                 completion(uploadedFile?.fileURL)
                 apiUploadGroup.leave()
-
         },
             error: { ( fault ) in
                 print("Server reported an error: \(String(describing: fault))")
@@ -159,7 +153,6 @@ class BackendlessAppventure: NSObject {
         var appventures = [Appventure]()
         let dataStore = Backendless.sharedInstance().data.of(BackendlessAppventure.ofClass())
         dataStore?.find(dataQuery, response: { (collection) in
-            print("Reponse")
             let page1 = collection!.getCurrentPage()
             for obj in page1! {
                 let backendlessAppventure = obj as! BackendlessAppventure

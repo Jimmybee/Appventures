@@ -29,6 +29,7 @@ extension AppventureStep {
     @NSManaged public var nameOrLocation: String?
     @NSManaged public var backendlessId: String?
     @NSManaged public var sound: Data?
+    @NSManaged public var soundUrl: String?
     @NSManaged public var stepNumber: Int16
     @NSManaged public var location: CLLocation?
     @NSManaged public var appventure: Appventure?

@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import Alamofire
+import Kingfisher
 
 public class AppventureStep: NSManagedObject {
     @nonobjc static var appventureStepsHc = "appventureStepsHc"
@@ -21,7 +22,7 @@ public class AppventureStep: NSManagedObject {
     
     var answerText: [String] {
         get {
-            return     Array(answers).map({ $0.answer ?? "" })
+            return     Array(answers).map({ $0.answer?.replacingOccurrences(of: " ", with: "") ?? "" })
         }
     }
 
@@ -30,6 +31,8 @@ public class AppventureStep: NSManagedObject {
     }
     
     var requiresImageSave = false
+    var requiresSoundSave = false
+
     
     /// init for creating a step
     convenience init (appventure: Appventure) {
@@ -54,6 +57,8 @@ public class AppventureStep: NSManagedObject {
         self.nameOrLocation = backendlessStep.nameOrLocation
         self.stepNumber = backendlessStep.stepNumber
         self.initialText = backendlessStep.initialText
+        self.imageUrl = backendlessStep.imageUrl
+        self.soundUrl = backendlessStep.soundUrl
         self.completionText = backendlessStep.completionText
         self.checkInProximity = backendlessStep.checkInProximity
         self.hintPenalty = backendlessStep.hintPenalty
@@ -74,7 +79,18 @@ public class AppventureStep: NSManagedObject {
     var saveImage = false
     
     var answerFormatHint = ""
-
+    
+    //MARK: Load Image
+    func setImage(imageView: UIImageView?) {
+        print(self.imageUrl)
+        guard let stringUrl = self.imageUrl else { return }
+        guard let url = URL(string: stringUrl) else { return }
+        
+        let resource = ImageResource(downloadURL: url)
+        imageView?.kf.setImage(with: resource, placeholder: nil, options: [.transition(.fade(0.2))], progressBlock: nil) { (image, error, type, url) in
+            self.image = image
+        }
+    }
     
     func loadImage(completion: @escaping () -> ()?) {
         guard let objectId = self.backendlessId else { return }
