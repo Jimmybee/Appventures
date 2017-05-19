@@ -86,20 +86,38 @@ class BackendlessAppventure: NSObject {
             if appventure.requiresImageSave {
                 appventureWithId.image = appventure.image
                 let imageString = self.imageUrl(fromObjectId: appventureWithId.backendlessId!)
-                uploadImageAsync(url: imageString, image: appventureWithId.image, completion: { (imageUrl) in
-                    appventureWithId.imageUrl = imageUrl
-                })
+                if  let image = appventureWithId.image   {
+                    let data = UIImagePNGRepresentation(image)
+                    uploadImageAsync(url: imageString, data: data, completion: { (imageUrl) in
+                        appventureWithId.imageUrl = imageUrl
+                    })
+                }
             }
-        
+            
             for (index, step) in appventureWithId.appventureSteps.enumerated() {
                 let oldStep = appventure.appventureSteps[index]
                 if oldStep.image != nil {
                     if appventure.appventureSteps[index].requiresImageSave {
                         step.image = oldStep.image
                         let imageString = self.imageUrl(fromObjectId: step.backendlessId!)
-                        uploadImageAsync(url: imageString, image: step.image, completion: { (imageUrl) in
-                            step.imageUrl = imageUrl
-                        })
+                        if  let image = step.image   {
+                            let data = UIImagePNGRepresentation(image)
+                            uploadImageAsync(url: imageString, data: data, completion: { (imageUrl) in
+                                step.imageUrl = imageUrl
+                            })
+                        }
+                    }
+                }
+                
+                if oldStep.sound != nil {
+                    if appventure.appventureSteps[index].requiresSoundSave {
+                        step.sound = oldStep.sound
+                        let soundString = self.soundUrl(fromObjectId: step.backendlessId!)
+                        if  let sound = step.sound   {
+                            uploadImageAsync(url: soundString, data: sound, completion: { (fileUrl) in
+                                step.soundUrl = fileUrl
+                            })
+                        }
                     }
                 }
             }
@@ -121,16 +139,17 @@ class BackendlessAppventure: NSObject {
         
     }
     
+    class func soundUrl(fromObjectId: String) -> String {
+        let filename = String(Int(Date().timeIntervalSince1970 * 100))
+        return "myfiles/\(fromObjectId)/\(filename).m4a"
+    }
+    
     class func imageUrl(fromObjectId: String) -> String {
         let filename = String(Int(Date().timeIntervalSince1970 * 100))
         return "myfiles/\(fromObjectId)/\(filename).jpg"
     }
     
-    class func uploadImageAsync(url: String?, image: UIImage?, completion: @escaping (String?) -> ()) {
-        guard  let image = image  else { return }
-        
-        let data = UIImagePNGRepresentation(image)
-
+    class func uploadImageAsync(url: String?, data: Data?, completion: @escaping (String?) -> ()) {
         apiUploadGroup.enter()
         BackendlessAppventure.backendless?.fileService.upload(
             url,

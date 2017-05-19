@@ -435,13 +435,7 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         }
     }
     
-    func startRecording() {
-        if !recorder.isRecording {
-            recorder.record()
-            startTimer()
-        }
-    }
-    
+
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
@@ -479,13 +473,25 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
 
     @IBAction func record(_ sender: UIButton) {
         if !recorder.isRecording {
-            startRecording()
+            recorder.record()
             startTimer()
         }
     }
     
     @IBAction func playSound(_ sender: UIButton) {
         if let soundData = soundDataCache as Data! {
+            if audioPlayer == nil {
+                do {
+                    audioPlayer = try AVAudioPlayer(data: soundData)
+                    totalLength = audioPlayer.duration
+                    totalLengthLabel.text = HelperFunctions.formatTime(totalLength, nano: false)
+                    audioPlayer.delegate = self
+                }
+                catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+            }
+            
             if !audioPlayer.isPlaying {
                 do {
                     self.audioPlayer = try AVAudioPlayer(data: soundData)

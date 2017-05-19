@@ -10,10 +10,8 @@
 
 import UIKit
 import Bolts
-//import Parse
 import FBSDKCoreKit
 import FBSDKLoginKit
-//import ParseFacebookUtilsV4
 import GooglePlaces
 import GoogleMaps
 import CoreData
@@ -61,6 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDhyHZPC_SW2khLb02QqQ57fF5Wj68tjGs")
         GMSPlacesClient.provideAPIKey("AIzaSyDhyHZPC_SW2khLb02QqQ57fF5Wj68tjGs")
         
+        UIApplication.shared.statusBarStyle = .lightContent
+
         return true
     }
     

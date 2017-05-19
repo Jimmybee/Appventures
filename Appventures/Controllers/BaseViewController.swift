@@ -27,6 +27,10 @@ class BaseViewController: UIViewController {
         return progressView
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
 }
 

@@ -15,7 +15,7 @@ import AVFoundation
 
 var centralDispatchGroup = DispatchGroup()
 
-class LoginViewController: UIViewController, PresentingViewController {
+class LoginViewController: BaseViewController, PresentingViewController {
     
     var player: AVPlayer?
     
