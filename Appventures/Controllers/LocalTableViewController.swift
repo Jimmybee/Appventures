@@ -13,7 +13,7 @@ import SwiftyJSON
 import Kingfisher
 
 
-class LocalTableViewController: BaseViewController {
+class LocalTableViewController: BaseViewController, ViewControllerHelpers {
     
     var fethcedAppventuresController: NSFetchedResultsController<Appventure>!
 
@@ -99,6 +99,7 @@ class LocalTableViewController: BaseViewController {
         animatedControl = AnimatedSegmentControl(bttns: [downloadedBttn, catalogueBttn], delegate: self)
         animatedControl.backgroundColor = .white
         animatedControl.selectedButton = 1
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -132,7 +133,7 @@ class LocalTableViewController: BaseViewController {
         self.view.addSubview(filterView)
         
         filterHeight = tableView.frame.size.height
-        filterWidth = tableView.frame.size.width
+        filterWidth = tableView.frame.size.width - 40 
         filterClosedY = tableView.frame.origin.y - filterHeight
         filterOpenY = tableView.frame.origin.y - 36
         filterX = tableView.frame.origin.x

@@ -13,6 +13,8 @@ class BaseViewController: UIViewController {
     
     var activityView = UIActivityIndicatorView()
     
+    var overlayView: UIView!
+    
     private(set) lazy var progressView: UIView = {
         let size = CGSize(width: 60, height: 60)
         let center = CGPoint(x: UIScreen.main.bounds.size.width / 2 - 30, y: UIScreen.main.bounds.size.height / 2 - 30)
@@ -29,6 +31,11 @@ class BaseViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func dismissSender(sender: UIView) {
+        overlayView.removeFromSuperview()
+        overlayView = nil
     }
     
     
@@ -48,4 +55,52 @@ extension BaseViewController {
         progressView.removeFromSuperview()
         UIApplication.shared.endIgnoringInteractionEvents()
     }
+    
+    
+}
+
+protocol ViewControllerHelpers {
+    
+}
+
+extension ViewControllerHelpers where Self: BaseViewController {
+    
+    func fullScreenTooltip() -> UIView  {
+        let size = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height + 30)
+        let origin = CGPoint(x:0, y: 0)
+        let progressView = UIView(frame: CGRect(origin: origin, size: size))
+        progressView.backgroundColor = UIColor.black
+        progressView.layer.opacity = 0.7
+        return progressView
+    }
+    
+    private func dismissGesture() -> UITapGestureRecognizer {
+        let gesture = UITapGestureRecognizer()
+        gesture.numberOfTapsRequired = 1
+        gesture.addTarget(self, action:  #selector(dismissSender))
+        return gesture
+    }
+    
+    private func toolTipLabel() -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
+    }
+    
+    func displayToolTip(message: String) {
+        overlayView = fullScreenTooltip()
+        UIApplication.shared.keyWindow?.addSubview(overlayView)
+        
+        let gesture = dismissGesture()
+        overlayView.addGestureRecognizer(gesture)
+        
+        let tooltip = toolTipLabel()
+        overlayView.addSubview(tooltip)
+        tooltip.text = message
+        tooltip.autoCenterInSuperview()
+    }
+    
+
 }

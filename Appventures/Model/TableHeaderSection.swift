@@ -8,16 +8,32 @@
 
 import UIKit
 
+protocol TableSectionHeaderDelegate: class {
+    func sectionHeaderBttnTapped(tag: Int)
+}
+
 
 //MARK: Table
 
-class TableSectionHeader: UITableViewHeaderFooterView {
+class TableSectionHeader: UITableViewCell {
     
+    static var cellIdentifierNibName = "TableHeaderSection"
+    
+    
+    @IBOutlet weak var filtersCollection: UICollectionView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+        
     @IBOutlet weak var sectionButton: UIButton!
-    
     @IBOutlet weak var sectionHeaderLabel: UILabel!
+    
+    weak var delegate: TableSectionHeaderDelegate!
+    
+    
     @IBAction func sectionButton(_ sender: UIButton) {
+        delegate.sectionHeaderBttnTapped(tag: sectionButton.tag)
     }
     
-
 }

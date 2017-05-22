@@ -8,77 +8,38 @@
 
 
 import Foundation
-//import Parse
 
 class FlaggedContent: NSObject {
     
-    static let appventureReviewsHC = "reviewsHC"
-    
-    struct parseCol {
-        static let pfClass = "FlaggedContent"
-        static let userFKID = "userID"
-        static let date = "date"
-        static let appventureFKID = "appventureFKID"
-        static let stepFKID = "stepFKID"
-        static let status = "status"
-    }
+    static let backendless = Backendless.sharedInstance()
+    static let dataStore = backendless?.persistenceService.of(Rating.ofClass())
     
     enum Status: Int {
-        case new = 1
-        case inDispute = 2
-        case resolved = 3
+        case New = 0, Review, Resolved
     }
     
-    var pfObjectID = ""
-    var appventureFKID = ""
-    var date = Date()
-    var stepFKID = ""
-    var status:Status = Status.new
+    var appventureFKID:String? = ""
+    var stepFKID:String? = ""
+    var feedback:String? = ""
+    private var status:Int? = 0
     
-    init(appventureFKID: String, stepFKID: String) {
-        self.appventureFKID = appventureFKID
-        self.stepFKID = stepFKID    
-    }
-    
-    init(object: AnyObject) {
-//        self.pfObjectID = object.objectId!
-//        self.appventureFKID = object.objectForKey(parseCol.appventureFKID) as! String
-//        self.stepFKID = object.objectForKey(parseCol.stepFKID) as! String
-//        self.date = object.objectForKey(parseCol.date) as! NSDate
-//        if let statusIs = object.objectForKey(parseCol.date) as? Int {
-//            self.status = Status(rawValue: statusIs)!
-//        }
+    var statusEnum: Status {
+        get {
+            guard let status = status else {return Status.New}
+            return Status(rawValue: status) ?? Status.New
+        }
+        set {
+            status = newValue.rawValue
+        }
     }
     
     func save(){
-//        if self.pfObjectID == "" {
-//            let saveObj = PFObject(className: parseCol.pfClass)
-//            saveObject(saveObj)
-//        } else {
-//            ParseFunc.getParseObject(self.pfObjectID, pfClass:  parseCol.pfClass, objFunc: saveObject)
-//        }
+        FlaggedContent.dataStore?.save(self, response: { (response) in
+            print("success")
+        }, error: { (error) in
+            print("error")
+        })
     }
-    
-    fileprivate func saveObject(_ save: AnyObject) {
-//        save[parseCol.appventureFKID] = self.appventureFKID
-//        save[parseCol.stepFKID] = self.stepFKID
-//        save[parseCol.date] = self.date
-//        save.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-//            if let error = error {
-//                let errorString = error.userInfo["error"] as? NSString
-//                print(errorString)
-//            } else {
-//                self.pfObjectID = save.objectId!
-//                print("contentFlagged")
-//            }
-//        }
-    }
-    
-//    class func loadFlaggedContent(_ appventureID: String, handler: ParseQueryHandler) {
-//        ParseFunc.parseQuery(parseCol.pfClass, location2D: nil, whereClause: appventureID, WhereKey: parseCol.appventureFKID, vcHandler: handler, handlerCase: appventureReviewsHC)
-//    }
-    
-    
 }
 
 

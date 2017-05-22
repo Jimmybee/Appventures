@@ -46,7 +46,7 @@ struct PlaceCache {
 }
 
 
-class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate
+class AddStepTableViewController: BaseTableViewController, UITextFieldDelegate, UITextViewDelegate, TableViewControllerHelpers
 {
     struct Constants {
         static let AddAnswer = "AddAnswer"
@@ -152,11 +152,30 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         
         initialUISetup()
         setupPickerView()
+        displayFullTip()
     }
     
     override func viewDidAppear(_ animated: Bool)  {
         updatePartUI()
         checkSaveButton()
+    }
+    
+    func displayFullTip() {
+        let defaults = UserDefaults.standard
+        let seenTip = defaults.bool(forKey: "StepScreenTip")
+        if !seenTip {
+            let fullTipTitle = "EDIT STEP"
+            let clueTip = "A step has a set of clues and possible location that will help the appventurer to find the answer or uncover the location."
+            let locationTip = "A step with a location can enable a compass and distance calculator to aide the appventurer."
+            let answerTip = "There are two options for an appventurer to complete a step. By checking in at the location or sending a text answer."
+            let lineBreak = "\n\n\n"
+            let fullTip = fullTipTitle + lineBreak + clueTip + lineBreak + locationTip + lineBreak + answerTip
+            
+            displayToolTip(message: fullTip)
+            defaults.set(false, forKey: "StepScreenTip")
+        }
+        
+
     }
     
     
@@ -385,128 +404,6 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
         return true
     }
     
-    //MARK: Add/Play Sound
-    
-    func recorderSetUp() {
-        
-        //init
-        let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
-        
-        //ask for permission
-        if (audioSession.responds(to: #selector(AVAudioSession.requestRecordPermission(_:)))) {
-            AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
-                if granted {
-                    print("granted")
-                    
-                    //set category and activate recorder session
-                    try! audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-                    try! audioSession.setActive(true)
-                    
-                    let audioFilename = self.getDocumentsDirectory().appendingPathComponent("recording.m4a")
-
-                    do {
-                       try  self.appventureStep.sound?.write(to: audioFilename)
-                    } catch {
-                        print("no sound")
-                    }
-                    
-                    let settings = [
-                        AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                        AVSampleRateKey: 12000,
-                        AVNumberOfChannelsKey: 1,
-                        AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-                    ]
-                    
-                    do {
-                        self.recorder = try AVAudioRecorder(url: audioFilename, settings: settings)
-                        self.recorder.delegate = self
-                        self.recorder.isMeteringEnabled = true
-                        self.recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
-                    } catch let error as NSError {
-                        self.recorder = nil
-                        print(error.localizedDescription)
-                    }
-                    
-                } else{
-                    print("not granted")
-                }
-            })
-            
-        }
-    }
-    
-
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
-    
-    @IBAction func stopSound(_ sender: AnyObject) {
-        
-        if recorder.isRecording == true {
-            recorder.stop()
-            totalLength = ms
-            let audioFilename = self.getDocumentsDirectory().appendingPathComponent("recording.m4a")
-            soundDataCache = try? Data(contentsOf: audioFilename)
-        }
-        
-        if audioPlayer != nil {
-            if audioPlayer.isPlaying == true  {
-                audioPlayer.stop()
-            }
-        }
-        
-        ms = 0
-        self.timer?.invalidate()
-        self.timer = nil
-
-        
-        checkSaveButton()
-    }
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        ms = 0
-        self.timer?.invalidate()
-        self.timer = nil
-    }
-
-    @IBAction func record(_ sender: UIButton) {
-        if !recorder.isRecording {
-            recorder.record()
-            startTimer()
-        }
-    }
-    
-    @IBAction func playSound(_ sender: UIButton) {
-        if let soundData = soundDataCache as Data! {
-            if audioPlayer == nil {
-                do {
-                    audioPlayer = try AVAudioPlayer(data: soundData)
-                    totalLength = audioPlayer.duration
-                    totalLengthLabel.text = HelperFunctions.formatTime(totalLength, nano: false)
-                    audioPlayer.delegate = self
-                }
-                catch let error as NSError {
-                    print(error.localizedDescription)
-                }
-            }
-            
-            if !audioPlayer.isPlaying {
-                do {
-                    self.audioPlayer = try AVAudioPlayer(data: soundData)
-                    self.audioPlayer.play()
-                    self.startTimer()
-                    self.audioPlayer.delegate = self
-                }
-                catch let error as NSError {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-        
-    }
-    
     //MARK: Timer
     
     func startTimer() {
@@ -596,6 +493,131 @@ class AddStepTableViewController: UITableViewController, UITextFieldDelegate, UI
     
 
 
+    
+}
+
+extension AddStepTableViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+    //MARK: Add/Play Sound
+    
+    func recorderSetUp() {
+        
+        //init
+        let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
+        
+        //ask for permission
+        if (audioSession.responds(to: #selector(AVAudioSession.requestRecordPermission(_:)))) {
+            AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
+                if granted {
+                    print("granted")
+                    
+                    //set category and activate recorder session
+                    try! audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+                    try! audioSession.setActive(true)
+                    
+                    let audioFilename = self.getDocumentsDirectory().appendingPathComponent("recording.m4a")
+                    
+                    do {
+                        try  self.appventureStep.sound?.write(to: audioFilename)
+                    } catch {
+                        print("no sound")
+                    }
+                    
+                    let settings = [
+                        AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                        AVSampleRateKey: 12000,
+                        AVNumberOfChannelsKey: 1,
+                        AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+                    ]
+                    
+                    do {
+                        self.recorder = try AVAudioRecorder(url: audioFilename, settings: settings)
+                        self.recorder.delegate = self
+                        self.recorder.isMeteringEnabled = true
+                        self.recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
+                    } catch let error as NSError {
+                        self.recorder = nil
+                        print(error.localizedDescription)
+                    }
+                    
+                } else{
+                    print("not granted")
+                }
+            })
+            
+        }
+    }
+    
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    @IBAction func stopSound(_ sender: AnyObject) {
+        
+        if recorder.isRecording == true {
+            recorder.stop()
+            totalLength = ms
+            let audioFilename = self.getDocumentsDirectory().appendingPathComponent("recording.m4a")
+            soundDataCache = try? Data(contentsOf: audioFilename)
+        }
+        
+        if audioPlayer != nil {
+            if audioPlayer.isPlaying == true  {
+                audioPlayer.stop()
+            }
+        }
+        
+        ms = 0
+        self.timer?.invalidate()
+        self.timer = nil
+        
+        
+        checkSaveButton()
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        ms = 0
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
+    @IBAction func record(_ sender: UIButton) {
+        if !recorder.isRecording {
+            recorder.record()
+            startTimer()
+        }
+    }
+    
+    @IBAction func playSound(_ sender: UIButton) {
+        if let soundData = soundDataCache as Data! {
+            if audioPlayer == nil {
+                do {
+                    audioPlayer = try AVAudioPlayer(data: soundData)
+                    totalLength = audioPlayer.duration
+                    totalLengthLabel.text = HelperFunctions.formatTime(totalLength, nano: false)
+                    audioPlayer.delegate = self
+                }
+                catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+            }
+            
+            if !audioPlayer.isPlaying {
+                do {
+                    self.audioPlayer = try AVAudioPlayer(data: soundData)
+                    self.audioPlayer.play()
+                    self.startTimer()
+                    self.audioPlayer.delegate = self
+                }
+                catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+    }
     
 }
 
@@ -735,10 +757,6 @@ extension AddStepTableViewController: UIPickerViewDelegate, UIPickerViewDataSour
         proximityLabel.text = proximity[row]
     }
 }
-    
-
-
-
 
 
 

@@ -103,6 +103,7 @@ class AppventureStartViewController: BaseViewController {
             startButton.setTitle("Play", for: UIControlState())
         } else {
             startButton.setTitle("Download", for: UIControlState())
+            navigationItem.rightBarButtonItem = nil
         }
     }
     

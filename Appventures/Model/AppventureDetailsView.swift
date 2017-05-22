@@ -72,12 +72,14 @@ class AppventureDetailsView: UIView, UIScrollViewDelegate{
         if let themeOne = appventure.themeOne,
             let filterOne = Filter(rawValue: themeOne) {
             themeOneImage.image = filterOne.image
+            themeOneImage.alpha = 1
         } else {
             themeOneImage.alpha = 0
         }
         if let themeTwo = appventure.themeTwo,
             let filterTwo = Filter(rawValue: themeTwo) {
             themeTwoImage.image = filterTwo.image
+            themeTwoImage.alpha = 1
         } else {
             themeTwoImage.alpha = 0
         }

@@ -12,6 +12,7 @@ import UIKit
 class BaseTableViewController: UITableViewController {
     
     var activityView = UIActivityIndicatorView()
+    var overlayView: UIView!
 
     private(set) lazy var progressView: UIView = {
         let size = CGSize(width: 60, height: 60)
@@ -31,6 +32,11 @@ class BaseTableViewController: UITableViewController {
         return .lightContent
     }
     
+    func dismissSender(sender: UIView) {
+        overlayView.removeFromSuperview()
+        overlayView = nil
+    }
+    
 }
 
 extension BaseTableViewController {
@@ -48,3 +54,53 @@ extension BaseTableViewController {
         UIApplication.shared.endIgnoringInteractionEvents()
     }
 }
+
+protocol TableViewControllerHelpers {
+    
+}
+
+extension TableViewControllerHelpers where Self: BaseTableViewController {
+    
+    func fullScreenTooltip() -> UIView  {
+        let size = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height + 30)
+        let origin = CGPoint(x:0, y: 0)
+        let progressView = UIView(frame: CGRect(origin: origin, size: size))
+        progressView.backgroundColor = UIColor.black
+        progressView.layer.opacity = 0.85
+        return progressView
+    }
+    
+    private func dismissGesture() -> UITapGestureRecognizer {
+        let gesture = UITapGestureRecognizer()
+        gesture.numberOfTapsRequired = 1
+        gesture.addTarget(self, action:  #selector(dismissSender))
+        return gesture
+    }
+    
+    private func toolTipLabel() -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
+    }
+    
+    func displayToolTip(message: String) {
+        overlayView = fullScreenTooltip()
+        UIApplication.shared.keyWindow?.addSubview(overlayView)
+        
+        let gesture = dismissGesture()
+        overlayView.addGestureRecognizer(gesture)
+        
+        let tooltip = toolTipLabel()
+        overlayView.addSubview(tooltip)
+        tooltip.text = message
+        tooltip.autoAlignAxis(toSuperviewAxis: .vertical)
+        tooltip.autoPinEdge(.top, to: .top, of: overlayView, withOffset: 60)
+        tooltip.autoMatch(.width, to: .width, of: overlayView, withMultiplier: 0.8)
+    }
+    
+    
+}
+
+

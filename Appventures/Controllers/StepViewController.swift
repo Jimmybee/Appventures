@@ -128,6 +128,10 @@ class StepViewController: UIViewController {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+    
 }
 
 //MARK: Constraints & Setup of views
@@ -323,10 +327,14 @@ extension StepViewController {
     
     
     func flagContent() {
-        let stepIs = self.step
-        let stepID = stepIs?.backendlessId
-        let flaggedContent = FlaggedContent(appventureFKID: self.appventure.backendlessId!, stepFKID: stepID!)
+        let flaggedContent = FlaggedContent()
+        flaggedContent.appventureFKID = self.appventure.backendlessId
+        flaggedContent.stepFKID = self.step.backendlessId
         flaggedContent.save()
+        let alert = UIAlertController(title: nil, message: "Your feedback has been recorded", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+
     }
     
     @IBAction func revealHint(_ sender: UIButton) {

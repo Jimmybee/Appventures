@@ -40,14 +40,13 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     
     @IBOutlet weak var tags: UILabel!
     
-    let imageViewIndex = IndexPath(row: 0, section: 1)
-    let pickLocationCell = IndexPath(row:1, section: 4)
-    let descriptionTextIndex = IndexPath(row:0, section: 3)
-    let duationLabelIndex = IndexPath(row: 0, section: 5)
-    let durationPickerIndex = IndexPath(row: 1, section: 5)
-    let startTimeIndex = IndexPath(row:0, section: 6)
-    let endTimeIndex = IndexPath(row: 1, section: 6)
-    let restrictionTimePickerIndex = IndexPath(row: 2, section: 6)
+    let pickLocationCell = IndexPath(row:1, section: EditAppventureSections.startingLocation.rawValue)
+    let descriptionTextIndex = IndexPath(row:0, section: EditAppventureSections.description.rawValue)
+    let duationLabelIndex = IndexPath(row: 0, section: EditAppventureSections.duration.rawValue)
+    let durationPickerIndex = IndexPath(row: 1, section: EditAppventureSections.duration.rawValue)
+    let startTimeIndex = IndexPath(row:0, section: EditAppventureSections.timeRestrictions.rawValue)
+    let endTimeIndex = IndexPath(row: 1, section: EditAppventureSections.timeRestrictions.rawValue)
+    let restrictionTimePickerIndex = IndexPath(row: 2, section: EditAppventureSections.timeRestrictions.rawValue)
 
     var placeCache: PlaceCache?
     
@@ -58,7 +57,13 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if appventure != nil { updateUI() }
+        if appventure != nil { updateUI() } else { appventure = Appventure()}
+        let nib = UINib(nibName: TableSectionHeader.cellIdentifierNibName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: TableSectionHeader.cellIdentifierNibName)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -125,7 +130,10 @@ class EditAppventureDetailsTableViewController: UITableViewController {
         AppDelegate.coreDataStack.saveContext(completion: nil)
     }
     
+    
+    
     @IBAction func durationPickerChanged(_ sender: UIDatePicker) {
+        print("Changed")
         appventure?.duration = sender.date.asTimeSecondsComponent()
         durationLabel.text = appventure!.duration.secondsComponentToLongTimeString()
     }
@@ -140,6 +148,7 @@ class EditAppventureDetailsTableViewController: UITableViewController {
     }
     
 }
+
 
 //MARK: - Navigation 
 
@@ -219,15 +228,30 @@ extension EditAppventureDetailsTableViewController {
         view.addSubview(label)
         view.addSubview(button)
         
-        label.text = "Test"
+        let editSection = EditAppventureSections(rawValue: section)
+        
+        label.text = editSection?.sectionTitle
+        
         label.autoPinEdge(toSuperviewMargin: .leading)
         label.autoAlignAxis(toSuperviewAxis: .horizontal)
         
+        button.autoPinEdge(.leading, to: .trailing, of: label, withOffset: 12)
         button.setImage(ImageNames.Common.info, for: .normal)
         button.autoAlignAxis(toSuperviewAxis: .horizontal)
-        button.autoPinEdge(toSuperviewMargin: .trailing)
+        button.autoSetDimension(.width, toSize: 22)
+        button.autoSetDimension(.height, toSize: 22)
         
+        button.tag = section
+        button.addTarget(self, action: #selector(sectionHeaderTapped), for: .touchUpInside)
         return view
+    }
+    
+    func sectionHeaderTapped(sender: UIButton) {
+        guard let editSection = EditAppventureSections(rawValue: sender.tag) else { return }
+        let alert = UIAlertController(title: "Help", message: editSection.toolTip, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -266,33 +290,30 @@ extension EditAppventureDetailsTableViewController {
             tableView.scrollToRow(at: durationPickerIndex, at: .bottom, animated: true)
         }
         
-        if indexPath.section == 1 {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Take Image", style: UIAlertActionStyle.default, handler: { action in
-                HelperFunctions.getImage(true, delegate: self, presenter: self)
-                
-            }))
-            alert.addAction(UIAlertAction(title: "Pick From Library", style: UIAlertActionStyle.default, handler: { action in
-                HelperFunctions.getImage(false, delegate: self, presenter: self)
-                
-            }))
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            UIView.animate(withDuration: 0.6, animations: {
-                self.navigationController?.view.layoutIfNeeded()
-            })
+        UIView.animate(withDuration: 0.6, animations: {
+            self.navigationController?.view.layoutIfNeeded()
+        })
+    }
+    
+    @IBAction func openImagePickerAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Take Image", style: UIAlertActionStyle.default, handler: { action in
+            HelperFunctions.getImage(true, delegate: self, presenter: self)
             
-        }
-
+        }))
+        alert.addAction(UIAlertAction(title: "Pick From Library", style: UIAlertActionStyle.default, handler: { action in
+            HelperFunctions.getImage(false, delegate: self, presenter: self)
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+    
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height:CGFloat = 44
         
         switch indexPath {
-        case imageViewIndex:
-            height = 218
         case descriptionTextIndex:
             height = 180
         case durationPickerIndex:
@@ -320,8 +341,10 @@ extension EditAppventureDetailsTableViewController {
        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        if edittingStartTime { restrictionsPicker.date = dateFormatter.date(from: appventure!.startTime!)! }
-        if edittingEndTime { restrictionsPicker.date = dateFormatter.date(from: appventure!.endTime!)! }
+        let start = appventure?.startTime ?? "09:00"
+        let end = appventure?.endTime ?? "20:00"
+        if edittingStartTime { restrictionsPicker.date = dateFormatter.date(from: start) ?? Date()}
+        if edittingEndTime { restrictionsPicker.date = dateFormatter.date(from: end) ?? Date()}
 
         durationLabel.textColor = edittingDuration ? UIColor.blue : UIColor.black
         startTimeLabel.textColor = edittingStartTime ? UIColor.blue : UIColor.black
@@ -366,7 +389,52 @@ extension EditAppventureDetailsTableViewController {
     
 }
 
+extension EditAppventureDetailsTableViewController: TableSectionHeaderDelegate {
+    func sectionHeaderBttnTapped(tag: Int) {
+        guard let editSection = EditAppventureSections(rawValue: tag) else { return }
+        let alert = UIAlertController(title: "Help", message: editSection.toolTip, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
 
+enum EditAppventureSections: Int {
+    case tagline = 0, themes, description, startingLocation, duration, timeRestrictions
+    
+    var sectionTitle: String {
+        switch self {
+        case .tagline:
+            return "Tagline"
+        case .themes:
+            return "Themes"
+        case .description:
+            return "Description"
+        case .startingLocation:
+            return "Starting Location"
+        case .duration:
+            return "Duration"
+        case .timeRestrictions:
+            return "Time Restrictions"
+        }
+    }
+    
+    var toolTip: String {
+        switch self {
+        case .tagline:
+            return "A few words to highlight what the appventure is."
+        case .themes:
+            return "Choose up to two themes to help people discover your appventure."
+        case .description:
+            return "The detail of what the appventure involves."
+        case .startingLocation:
+            return "Choose the the starting location on the map and give it a name."
+        case .duration:
+            return "An estimate of the length of time to complete the appventure."
+        case .timeRestrictions:
+            return "Any time restrictions that will stop someone from completing the appventure."
+        }
+    }
+}
 
 
 
