@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import GoogleMaps
 
-class CreateAppventureViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateAppventureViewController: BaseViewController {
     
     struct Constants {
         static let cellName = "StepCell"
@@ -251,9 +251,9 @@ class CreateAppventureViewController: BaseViewController, UITextFieldDelegate, U
     
     func goodForLive() -> String {
         var message = [String]()
-        if self.newAppventure.startingLocationName!.characters.count == 0 { message.append("Starting Location") }
+        if !CLLocationCoordinate2DIsValid(newAppventure.location.coordinate) { message.append("Pick Location")  }
         if self.newAppventure.subtitle!.characters.count == 0 { message.append("Description") }
-        if self.newAppventure.title!.characters.count == 0 { message.append("Name") }
+        if self.newAppventure.title!.characters.count == 0 { message.append("Tagline") }
         if self.newAppventure.appventureSteps.count == 0 { message.append("Steps") }
         let fullMessage = message.joined(separator: ", ")
         return fullMessage
@@ -493,15 +493,27 @@ extension CreateAppventureViewController : AppventureDetailsViewDelegate {
     }
     
     func rightBttnPressed(sender: UIButton) {
+        let message = goodForLive()
+        message == "" ? save() : alertNotComplete(message)
+        
+    }
+    
+    func save() {
         self.showProgressView()
         BackendlessAppventure.save(appventure: newAppventure) {
             self.hideProgressView()
             DispatchQueue.main.async {
                 AppDelegate.coreDataStack.saveContext(completion: nil)
             }
-
+            
             UIAlertController.showAlertToast("Saved")
         }
+    }
+    
+    func alertNotComplete(_ message: String) {
+        let alert = UIAlertController(title: "Save", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -510,15 +522,6 @@ extension CreateAppventureViewController : AddStepTableViewControllerDelegate {
     func updateAppventureLocation(_ location: CLLocation) {
 
     }
-}
-
-extension CreateAppventureViewController  {
-    
-    func handleQueryResults(_: [AnyObject]?, handlerCase: String?) {
-//        self.newAppventure.downloadAndSaveToCoreData(downloadComplete)
-    }
-    
-
 }
 
 //MARK: Map Location & Map Drawing
@@ -541,8 +544,9 @@ extension CreateAppventureViewController: CLLocationManagerDelegate {
             self.mapMarkers.removeAll()
             for step in isAppventure.appventureSteps {
                 let marker = GMSMarker(position: step.location!.coordinate)
-                marker.title = ("\(step.stepNumber): \(step.nameOrLocation)")
-                marker.snippet = step.locationSubtitle
+                guard  let nameOrLocation = step.nameOrLocation else { return }
+                marker.title = ("\(step.stepNumber): \(nameOrLocation)")
+//                marker.snippet = step.locationSubtitle 
                 marker.map = self.mapView
                 mapMarkers.append(marker)
                 
@@ -587,11 +591,11 @@ extension CreateAppventureViewController: CLLocationManagerDelegate {
 
 }
 
-//MARK: = EditAppventureDetailsTableViewControllerDelegate
+//MARK: - EditAppventureDetailsTableViewControllerDelegate
 
 extension CreateAppventureViewController: EditAppventureDetailsTableViewControllerDelegate{
     func appventureRolledBack() {
-        if self.newAppventure.title == "" {
+        if self.newAppventure.title == nil {
             _ = navigationController?.popViewController(animated: false)
         }
     }
@@ -618,6 +622,7 @@ extension CreateAppventureViewController: AnimatedSegmentControlDelegate {
         }
     }
 }
+
 
 
 

@@ -33,7 +33,6 @@ class UserManager {
     /// Load latest coredata user. Check if core
     static func setupUser(completion: @escaping () -> ()) {
         let context = AppDelegate.coreDataStack.persistentContainer.viewContext
-
         let backendless = Backendless.sharedInstance()
         if backendless?.userService.currentUser == nil {
             CoreUser.user = CoreUser(context: context)
@@ -43,6 +42,36 @@ class UserManager {
             return
         }
         
+        restoreCoreUser()
+        
+        backendless?.userService.isValidUserToken({ (valid) in
+            if FBSDKAccessToken.current() == nil {
+//                CoreUser.user?.userType = .backendlessOnly
+            } else {
+                
+//                CoreUser.user?.userType = .facebook
+            }
+            completion()
+            return
+        }, error: { (fault) in
+            print(fault)
+            switch fault?.faultCode {
+            case "-1009"?:
+                completion()
+                return
+            default:
+                _ =  backendless?.userService.logout()
+                CoreUser.user?.userType = .noLogin
+                completion()
+                return
+            }
+        })
+        
+    }
+    
+    static func restoreCoreUser() {
+        let context = AppDelegate.coreDataStack.persistentContainer.viewContext
+
         do {
             let fetchRequest: NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
             let users = try context.fetch(fetchRequest)
@@ -60,25 +89,6 @@ class UserManager {
             CoreUser.user = CoreUser(context: context)
             AppDelegate.coreDataStack.saveContext(completion: nil)
         }
-        
-        
-        backendless?.userService.isValidUserToken({ (valid) in
-            if FBSDKAccessToken.current() == nil {
-//                CoreUser.user?.userType = .backendlessOnly
-            } else {
-                
-//                CoreUser.user?.userType = .facebook
-            }
-            completion()
-            return
-        }, error: { (fault) in
-            print(fault!)
-            _ =  backendless?.userService.logout()
-            CoreUser.user?.userType = .noLogin
-            completion()
-            return
-        })
-        
     }
     
     static func mapBackendlessToCoreUser() {
@@ -148,7 +158,7 @@ class UserManager {
     }
     
     static func logout() {
-        backendless!.userService.logout()
+        backendless?.userService.logout()
         let loginManager = FBSDKLoginManager()
         loginManager.logOut()
     }

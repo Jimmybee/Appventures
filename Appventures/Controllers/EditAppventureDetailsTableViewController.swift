@@ -248,7 +248,7 @@ extension EditAppventureDetailsTableViewController {
     
     func sectionHeaderTapped(sender: UIButton) {
         guard let editSection = EditAppventureSections(rawValue: sender.tag) else { return }
-        let alert = UIAlertController(title: "Help", message: editSection.toolTip, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title:  editSection.sectionTitle, message: editSection.toolTip, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
@@ -386,17 +386,8 @@ extension EditAppventureDetailsTableViewController {
         })
     }
     
-    
 }
 
-extension EditAppventureDetailsTableViewController: TableSectionHeaderDelegate {
-    func sectionHeaderBttnTapped(tag: Int) {
-        guard let editSection = EditAppventureSections(rawValue: tag) else { return }
-        let alert = UIAlertController(title: "Help", message: editSection.toolTip, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-}
 
 enum EditAppventureSections: Int {
     case tagline = 0, themes, description, startingLocation, duration, timeRestrictions
@@ -421,7 +412,7 @@ enum EditAppventureSections: Int {
     var toolTip: String {
         switch self {
         case .tagline:
-            return "A few words to highlight what the appventure is."
+            return "A few words that described the appventure."
         case .themes:
             return "Choose up to two themes to help people discover your appventure."
         case .description:

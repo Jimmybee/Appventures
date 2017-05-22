@@ -202,10 +202,10 @@ class MakerHomeViewController: BaseTableViewController {
     
     func deleteAppventureFromDB (_ indexPath: IndexPath) {
         let appventure = fethcedAppventuresController.object(at: indexPath)
-        guard  let backendlessId = appventure.backendlessId else { return }
-        BackendlessAppventure.removeBy(id: backendlessId)
         AppDelegate.coreDataStack.delete(object: appventure, completion: nil)
-        tableView.reloadData()
+        if let backendlessId = appventure.backendlessId {
+            BackendlessAppventure.removeBy(id: backendlessId)
+        }
     }
     
 }

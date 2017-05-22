@@ -77,7 +77,7 @@ class AppventureStartViewController: BaseViewController {
 //        AppventureReviews.loadAppventuresReviews(appventure.pFObjectID!, handler: self)
         HelperFunctions.hideTabBar(self)
         tableView.register(UINib(nibName: CompletedAppventureTableViewCell.cellIdentifierNibName, bundle: nil), forCellReuseIdentifier: CompletedAppventureTableViewCell.cellIdentifierNibName)
-        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.rowHeight = UITableViewAutomaticDimension
         
         detailsView.addSubview(detailsSubView)
@@ -268,6 +268,15 @@ extension AppventureStartViewController : UITableViewDataSource, UITableViewDele
         }
         
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }
 
