@@ -16,7 +16,6 @@ import Kingfisher
 class LocalTableViewController: BaseViewController, ViewControllerHelpers {
     
     var fethcedAppventuresController: NSFetchedResultsController<Appventure>!
-
     
     var publicAppventuresMessage = "There are no adventures available on our servers at the moment."
     var friendsAppventuresMessage = "There are no adventures that your friends have shared with you."
@@ -105,6 +104,8 @@ class LocalTableViewController: BaseViewController, ViewControllerHelpers {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         HelperFunctions.unhideTabBar(self)
+
+        print(reachability.isConnectedToNetwork)
         do {
             try fethcedAppventuresController?.performFetch()
         } catch {
@@ -133,7 +134,7 @@ class LocalTableViewController: BaseViewController, ViewControllerHelpers {
         self.view.addSubview(filterView)
         
         filterHeight = tableView.frame.size.height
-        filterWidth = tableView.frame.size.width - 40 
+        filterWidth = tableView.frame.size.width
         filterClosedY = tableView.frame.origin.y - filterHeight
         filterOpenY = tableView.frame.origin.y - 36
         filterX = tableView.frame.origin.x
@@ -403,8 +404,8 @@ extension LocalTableViewController  {
         guard let userInfo = notification.userInfo else { return }
         if let inserts = userInfo[NSInsertedObjectsKey] as? Set<NSManagedObject>, inserts.count > 0 {
             if let user = inserts.first as? CoreUser {
-                getBackendlessAppventure()
                 createController()
+                getBackendlessAppventure()
             }
             print("--- INSERTS ---")
             print(inserts)

@@ -18,6 +18,7 @@ pod 'SwiftyJSON'
 pod 'PureLayout'
 pod 'Hero'
 pod 'Kingfisher', '~> 3.0'
+pod 'ReachabilitySwift', '~> 3'
 
 end
 

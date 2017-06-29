@@ -166,7 +166,7 @@ extension StepViewController {
     //MARK: Setup
     
     func setupSubmitBttn() {
-        if step.setup.checkIn == true {
+        if step.setup.stepType == .checkIn {
             submitBttn.setImage(UIImage(named: ImageNames.VcStep.checkIn), for: .normal)
             submitBttn.addTarget(self, action: #selector(checkInPressed), for: .touchUpInside)
         } else {
@@ -489,8 +489,9 @@ extension StepViewController {
     func submitConfirmed(alert: UIAlertAction!) {
         var submission = submitTextField.text!
         submission = submission.replacingOccurrences(of: " ", with: "").lowercased()
-        
-        if step.answerText.contains(submission) {
+        let acceptableAnswers = step.answerText.map({$0.replacingOccurrences(of: " ", with: "").lowercased()})
+        acceptableAnswers.forEach({print($0)})
+        if acceptableAnswers.contains(submission) {
             stepComplete()
         } else {
             print("display dialog incorrect")

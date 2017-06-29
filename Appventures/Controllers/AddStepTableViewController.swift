@@ -230,7 +230,7 @@ class AddStepTableViewController: BaseTableViewController, UITextFieldDelegate, 
         intialTextSwitch.isOn = appventureStep.setup.textClue
         
         //section2: - Answers
-        checkInControl.selectedSegmentIndex = appventureStep.setup.checkIn ? 0 : 1
+        checkInControl.selectedSegmentIndex = Int(appventureStep.setup.stepType.rawValue)
         
         //SoundView
         if let soundData = soundDataCache {
@@ -328,7 +328,7 @@ class AddStepTableViewController: BaseTableViewController, UITextFieldDelegate, 
     }
     
     func updateStep() {
-        appventureStep.setup.checkIn = checkInControl.selectedSegmentIndex == 0 ? true : false
+        appventureStep.setup.stepTypeRaw = Int16(checkInControl.selectedSegmentIndex)
 
         appventureStep.setup.isLocation = locationSwitch.isOn
         appventureStep.setup.soundClue = soundSwitch.isOn
@@ -666,7 +666,7 @@ extension AddStepTableViewController {
         case soundPath:
             self.soundSwitch.isOn ? (float = 88.0) : (float = 0.0 )
         case textAnswerArray:
-            self.checkInControl.selectedSegmentIndex == 1 ? (float = 44) : (float = 0.0 )
+            self.checkInControl.selectedSegmentIndex == 0 ? (float = 0) : (float = 44 )
         case checkInLocation:
             self.checkInControl.selectedSegmentIndex == 0 ? (float = 44) : (float = 0.0 )
         case checkInDistance:

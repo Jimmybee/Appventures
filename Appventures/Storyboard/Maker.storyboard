@@ -1375,6 +1375,7 @@
                                                     <segments>
                                                         <segment title="" image="vc_create_check_in"/>
                                                         <segment title="" image="vc_create_pencil_highlight"/>
+                                                        <segment title="" image="vc_create_multiple_choice"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.56862745100000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
@@ -2365,6 +2366,7 @@
         <image name="vc_create_compass" width="25" height="25"/>
         <image name="vc_create_flag" width="19" height="18"/>
         <image name="vc_create_location_on_map" width="24" height="25"/>
+        <image name="vc_create_multiple_choice" width="25" height="26"/>
         <image name="vc_create_pencil_highlight" width="26" height="24"/>
         <image name="vc_create_ruler" width="24" height="22"/>
         <image name="vc_step_camera_selected" width="36" height="26"/>

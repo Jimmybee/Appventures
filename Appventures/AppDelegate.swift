@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey("AIzaSyDhyHZPC_SW2khLb02QqQ57fF5Wj68tjGs")
         
         UIApplication.shared.statusBarStyle = .lightContent
-
+        
         return true
     }
     
@@ -81,8 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         FBSDKAppEvents.activateApp()
     }
-    
-    
+
     //--------------------------------------
     // MARK: Push Notifications
     //--------------------------------------

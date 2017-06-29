@@ -16,6 +16,7 @@
 		6619813E1ED051BB00B97E59 /* TableHeaderSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6619813D1ED051BB00B97E59 /* TableHeaderSection.xib */; };
 		661F99051EC336BE00878F8F /* SegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99041EC336BE00878F8F /* SegmentButton.swift */; };
 		661F99071EC33DAA00878F8F /* AnimatedSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */; };
+		66341F141EFEDDAA00AD3D2C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66341F131EFEDDAA00AD3D2C /* Reachability.swift */; };
 		667A51D71ECB276600BD7892 /* CompletedAppventureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A51D51ECB276600BD7892 /* CompletedAppventureTableViewCell.swift */; };
 		667A51D81ECB276600BD7892 /* CompletedAppventureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667A51D61ECB276600BD7892 /* CompletedAppventureTableViewCell.xib */; };
 		66DDE5B81EBF276D00A3911E /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */; };
@@ -142,6 +143,7 @@
 		6619813D1ED051BB00B97E59 /* TableHeaderSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TableHeaderSection.xib; path = ../Resources/TableHeaderSection.xib; sourceTree = "<group>"; };
 		661F99041EC336BE00878F8F /* SegmentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentButton.swift; sourceTree = "<group>"; };
 		661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSegmentControl.swift; path = ../AnimatedSegmentControl.swift; sourceTree = "<group>"; };
+		66341F131EFEDDAA00AD3D2C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		667A51D51ECB276600BD7892 /* CompletedAppventureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedAppventureTableViewCell.swift; sourceTree = "<group>"; };
 		667A51D61ECB276600BD7892 /* CompletedAppventureTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedAppventureTableViewCell.xib; sourceTree = "<group>"; };
 		66DDE5991EBF26AC00A3911E /* Appventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appventures.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -437,18 +439,18 @@
 		66DDE5B11EBF274700A3911E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				66DDE6DC1EBF37F500A3911E /* Base */,
 				66DDE6C81EBF34CE00A3911E /* CollectionCells */,
 				66DDE6D91EBF371C00A3911E /* CreateAppventures */,
 				66DDE6DA1EBF373D00A3911E /* CompleteAppventure */,
-				66DDE6DB1EBF376100A3911E /* ExploreAppventure */,
 				66DDE6D61EBF36C000A3911E /* DoAppventure */,
+				66DDE6DB1EBF376100A3911E /* ExploreAppventure */,
 				66DDE6DD1EBF381A00A3911E /* Share */,
 				66DDE6DE1EBF382300A3911E /* ImageFullScreen */,
 				66DDE6D71EBF36F000A3911E /* Login */,
 				66DDE6D81EBF36F500A3911E /* TabBar */,
 				66DDE6D51EBF36B100A3911E /* Profile */,
 				66DDE6DF1EBF382E00A3911E /* AnnotatedScreenshot */,
-				66DDE6DC1EBF37F500A3911E /* Base */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -465,6 +467,7 @@
 				66DDE6D01EBF357C00A3911E /* CoreData */,
 				66DDE6C61EBF34AE00A3911E /* UIExtensions */,
 				6602486B1EC86BCE003E320A /* ImageCacher.swift */,
+				66341F131EFEDDAA00AD3D2C /* Reachability.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -586,9 +589,9 @@
 		66DDE6C11EBF338800A3911E /* StepSetup */ = {
 			isa = PBXGroup;
 			children = (
-				66DDE64E1EBF291200A3911E /* BackendlessSetup.swift */,
 				66DDE6691EBF291200A3911E /* StepSetup+CoreDataClass.swift */,
 				66DDE66A1EBF291200A3911E /* StepSetup+CoreDataProperties.swift */,
+				66DDE64E1EBF291200A3911E /* BackendlessSetup.swift */,
 			);
 			name = StepSetup;
 			sourceTree = "<group>";
@@ -1073,6 +1076,7 @@
 				66DDE6761EBF291200A3911E /* AppventureRating.swift in Sources */,
 				66DDE60D1EBF285200A3911E /* LocationSettingsTableViewController.swift in Sources */,
 				66DDE5C61EBF27DF00A3911E /* ProfileHeaderViewController.swift in Sources */,
+				66341F141EFEDDAA00AD3D2C /* Reachability.swift in Sources */,
 				66DDE6051EBF285200A3911E /* EditAppventureDetailsTableViewController.swift in Sources */,
 				66DDE6791EBF291200A3911E /* AppventureStep+CoreDataClass.swift in Sources */,
 				66DDE60F1EBF285200A3911E /* MainTabBarController.swift in Sources */,

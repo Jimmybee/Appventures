@@ -185,7 +185,6 @@ extension AppventureStartViewController {
                 }
             }
             
-            
             self.apiDownloadGroup.notify(queue: .main, execute: {
                 self.hideProgressView()
                 AppDelegate.coreDataStack.saveContext(completion: nil)

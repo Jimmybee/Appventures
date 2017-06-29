@@ -12,6 +12,15 @@ import CoreData
 
 public class StepSetup: NSManagedObject {
     
+    var stepType: StepType {
+        get {
+            return StepType(rawValue: stepTypeRaw) ?? StepType.checkIn
+        }
+        set {
+            stepTypeRaw = newValue.rawValue
+        }
+    }
+    
     struct CoreKeys {
         static let entityName = "StepSetup"
     }
@@ -31,7 +40,7 @@ public class StepSetup: NSManagedObject {
         self.textClue = backendlesSetup.textClue
         self.soundClue = backendlesSetup.soundClue
         self.pictureClue = backendlesSetup.pictureClue
-        self.checkIn = backendlesSetup.checkIn
+        self.stepTypeRaw = backendlesSetup.stepTypeRaw
         self.isLocation  = backendlesSetup.isLocation
         self.locationShown = backendlesSetup.locationShown
         self.compassShown = backendlesSetup.compassShown
@@ -39,4 +48,20 @@ public class StepSetup: NSManagedObject {
 
     }
     
+}
+
+enum StepType: Int16 {
+    case checkIn, written, multipleChoice
+    
+    var image: UIImage? {
+        switch self {
+        case .checkIn:
+            return ImageNames.VcCreate.checkIn
+        case .written:
+            return ImageNames.VcCreate.pencilHighlight
+        case .multipleChoice:
+            return ImageNames.VcCreate.pencilHighlight
+
+        }
+    }
 }

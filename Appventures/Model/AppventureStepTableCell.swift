@@ -35,6 +35,8 @@ class AppventureStepTableCell: UITableViewCell {
     }
     
     func setupView() {
+        clueTypes.forEach({$0.removeFromSuperview()})
+        
         clueTypes.removeAll()
         let file = UIImage(named: ImageNames.VcStep.fileSelected)
         let camera = UIImage(named: ImageNames.VcStep.cameraSelected)
@@ -48,13 +50,13 @@ class AppventureStepTableCell: UITableViewCell {
         locationImage2.image = step.setup.compassShown ? ImageNames.VcCreate.compass : ImageNames.VcCreate.compassStrike
         locationImage3.image = step.setup.distanceShown ? ImageNames.VcCreate.ruler : ImageNames.VcCreate.rulerStrike
         locationPinImage.image = step.setup.isLocation ? ImageNames.Common.location : ImageNames.Common.locationStrike
-        answerTypeImage.image = step.setup.checkIn ? ImageNames.VcCreate.checkIn : ImageNames.VcCreate.pencilHighlight
+        answerTypeImage.image = step.setup.stepType.image
         
         stepNumberLabel.text = String(step.stepNumber)
         stepNameOrLocation.text =  step.setup.isLocation ? step.nameOrLocation : "No location"
         hintsCount.text = String(step.hints.count)
         
-        answersOrProximity.text = step.setup.checkIn ? proximityCheckIn(step.checkInProximity) : String(step.answers.count)
+        answersOrProximity.text = step.setup.stepType == .checkIn ? proximityCheckIn(step.checkInProximity) : String(step.answers.count)
         
         let locationImages = [locationImage1, locationImage2, locationImage3]
         

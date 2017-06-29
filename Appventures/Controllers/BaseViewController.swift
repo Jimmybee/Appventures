@@ -11,6 +11,16 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    private(set) lazy var reachability: Reachability = {
+        var new: Reachability!
+        do {
+            new = try Reachability()
+        } catch {
+            
+        }
+        return new!
+    }()
+
     var activityView = UIActivityIndicatorView()
     
     var overlayView: UIView!

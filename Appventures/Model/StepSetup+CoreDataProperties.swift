@@ -20,7 +20,7 @@ extension StepSetup {
     @NSManaged public var textClue: Bool
     @NSManaged public var soundClue: Bool
     @NSManaged public var pictureClue: Bool
-    @NSManaged public var checkIn: Bool
+    @NSManaged public var stepTypeRaw: Int16
     @NSManaged public var isLocation: Bool
     @NSManaged public var locationShown: Bool
     @NSManaged public var compassShown: Bool

@@ -13,13 +13,12 @@ class BackendlessSetup: NSObject {
      public var textClue: Bool = false
      public var soundClue: Bool = false
      public var pictureClue: Bool = false
-     public var checkIn: Bool = false
      public var isLocation: Bool = false
      public var locationShown: Bool = false
      public var compassShown: Bool = false
      public var distanceShown: Bool = false
      public var objectId: String!
-    
+     public var stepTypeRaw: Int16 = 0
     
     override init() {
         super.init()
@@ -30,10 +29,10 @@ class BackendlessSetup: NSObject {
         self.textClue = setup.textClue
         self.soundClue = setup.soundClue
         self.pictureClue = setup.pictureClue
-        self.checkIn = setup.checkIn
         self.isLocation  = setup.isLocation
         self.locationShown = setup.locationShown
         self.compassShown = setup.compassShown
         self.distanceShown = setup.distanceShown
+        self.stepTypeRaw = setup.stepTypeRaw
     }
 }

@@ -82,7 +82,7 @@ class AnimatedSegmentControl: UIView {
         let firstButton = activeBttns[selectedButton]
         firstButton.isSelected = true
         selectViewVertical = selectView.autoAlignAxis(.vertical, toSameAxisOf: firstButton)
-        selectViewWidth = selectView.autoMatch(.width, to: .width, of: firstButton, withMultiplier: 0.9)
+        selectViewWidth = selectView.autoMatch(.width, to: .width, of: firstButton, withMultiplier: 0.95)
         
     }
     
