@@ -16,11 +16,12 @@ public class StepAnswer: NSManagedObject {
         static let entityName = "StepAnswer"
     }
     
-    convenience init (step: AppventureStep, answer: String, context: NSManagedObjectContext) {
+    convenience init (step: AppventureStep, answer: String, correct: Bool, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entity(forEntityName: CoreKeys.entityName, in: context)
         self.init(entity: entity!, insertInto: context)
         self.answer = answer
         self.step = step
+        self.correct = correct
     }
     
     convenience init(_ backendlesAnswer: BackendlessAnswer, context: NSManagedObjectContext) {
@@ -29,6 +30,7 @@ public class StepAnswer: NSManagedObject {
         
         self.backendlessId = backendlesAnswer.objectId
         self.answer = backendlesAnswer.answer
+        self.correct = backendlesAnswer.correct
 
     }
 }

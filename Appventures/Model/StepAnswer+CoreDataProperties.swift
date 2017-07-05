@@ -16,6 +16,7 @@ extension StepAnswer {
         return NSFetchRequest<StepAnswer>(entityName: "StepAnswer");
     }
 
+    @NSManaged public var correct: Bool
     @NSManaged public var answer: String?
     @NSManaged public var backendlessId: String?
     @NSManaged public var step: AppventureStep?

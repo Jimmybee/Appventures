@@ -12,7 +12,8 @@ class BackendlessAnswer: NSObject {
     
     public var answer: String!
     public var objectId: String!
-    
+    public var correct: Bool = true
+
     override init() {
        super.init()
     }
@@ -20,10 +21,7 @@ class BackendlessAnswer: NSObject {
     init(stepAnswer: StepAnswer) {
         self.objectId = stepAnswer.backendlessId
         self.answer = stepAnswer.answer
+        self.correct = stepAnswer.correct
     }
     
-    init(dict: Dictionary<String, Any>) {
-        self.objectId = dict["objectId"] as? String
-        self.answer = dict["answer"] as? String
-    }
 }

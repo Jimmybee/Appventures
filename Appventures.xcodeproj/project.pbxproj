@@ -17,6 +17,8 @@
 		661F99051EC336BE00878F8F /* SegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99041EC336BE00878F8F /* SegmentButton.swift */; };
 		661F99071EC33DAA00878F8F /* AnimatedSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */; };
 		66341F141EFEDDAA00AD3D2C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66341F131EFEDDAA00AD3D2C /* Reachability.swift */; };
+		665465F21F07BC1100297538 /* AddMultipleChoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665465F11F07BC1100297538 /* AddMultipleChoiceTableViewController.swift */; };
+		665465F41F08109300297538 /* MultipleChoiceAnswerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665465F31F08109300297538 /* MultipleChoiceAnswerTableCell.swift */; };
 		667A51D71ECB276600BD7892 /* CompletedAppventureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A51D51ECB276600BD7892 /* CompletedAppventureTableViewCell.swift */; };
 		667A51D81ECB276600BD7892 /* CompletedAppventureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667A51D61ECB276600BD7892 /* CompletedAppventureTableViewCell.xib */; };
 		66DDE5B81EBF276D00A3911E /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDE5B61EBF276D00A3911E /* BaseTableViewController.swift */; };
@@ -144,6 +146,8 @@
 		661F99041EC336BE00878F8F /* SegmentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentButton.swift; sourceTree = "<group>"; };
 		661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSegmentControl.swift; path = ../AnimatedSegmentControl.swift; sourceTree = "<group>"; };
 		66341F131EFEDDAA00AD3D2C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		665465F11F07BC1100297538 /* AddMultipleChoiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMultipleChoiceTableViewController.swift; sourceTree = "<group>"; };
+		665465F31F08109300297538 /* MultipleChoiceAnswerTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceAnswerTableCell.swift; sourceTree = "<group>"; };
 		667A51D51ECB276600BD7892 /* CompletedAppventureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedAppventureTableViewCell.swift; sourceTree = "<group>"; };
 		667A51D61ECB276600BD7892 /* CompletedAppventureTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedAppventureTableViewCell.xib; sourceTree = "<group>"; };
 		66DDE5991EBF26AC00A3911E /* Appventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appventures.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -607,6 +611,7 @@
 				6602486E1EC8D1B6003E320A /* StepTableCell */,
 				66DDE6491EBF291200A3911E /* AppventureStepTableViewCell.swift */,
 				667A51D91ECB276900BD7892 /* Completed */,
+				665465F31F08109300297538 /* MultipleChoiceAnswerTableCell.swift */,
 			);
 			name = UITableViewCell;
 			path = Model;
@@ -890,6 +895,7 @@
 				66DDE5DC1EBF285200A3911E /* ImageChooserViewController.swift */,
 				66DDE5CA1EBF285200A3911E /* AddHintTableViewController.swift */,
 				66DDE5C91EBF285200A3911E /* AddAnswerTableViewController.swift */,
+				665465F11F07BC1100297538 /* AddMultipleChoiceTableViewController.swift */,
 				66DDE5D91EBF285200A3911E /* EditTextClueViewController.swift */,
 				66DDE5E01EBF285200A3911E /* LocationSettingsTableViewController.swift */,
 			);
@@ -1105,6 +1111,7 @@
 				66DDE6841EBF291200A3911E /* CompletedAppventure.swift in Sources */,
 				66DDE6741EBF291200A3911E /* AppventureDetailsView.swift in Sources */,
 				66DDE6781EBF291200A3911E /* AppventureStep.swift in Sources */,
+				665465F21F07BC1100297538 /* AddMultipleChoiceTableViewController.swift in Sources */,
 				66DDE5F71EBF285200A3911E /* AddHintTableViewController.swift in Sources */,
 				66DDE6A01EBF291200A3911E /* UIImage+ImageEffects.m in Sources */,
 				66DDE61B1EBF285200A3911E /* StepViewController.swift in Sources */,
@@ -1142,6 +1149,7 @@
 				66DDE6001EBF285200A3911E /* CheckInHintViewController.swift in Sources */,
 				66DDE6B21EBF29C100A3911E /* UIAlertController.swift in Sources */,
 				66DDE61C1EBF285200A3911E /* TargetHelperFunctions.swift in Sources */,
+				665465F41F08109300297538 /* MultipleChoiceAnswerTableCell.swift in Sources */,
 				66DDE67A1EBF291200A3911E /* AppventureStep+CoreDataProperties.swift in Sources */,
 				66DDE6151EBF285200A3911E /* RateViewController.swift in Sources */,
 				66DDE61E1EBF285200A3911E /* TimePenaltyViewController.swift in Sources */,

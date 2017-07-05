@@ -474,7 +474,7 @@ class AddStepTableViewController: BaseTableViewController, UITextFieldDelegate, 
             }
         }
         if segue.identifier == Constants.AddAnswer {
-            if let aatvc = segue.destination as? AddAnswerTableViewController {
+            if let aatvc = segue.destination as? AddMultipleChoiceViewController {
                 aatvc.step = self.appventureStep
             }
         }
