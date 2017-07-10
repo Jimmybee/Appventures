@@ -60,7 +60,7 @@ enum StepType: Int16 {
         case .written:
             return ImageNames.VcCreate.pencilHighlight
         case .multipleChoice:
-            return ImageNames.VcCreate.pencilHighlight
+            return ImageNames.VcCreate.multipleChoice
 
         }
     }

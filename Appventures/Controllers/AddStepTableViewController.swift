@@ -51,6 +51,7 @@ class AddStepTableViewController: BaseTableViewController, UITextFieldDelegate, 
     struct Constants {
         static let AddAnswer = "AddAnswer"
         static let AddHint = "AddHint"
+        static let AddMultipleChoice = "AddMultipleChoice"
         static let locationSettingsSegue = "locationSettingsSegue"
         static let ImageChooser = "ImageChooser"
         static let EditTextClue = "EditTextClue"
@@ -474,6 +475,11 @@ class AddStepTableViewController: BaseTableViewController, UITextFieldDelegate, 
             }
         }
         if segue.identifier == Constants.AddAnswer {
+            if let aatvc = segue.destination as? AddAnswerTableViewController {
+                aatvc.step = self.appventureStep
+            }
+        }
+        if segue.identifier == Constants.AddMultipleChoice {
             if let aatvc = segue.destination as? AddMultipleChoiceViewController {
                 aatvc.step = self.appventureStep
             }
@@ -637,7 +643,9 @@ extension AddStepTableViewController {
             } else {
                 showDatePickerCell(containingDatePicker: requiredProximityPicker)
             }
-
+        case textAnswerArray:
+            let segue = checkInControl.selectedSegmentIndex == 1 ? Constants.AddAnswer : Constants.AddMultipleChoice
+            performSegue(withIdentifier: segue, sender: nil)
         default:
             break
         }

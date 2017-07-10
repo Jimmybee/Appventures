@@ -6,7 +6,10 @@
 //  Copyright © 2016 James Birtwell. All rights reserved.
 //
 
-//import Parse
+protocol AppventureStartDelegate: class {
+    func removedJustDownloaded(atIndex: Int)
+}
+
 import UIKit
 import PureLayout
 
@@ -21,6 +24,9 @@ class AppventureStartViewController: BaseViewController {
     var completedAppventures = [CompletedAppventure]()
     var reviews = [Rating]()
     var apiDownloadGroup = DispatchGroup()
+    
+    weak var delegate: AppventureStartDelegate!
+    var index: Int!
     
 //    @IBOutlet weak var startAppventure: UIButton!
     @IBOutlet weak var startButton: UIButton!
@@ -189,7 +195,7 @@ extension AppventureStartViewController {
                 self.hideProgressView()
                 AppDelegate.coreDataStack.saveContext(completion: nil)
                 self.startButton.setTitle("Play", for: UIControlState())
-                //Remove from explore array
+                self.delegate.removedJustDownloaded(atIndex: self.index)
             })
             
         }

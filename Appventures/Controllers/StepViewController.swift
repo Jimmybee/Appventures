@@ -166,12 +166,16 @@ extension StepViewController {
     //MARK: Setup
     
     func setupSubmitBttn() {
-        if step.setup.stepType == .checkIn {
+        switch step.setup.stepType  {
+        case .checkIn:
             submitBttn.setImage(UIImage(named: ImageNames.VcStep.checkIn), for: .normal)
             submitBttn.addTarget(self, action: #selector(checkInPressed), for: .touchUpInside)
-        } else {
+        case .written:
             submitBttn.setImage(UIImage(named: ImageNames.VcStep.submit), for: .normal)
             submitBttn.addTarget(self, action: #selector(submitPressed), for: .touchUpInside)
+        case .multipleChoice:
+            submitBttn.setImage(UIImage(named: ImageNames.VcStep.submit), for: .normal)
+            submitBttn.addTarget(self, action: #selector(selectMultiAnwer), for: .touchUpInside)
         }
     }
     
@@ -396,7 +400,7 @@ extension StepViewController {
     }
     
     func cleanup() {
-      compassView
+//      compassView
     }
     
     //MARK: Timer
@@ -423,6 +427,8 @@ extension StepViewController : StepCompleteViewControllerDelegate {
         ms = currentTime
     }
 }
+
+//MARK: -
 
 extension StepViewController {
     
@@ -498,7 +504,41 @@ extension StepViewController {
         }
     }
     
-   
+    func selectMultiAnwer() {
+        let multiSelect = UIAlertController(title: "Select Correct", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let answers = Array(step.answers)
+        answers.enumerated().forEach { (offset, answer) in
+            let action = UIAlertAction(title: answer.answer, style: .default, handler: { (action) in
+                self.multiSelect(answer)
+            })
+            multiSelect.addAction(action)
+        }
+        present(multiSelect, animated: true, completion: nil)
+    }
     
+    func multiSelect(_ answer: StepAnswer) {
+        if answer.correct == true {
+            stepComplete()
+        } else {
+            let alert = UIAlertController(title: "", message: "Incorrect answer. Please try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

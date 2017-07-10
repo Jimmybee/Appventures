@@ -26,9 +26,12 @@ class LoginViewController: BaseViewController, PresentingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let onboarding = OnboardingViewController.storyboardInit()
+        self.present(onboarding, animated: false, completion: nil)
         UIView.animate(withDuration: 0.4, animations: {
             self.logInBttn.alpha = 1
             self.mainStackView.alpha = 1

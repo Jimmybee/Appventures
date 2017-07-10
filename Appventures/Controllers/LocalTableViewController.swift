@@ -111,6 +111,8 @@ class LocalTableViewController: BaseViewController, ViewControllerHelpers {
         } catch {
             print("An error occurred")
         }
+        
+        tableView.reloadData()
 
     }
     
@@ -200,8 +202,12 @@ class LocalTableViewController: BaseViewController, ViewControllerHelpers {
                     switch animatedControl.selectedButton {
                     case 0:
                         aastvc.appventure = fethcedAppventuresController.object(at: indexPath)
+                        aastvc.delegate = self
+                        aastvc.index = indexPath.row
                     case 1:
                         aastvc.appventure = publicAppventures[indexPath.row]
+                        aastvc.delegate = self
+                        aastvc.index = indexPath.row
                     default:
                         break
                     }
@@ -475,4 +481,14 @@ extension LocalTableViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
+
+// MARK: - Appventure Start Delegate
+
+extension LocalTableViewController: AppventureStartDelegate {
+    
+    func removedJustDownloaded(atIndex: Int) {
+        publicAppventures.remove(at: atIndex)
+        tableView.reloadData()
+    }
+}
 

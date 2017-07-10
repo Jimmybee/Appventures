@@ -18,6 +18,7 @@ class AddMultipleChoiceViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createController()
+        
     }
     
     func createController() {
@@ -56,6 +57,15 @@ class AddMultipleChoiceViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let answers = fetchedAnswersController.fetchedObjects else { return 0 }
+        
+        
+        
+        if !answers.contains(where: { $0.correct == true }) {
+            if answers.count > 0 {
+                answers[0].correct = true
+            }
+        }
         
         if let sections = fetchedAnswersController.sections {
             let currentSection = sections[section]
@@ -68,6 +78,13 @@ class AddMultipleChoiceViewController: UITableViewController {
     }
     
     @IBAction func addAnswer(_ sender: AnyObject) {
+        guard let answers = fetchedAnswersController.fetchedObjects else { return }
+        if answers.count >= 4 {
+            rejectedFourthAddition()
+            return
+        }
+        
+        
         let alert = UIAlertController(title: "New Answer", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
@@ -110,6 +127,7 @@ class AddMultipleChoiceViewController: UITableViewController {
         guard let answers = fetchedAnswersController.fetchedObjects else { return }
         answers.forEach({$0.correct = false})
         fetchedAnswersController.object(at: indexPath).correct = true
+        tableView.reloadData()
     }
     
     
@@ -121,6 +139,13 @@ class AddMultipleChoiceViewController: UITableViewController {
     // Determine whether a given row is eligible for reordering or not.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func rejectedFourthAddition() {
+        let alert = UIAlertController(title: "", message: "You already have 4 answers. Delete one to add another.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+
     }
     
 }

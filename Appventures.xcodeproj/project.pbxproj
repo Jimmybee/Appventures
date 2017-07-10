@@ -17,6 +17,8 @@
 		661F99051EC336BE00878F8F /* SegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99041EC336BE00878F8F /* SegmentButton.swift */; };
 		661F99071EC33DAA00878F8F /* AnimatedSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */; };
 		66341F141EFEDDAA00AD3D2C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66341F131EFEDDAA00AD3D2C /* Reachability.swift */; };
+		6644CC101F14341800C6F4F9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6644CC0F1F14341800C6F4F9 /* OnboardingViewController.swift */; };
+		6644CC121F14344900C6F4F9 /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6644CC111F14344900C6F4F9 /* UIStoryboard.swift */; };
 		665465F21F07BC1100297538 /* AddMultipleChoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665465F11F07BC1100297538 /* AddMultipleChoiceTableViewController.swift */; };
 		665465F41F08109300297538 /* MultipleChoiceAnswerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665465F31F08109300297538 /* MultipleChoiceAnswerTableCell.swift */; };
 		667A51D71ECB276600BD7892 /* CompletedAppventureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A51D51ECB276600BD7892 /* CompletedAppventureTableViewCell.swift */; };
@@ -146,6 +148,8 @@
 		661F99041EC336BE00878F8F /* SegmentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentButton.swift; sourceTree = "<group>"; };
 		661F99061EC33DAA00878F8F /* AnimatedSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSegmentControl.swift; path = ../AnimatedSegmentControl.swift; sourceTree = "<group>"; };
 		66341F131EFEDDAA00AD3D2C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		6644CC0F1F14341800C6F4F9 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		6644CC111F14344900C6F4F9 /* UIStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboard.swift; path = Controllers/UIStoryboard.swift; sourceTree = "<group>"; };
 		665465F11F07BC1100297538 /* AddMultipleChoiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMultipleChoiceTableViewController.swift; sourceTree = "<group>"; };
 		665465F31F08109300297538 /* MultipleChoiceAnswerTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceAnswerTableCell.swift; sourceTree = "<group>"; };
 		667A51D51ECB276600BD7892 /* CompletedAppventureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedAppventureTableViewCell.swift; sourceTree = "<group>"; };
@@ -655,6 +659,7 @@
 		66DDE6C61EBF34AE00A3911E /* UIExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				6644CC111F14344900C6F4F9 /* UIStoryboard.swift */,
 				66DDE6C51EBF349800A3911E /* UIAlertController */,
 			);
 			name = UIExtensions;
@@ -812,6 +817,7 @@
 				66DDE5E11EBF285200A3911E /* LoginViewController.swift */,
 				66EFC2AC1ECCED1700182B6B /* EmailLoginViewController.swift */,
 				66EFC2AE1ECCFE9400182B6B /* CreateAccountViewController.swift */,
+				6644CC0F1F14341800C6F4F9 /* OnboardingViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -946,7 +952,7 @@
 				TargetAttributes = {
 					66DDE5981EBF26AC00A3911E = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = WM7B35DDT2;
+						DevelopmentTeam = G55S74JQUS;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -1104,6 +1110,7 @@
 				66DDE6131EBF285200A3911E /* MakerHomeViewController.swift in Sources */,
 				66DDE5B81EBF276D00A3911E /* BaseTableViewController.swift in Sources */,
 				66DDE6801EBF291200A3911E /* BackendlessAppventure.swift in Sources */,
+				6644CC121F14344900C6F4F9 /* UIStoryboard.swift in Sources */,
 				66DDE6871EBF291200A3911E /* DevelopLocalPublicSegmented.swift in Sources */,
 				66DDE6961EBF291200A3911E /* SharedAdventure.swift in Sources */,
 				66DDE6811EBF291200A3911E /* BackendlessHint.swift in Sources */,
@@ -1146,6 +1153,7 @@
 				66DDE69D1EBF291200A3911E /* StepSetup+CoreDataProperties.swift in Sources */,
 				66DDE6981EBF291200A3911E /* StepAnswer+CoreDataProperties.swift in Sources */,
 				66DDE6041EBF285200A3911E /* CreateAppventureViewController.swift in Sources */,
+				6644CC101F14341800C6F4F9 /* OnboardingViewController.swift in Sources */,
 				66DDE6001EBF285200A3911E /* CheckInHintViewController.swift in Sources */,
 				66DDE6B21EBF29C100A3911E /* UIAlertController.swift in Sources */,
 				66DDE61C1EBF285200A3911E /* TargetHelperFunctions.swift in Sources */,
@@ -1261,7 +1269,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = WM7B35DDT2;
+				DEVELOPMENT_TEAM = G55S74JQUS;
 				INFOPLIST_FILE = Appventures/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1279,7 +1287,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = WM7B35DDT2;
+				DEVELOPMENT_TEAM = G55S74JQUS;
 				INFOPLIST_FILE = Appventures/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
